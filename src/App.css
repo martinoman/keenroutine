@@ -31,3 +31,7 @@
     transform: rotate(360deg);
   }
 }
+
+.note:hover{
+    background-color: #fc806b;
+}
