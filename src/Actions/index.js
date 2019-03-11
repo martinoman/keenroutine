@@ -7,3 +7,13 @@ export const increment2 = () => ({
   type: 'INCREMENT_COUNTER2',
   value: 1
 })
+
+export const loadPlace = place => ({
+  type: 'LOAD_PLACE',
+  place: place
+})
+
+export const loadUser = user => ({
+  type: 'LOAD_USER',
+  user: user
+})

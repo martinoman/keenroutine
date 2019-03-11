@@ -1,27 +1,48 @@
 import { combineReducers } from 'redux'
 
 const initialState = {
-    counter1:0,
-    counter2:0,
+    user: {
+        userName: "",
+        userId: ""
+    },
+    places: [],
 }
 
-const reducer = (state=initialState, action) => {
-  switch (action.type) {
-    case 'INCREMENT_COUNTER1':
-        return Object.assign({}, state, {
-            counter1: state.counter1 + action.value
-      })
-    case 'INCREMENT_COUNTER2':
-        return Object.assign({}, state, {
-            counter2: state.counter2 + action.value
-      })
-    default:
-      return state
-  }
+const reduxMother = (state=initialState, action) => {
+    console.log(state);
+    switch (action.type) {
+        case 'LOAD_PLACE':
+            return Object.assign({}, state,
+                {
+                    places: [...state.places, action.place]
+                })
+        case 'LOAD_USER':
+            return Object.assign({}, state,{
+                user:{
+                    userName: action.user.email,
+                    userID: action.user.uid
+                    }
+                })
+        default:
+            return state
+    }
 }
 
-const keenRoutineApp = combineReducers({
-  reducer
-})
+// const user = (state=initialState, action) => {
+//     switch (action.type) {
+//         case 'LOAD_USER':
+//             return {
+//                     userName: action.user.email,
+//                     userID: action.user.uid
+//                 }
+//         default:
+//             return state
+//     }
+// }
+//
+// const keenRoutineApp = combineReducers({
+//     user,
+//     places
+// })
 
-export default keenRoutineApp
+export default reduxMother

@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import 'firebase/database';
 import 'firebase/auth'
 import 'firebase/firestore';
-import {increment1, increment2} from './Actions/index';
+import {loadPlace, loadUser} from './Actions/index';
 import { Route } from "react-router-dom";
 
 import './App.css';
@@ -16,20 +16,23 @@ class App extends Component {
     constructor(){
         super();
 
-        this.db = firebase.database().ref().child('Notes');
+        this.db = firebase.database().ref().child('users');
         this.auth = firebase.auth();
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
         this.authChange = this.authChange.bind(this);
         this.state={
             notes:[],
-            userId: null
         }
         firebase.auth().onAuthStateChanged(this.authChange);
     }
 
     authChange(user){
-        this.db = this.db.child("users").child(user.uid);
+        this.db = this.db.child(user.uid);
+        this.props.loadUser(user);
+        this.db.on('child_added', snap => {
+            this.props.loadPlace(snap.val())
+        })
     }
 
     componentDidMount(){
@@ -71,11 +74,12 @@ class App extends Component {
     }
 
   render() {
+      console.log(this.props);
     return (
       <div className="App">
-        {this.state.notes.map((item)=>{
+        {this.props.places.map((item, index)=>{
             return(
-                <h1 key={item.id} className="note" onClick={()=>{this.removeNote(item.id)}}>{item.text}</h1>
+                <h1 key={index} className="note">{item.alias}</h1>
             )
         })}
         <form onSubmit={this.addNote}>
@@ -90,21 +94,21 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return{
-        counter1: state.reducer.counter1,
-        counter2: state.reducer.counter2
+        user: state.user,
+        places: state.places,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        increment1: () => dispatch(increment1()),
-        increment2: () => dispatch(increment2())
+        loadUser: (user) => dispatch(loadUser(user)),
+        loadPlace: (place) => dispatch(loadPlace(place))
     }
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);
