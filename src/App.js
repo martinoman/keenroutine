@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/database';
+import 'firebase/auth'
+import 'firebase/firestore';
+import {increment1, increment2} from './Actions/index';
 import { Route } from "react-router-dom";
 
 import './App.css';
@@ -12,7 +16,8 @@ class App extends Component {
     constructor(){
         super();
 
-        this.db = firebase.database().ref();
+        this.db = firebase.database().ref().child('Notes');
+        this.auth = firebase.auth();
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
         this.authChange = this.authChange.bind(this);
@@ -85,4 +90,21 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return{
+        counter1: state.reducer.counter1,
+        counter2: state.reducer.counter2
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        increment1: () => dispatch(increment1()),
+        increment2: () => dispatch(increment2())
+    }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
