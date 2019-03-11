@@ -12,13 +12,19 @@ class App extends Component {
     constructor(){
         super();
 
-        this.db = firebase.database().ref().child('Notes');
+        this.db = firebase.database().ref();
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
-
+        this.authChange = this.authChange.bind(this);
         this.state={
-            notes:[]
+            notes:[],
+            userId: null
         }
+        firebase.auth().onAuthStateChanged(this.authChange);
+    }
+
+    authChange(user){
+        this.db = this.db.child("users").child(user.uid);
     }
 
     componentDidMount(){
