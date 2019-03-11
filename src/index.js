@@ -10,13 +10,17 @@ import { createStore } from 'redux'
 import reducers from './Reducers/reducers'
 
 import config from './DB_CONFIG.js'
+import {BrowserRouter} from 'react-router-dom'
+
 
 const store = createStore(reducers);
 firebase.initializeApp(config);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

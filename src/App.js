@@ -4,10 +4,13 @@ import firebase from 'firebase/app'
 import 'firebase/database';
 import 'firebase/auth'
 import 'firebase/firestore';
-
 import {increment1, increment2} from './Actions/index';
+import { Route } from "react-router-dom";
 
 import './App.css';
+
+import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
 
 class App extends Component {
     constructor(){
@@ -64,10 +67,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>Counter1 = {this.props.counter1}</div>
-        <div>Counter2 = {this.props.counter2}</div>
-        <button onClick={this.props.increment1}>increment 1</button>
-        <button onClick={this.props.increment2}>increment 2</button>
+        {this.state.notes.map((item)=>{
+            return(
+                <h1 key={item.id} className="note" onClick={()=>{this.removeNote(item.id)}}>{item.text}</h1>
+            )
+        })}
+        <form onSubmit={this.addNote}>
+            <input type="text"/>
+            <button text="Add" type="submit">Add</button>
+
+        </form>
+        <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
+        <Route exact path="/login" render={(props) => <Login {...props}/>}/>
       </div>
     );
   }
