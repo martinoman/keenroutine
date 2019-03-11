@@ -6,12 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase/app'
 import 'firebase/database';
 import config from './DB_CONFIG.js'
+import {BrowserRouter} from 'react-router-dom'
+
 
 firebase.initializeApp(config);
 
 
 ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
