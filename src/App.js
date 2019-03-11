@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/database';
+import 'firebase/auth'
+import 'firebase/firestore';
+
+import {increment1, increment2} from './Actions/index';
 
 import './App.css';
 
@@ -9,6 +14,7 @@ class App extends Component {
         super();
 
         this.db = firebase.database().ref().child('Notes');
+        this.auth = firebase.auth();
         this.addNote = this.addNote.bind(this);
         this.removeNote = this.removeNote.bind(this);
 
@@ -58,19 +64,30 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.notes.map((item)=>{
-            return(
-                <h1 key={item.id} className="note" onClick={()=>{this.removeNote(item.id)}}>{item.text}</h1>
-            )
-        })}
-        <form onSubmit={this.addNote}>
-            <input type="text"/>
-            <button text="Add" type="submit">Add</button>
-
-        </form>
+        <div>Counter1 = {this.props.counter1}</div>
+        <div>Counter2 = {this.props.counter2}</div>
+        <button onClick={this.props.increment1}>increment 1</button>
+        <button onClick={this.props.increment2}>increment 2</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return{
+        counter1: state.reducer.counter1,
+        counter2: state.reducer.counter2
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        increment1: () => dispatch(increment1()),
+        increment2: () => dispatch(increment2())
+    }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
