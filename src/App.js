@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app'
 import 'firebase/database';
+import { Route } from "react-router-dom";
 
 import './App.css';
+
+import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
 
 class App extends Component {
     constructor(){
@@ -68,6 +72,8 @@ class App extends Component {
             <button text="Add" type="submit">Add</button>
 
         </form>
+        <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
+        <Route exact path="/login" render={(props) => <Login {...props}/>}/>
       </div>
     );
   }
