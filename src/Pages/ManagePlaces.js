@@ -27,6 +27,15 @@ class ManagePlaces extends Component {
     render() {
         return (
             <div className="manage_places_page">
+                {this.renderPlacesList()}
+            </div>
+        );
+    }
+
+    renderPlacesList(){
+        console.log(this.props.user.userID);
+        return(
+            <div className="manage_places_list">
                 {(this.props.user.userID == null)
                     ?
                     <div className="no-user-error">You must log in!</div>
