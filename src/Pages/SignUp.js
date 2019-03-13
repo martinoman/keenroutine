@@ -32,7 +32,6 @@ class SignUp extends Component {
                 this.setState({
                     message: e.message
                 });
-                console.log(e.message);
                 failed = true;
             }).then(()=>{
                 if(!failed){
