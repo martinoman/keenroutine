@@ -1,9 +1,7 @@
 import React, {Component} from "react";
-import firebase from 'firebase/app'
-import 'firebase/auth';
-import 'firebase/firestore';
-import {Link} from "react-router-dom";
+import { connect } from 'react-redux'
 
+import {Link} from "react-router-dom";
 
 class ManagePlaces extends Component {
 
@@ -11,15 +9,34 @@ class ManagePlaces extends Component {
         super(props);
     }
 
+    addPlace(alias, adress){
+        this.db.push().set({
+            [alias]: adress,
+        });
+    }
+
+    removePace(key){
+        this.db.child(key).remove();
+    }
 
     render() {
         return (
             <div className="manage_places_page">
-                
+
             </div>
         );
     }
 
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+    return{
+        user: state.user,
+        places: state.places,
+    }
+}
+
+
+export default connect(
+    mapStateToProps
+)(ManagePlaces);

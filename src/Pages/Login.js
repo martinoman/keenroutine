@@ -33,8 +33,8 @@ class Login extends Component {
             <div className="login_page">
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
-                    <input type="text" defaultValue="e-mail"></input>
-                    <input type="password" defaultValue="password"></input>
+                    <input type="text" defaultValue="hyberg.martin@gmail.com"></input>
+                    <input type="password" defaultValue="asdasd"></input>
                     <button type="submit">Login</button>
                 </form>
                 <div className="login_status_message">

@@ -8,9 +8,9 @@ export const increment2 = () => ({
   value: 1
 })
 
-export const loadPlace = place => ({
+export const loadPlaces = places => ({
   type: 'LOAD_PLACE',
-  place: place
+  places: places
 })
 
 export const loadUser = user => ({

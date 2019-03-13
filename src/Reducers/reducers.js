@@ -9,7 +9,6 @@ const initialState = {
 }
 
 const reduxMother = (state=initialState, action) => {
-    console.log(state);
     switch (action.type) {
         case 'LOAD_PLACE':
             return Object.assign({}, state,
