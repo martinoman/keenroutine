@@ -18,8 +18,6 @@ class App extends Component {
 
         this.db = firebase.database().ref().child('users');
         this.auth = firebase.auth();
-        this.addNote = this.addNote.bind(this);
-        this.removeNote = this.removeNote.bind(this);
         this.authChange = this.authChange.bind(this);
         this.state={
             notes:[],
@@ -58,19 +56,6 @@ class App extends Component {
                 notes:prevNotes
             })
         })
-    }
-
-    addNote(e){
-        e.preventDefault();
-        if (e.target[0].value !== "") {
-            this.db.push().set({
-                'text': e.target[0].value
-            })
-        }
-    }
-
-    removeNote(id){
-        this.db.child(id).remove();
     }
 
   render() {
