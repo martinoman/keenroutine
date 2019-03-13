@@ -14,6 +14,7 @@ import './App.css';
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
+import SelectPlace from "./Pages/SelectPlace";
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
         this.props.loadUser(user);
         let db = firebase.database().ref().child('users');
         db.on('child_added', snap => {
+            console.log(this.props.places);
             this.props.loadPlaces(snap.val());
         })
     }
