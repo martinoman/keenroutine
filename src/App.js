@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { Route } from "react-router-dom";
+import { Switch, Router, Route } from 'react-router-dom'
 
 import firebase from "firebase/app";
 import "firebase/database";
@@ -24,7 +25,7 @@ class App extends Component {
 
     authChange(user){
         this.props.loadUser(user);
-        let db = firebase.database().ref().child('users').child(this.props.user.userID);
+        let db = firebase.database().ref().child('users');
         db.on('child_added', snap => {
             this.props.loadPlaces(snap.val());
         })
@@ -33,10 +34,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
-        <Route exact path="/login" render={(props) => <Login {...props}/>}/>
-        <Route exact path="/" render={(props) => <Login {...props}/>}/>
-        <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
+        	<Switch>
+                <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
+                <Route exact path="/login" render={(props) => <Login {...props}/>}/>
+                <Route exact path="/" render={(props) => <Login {...props}/>}/>
+                <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
+        	</Switch>
       </div>
     );
   }

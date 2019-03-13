@@ -21,8 +21,9 @@ class Login extends Component {
             event.target[0].value,
             event.target[1].value
         ).then(()=>{
-            window.assign("/manage_places")
+            window.location.assign("/manage_places")
         }).catch((e)=>{
+            console.log(e);
             this.setState({
                 message: "Wrong password or email"
             });
@@ -42,11 +43,9 @@ class Login extends Component {
                 <div className="login_status_message">
                     {this.state.message}
                 </div>
-                {
-                    <Link className="skip-login" to="/manage_places">
-                        <button>Skip login</button>
-                    </Link>
-                }
+                <Link to="/manage_places">
+                    Skip login
+                </Link>
             </div>
         );
     }
