@@ -9,13 +9,19 @@ const initialState = {
 }
 
 const reduxMother = (state=initialState, action) => {
-    console.log(state);
     switch (action.type) {
         case 'LOAD_PLACE':
+            let newPlaces = [];
+            Object.entries(action.place).forEach((place)=>{
+                newPlaces.push({
+                    [place[0]]: place[1]
+                })
+            })
             return Object.assign({}, state,
                 {
-                    places: [...state.places, action.place]
+                    places: newPlaces
                 })
+                
         case 'LOAD_USER':
             return Object.assign({}, state,{
                 user:{
