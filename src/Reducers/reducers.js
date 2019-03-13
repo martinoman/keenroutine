@@ -6,6 +6,7 @@ const initialState = {
         userID: null
     },
     places: [],
+    currentLocation: "",
 }
 
 const reduxMother = (state=initialState, action) => {
@@ -28,6 +29,10 @@ const reduxMother = (state=initialState, action) => {
                     userName: action.user.email,
                     userID: action.user.uid
                     }
+                })
+        case 'CHANGE_LOCATION':
+            return Object.assign({}, state,{
+                currentLocation: action.adress
                 })
         default:
             return state
