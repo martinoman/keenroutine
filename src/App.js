@@ -14,6 +14,7 @@ import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
 import SelectPlace from "./Pages/SelectPlace";
+import SelectDestination from "./Pages/SelectDestination";
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
         <Route exact path="/" render={(props) => <Login {...props}/>}/>
         <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
         <Route exact path="/select_place" render={(props) => <SelectPlace {...props}/>}/>
+        <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
       </div>
     );
   }
