@@ -20,7 +20,9 @@ class Login extends Component {
         firebase.auth().signInWithEmailAndPassword(
             event.target[0].value,
             event.target[1].value
-        ).catch((e)=>{
+        ).then(()=>{
+            window.assign("/manage_places")
+        }).catch((e)=>{
             this.setState({
                 message: "Wrong password or email"
             });
@@ -40,6 +42,11 @@ class Login extends Component {
                 <div className="login_status_message">
                     {this.state.message}
                 </div>
+                {
+                    <Link className="skip-login" to="/manage_places">
+                        <button>Skip login</button>
+                    </Link>
+                }
             </div>
         );
     }

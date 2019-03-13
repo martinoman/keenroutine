@@ -26,7 +26,7 @@ class App extends Component {
         this.props.loadUser(user);
         let db = firebase.database().ref().child('users').child(this.props.user.userID);
         db.on('child_added', snap => {
-            this.props.loadPlaces(snap.val())
+            this.props.loadPlaces(snap.val());
         })
     }
 
