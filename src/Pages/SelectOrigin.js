@@ -20,7 +20,7 @@ class SelectOrigin extends Component {
                     return(
                         <Link to="/select_destination" key={index}>
                             <div className="select-origin-box" onClick={()=>{
-                                this.props.changeLocation(place.location);
+                                this.props.changeLocation(place);
                             }}>
                                 {place.alias}
                             </div>
@@ -34,7 +34,7 @@ class SelectOrigin extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        changeLocation: (adress) => dispatch(changeLocation(adress)),
+        changeLocation: (location) => dispatch(changeLocation(location)),
     }
 }
 

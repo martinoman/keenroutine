@@ -35,7 +35,6 @@ const reduxMother = (state=initialState, action) => {
                     }
                 })
         case 'CHANGE_LOCATION':
-        console.log(action);
             return Object.assign({}, state,{
                 currentLocation: action.location
                 })
