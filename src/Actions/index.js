@@ -3,6 +3,11 @@ export const changeLocation = location => ({
   location: location
 })
 
+export const focusTrip = trip => ({
+  type: 'FOCUS_TRIP',
+  trip: trip
+})
+
 export const loadPlaces = places => ({
   type: 'LOAD_PLACE',
   places: places

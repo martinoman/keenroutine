@@ -7,6 +7,7 @@ const initialState = {
     },
     places: [],
     currentLocation: "",
+    focusedTrip: "",
 }
 
 const reduxMother = (state=initialState, action) => {
@@ -37,6 +38,10 @@ const reduxMother = (state=initialState, action) => {
         case 'CHANGE_LOCATION':
             return Object.assign({}, state,{
                 currentLocation: action.location
+                })
+        case 'FOCUS_TRIP':
+            return Object.assign({}, state,{
+                focusedTrip: action.trip
                 })
         default:
             return state
