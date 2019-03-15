@@ -1,5 +1,9 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import {focusTrip} from '../Actions/index.js'
+
+import {Link} from "react-router-dom";
+
 
 import key from "../reseplanerareAPIKey.js"
 class SelectDestination extends Component {
@@ -150,19 +154,23 @@ class SelectDestination extends Component {
     render(){
         return(
             <div className="destination-selection-page">
-                {this.state.trips.map((trip)=>{
+                {this.state.trips.map((trip, key)=>{
                     return (
-                        <div className="trip-summary">
-                            <div className="trip-summary-alias">
-                                To: {trip.to}
+                        <Link to="/travel_guide" key={key} >
+                            <div className="trip-summary" onClick={() => {
+                                    this.props.focusTrip(trip);
+                                }}>
+                                <div className="trip-summary-alias">
+                                    To: {trip.to}
+                                </div>
+                                <div className="trip-summary-time-until-departure">
+                                    {trip.timeUntilDeparture}min until departure
+                                </div>
+                                <div className="trip-summary-travel-time">
+                                    {trip.travelTime}min total travel time
+                                </div>
                             </div>
-                            <div className="trip-summary-time-until-departure">
-                                {trip.timeUntilDeparture}min until departure
-                            </div>
-                            <div className="trip-summary-travel-time">
-                                {trip.travelTime}min total travel time
-                            </div>
-                        </div>
+                        </Link>
                     );
                 })}
             </div>
@@ -172,7 +180,7 @@ class SelectDestination extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-
+        focusTrip: (trip) => dispatch(focusTrip(trip)),
     }
 }
 

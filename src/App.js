@@ -16,6 +16,7 @@ import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
 import SelectOrigin from "./Pages/SelectOrigin";
 import SelectDestination from "./Pages/SelectDestination";
+import TravelGuide from "./Pages/TravelGuide";
 
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
             <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
             <Route exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
             <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
+            <Route exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
         </Switch>
       </div>
     );
