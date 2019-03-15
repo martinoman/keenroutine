@@ -4,7 +4,7 @@ import {changeLocation} from "../Actions/index"
 
 import {Link} from "react-router-dom";
 
-class SelectPlace extends Component {
+class SelectOrigin extends Component {
 
     constructor(props){
         super(props);
@@ -12,14 +12,16 @@ class SelectPlace extends Component {
 
     render(){
         return(
-            <div className="place-selection-page">
-                <div className="place-selection-header">
+            <div className="origin-selection-page">
+                <div className="origin-selection-header">
                     Where are you?
                 </div>
                 {this.props.places.map((place, index) => {
                     return(
                         <Link to="/select_destination" key={index}>
-                            <div className="select-place-box" onClick={()=>{this.props.changeLocation(place.adress)}}>
+                            <div className="select-origin-box" onClick={()=>{
+                                this.props.changeLocation(place.location);
+                            }}>
                                 {place.alias}
                             </div>
                         </Link>
@@ -47,4 +49,4 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(SelectPlace);
+)(SelectOrigin);

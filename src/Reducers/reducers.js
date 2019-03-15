@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
 
 const initialState = {
     user: {
@@ -16,7 +16,11 @@ const reduxMother = (state=initialState, action) => {
             Object.entries(action.places).forEach((place)=>{
                 newPlaces.push({
                     alias: place[0],
-                    adress: place[1],
+                    location: {
+                        id: place[1].ID,
+                        x: place[1].X,
+                        y: place[1].Y,
+                    }
                 })
             })
             return Object.assign({}, state,
@@ -31,8 +35,9 @@ const reduxMother = (state=initialState, action) => {
                     }
                 })
         case 'CHANGE_LOCATION':
+        console.log(action);
             return Object.assign({}, state,{
-                currentLocation: action.adress
+                currentLocation: action.location
                 })
         default:
             return state

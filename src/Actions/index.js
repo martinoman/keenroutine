@@ -1,6 +1,6 @@
 export const changeLocation = location => ({
   type: 'CHANGE_LOCATION',
-  adress: location
+  location: location
 })
 
 export const loadPlaces = places => ({
