@@ -62,18 +62,20 @@ class SelectDestination extends Component {
             if(destination === origin)
                 continue;
             let url = "https://api.sl.se/api2/TravelplannerV3_1/trip.json?" + this.getParameters(key,destinations[i],origin);
-            console.log("url");
-            console.log(url);
             tripPromises.push(this.apiCall(url, headers, destination.alias));
         }
-        Promise.all(tripPromises).then(console.log(this.state));
+        Promise.all(tripPromises).then(()=>{
+            console.log("State:");
+            console.log(this.state);
+            this.setState(this.state);
+        }
+        );
     }
 
     /**
     This shoudl probz return a list of parameter sets. One for each place
     */
     getParameters(key, dest, org){
-        console.log(org);
         dest = dest.location;
         org = org.location;
         let urlParams = "key=" + key;
@@ -148,7 +150,21 @@ class SelectDestination extends Component {
     render(){
         return(
             <div className="destination-selection-page">
-                {this.state.trips.length > 0 ? this.state.trips[0].to : ""}
+                {this.state.trips.map((trip)=>{
+                    return (
+                        <div className="trip-summary">
+                            <div className="trip-summary-alias">
+                                To: {trip.to}
+                            </div>
+                            <div className="trip-summary-time-until-departure">
+                                {trip.timeUntilDeparture}min until departure
+                            </div>
+                            <div className="trip-summary-travel-time">
+                                {trip.travelTime}min total travel time
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         );
     }
