@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
-import {Link} from "react-router-dom";
 
 class ManagePlaces extends Component {
 

@@ -94,7 +94,7 @@ class SelectDestination extends Component {
             originCoordLat: (org.id === undefined) ? org.y : undefined,
             originCoordLong: (org.id === undefined) ? org.x : undefined,
         }
-        for (var key in parameters) {
+        for (let key in parameters) {
             if (parameters.hasOwnProperty(key)) {
                 if(parameters[key] !== undefined)
                     urlParams += "&" + key + "=" + parameters[key]

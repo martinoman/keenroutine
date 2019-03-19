@@ -3,14 +3,7 @@ import { connect } from 'react-redux'
 
 
 class TravelGuide extends Component {
-
-    constructor(props){
-        super(props);
-    }
-
     render() {
-        console.log("........");
-        console.log(this.props.focusedTrip);
         return (
             <div className="travel-guide-page">
                 Trip to {this.props.focusedTrip.to}

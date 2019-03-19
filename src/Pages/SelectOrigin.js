@@ -5,11 +5,6 @@ import {changeLocation} from "../Actions/index"
 import {Link} from "react-router-dom";
 
 class SelectOrigin extends Component {
-
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return(
             <div className="origin-selection-page">
