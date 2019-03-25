@@ -7,15 +7,13 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, loadPlaces} from "./Actions/index";
+import {loadUser, loadPlace} from "./Actions/index";
 
 import './App.css';
 
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
-import SelectPlace from "./Pages/SelectPlace";
-
 
 class App extends Component {
     constructor(){
@@ -26,10 +24,9 @@ class App extends Component {
 
     authChange(user){
         this.props.loadUser(user);
-        let db = firebase.database().ref().child('users');
+        let db = firebase.database().ref().child('users').child(this.props.user.userID);
         db.on('child_added', snap => {
-            console.log(this.props.places);
-            this.props.loadPlaces(snap.val());
+            this.props.loadPlace(snap.val(), snap.key);
         })
     }
 
@@ -57,7 +54,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         loadUser: (user) => dispatch(loadUser(user)),
-        loadPlaces: (places) => dispatch(loadPlaces(places)),
+        loadPlace: (place, key) => dispatch(loadPlace(place, key)),
     }
 }
 

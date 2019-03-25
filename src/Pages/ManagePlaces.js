@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
+import { removePlace } from "../Actions/index";
 
 class ManagePlaces extends Component {
 
@@ -22,12 +22,14 @@ class ManagePlaces extends Component {
         });
     }
 
-    removePace(key){
+    removePlace = (key) => {
         this.db.child(this.props.user.userID).child(key).remove();
+        this.props.removePlace(key);
     }
 
 
-    renderPlacesList(){
+    renderPlacesList = () => {
+        console.log(this.props.places);
         return(
             <div className="manage_places_list">
                 {(this.props.user.userID == null)
@@ -43,6 +45,9 @@ class ManagePlaces extends Component {
                                 <div className="place-row-adress">
                                     {place.adress}
                                 </div>
+                                <div onClick={()=>this.removePlace(place.key)}>
+                                    x
+                                </div>
                             </div>
                         )
                     })
@@ -51,7 +56,7 @@ class ManagePlaces extends Component {
         );
     }
 
-    renderAddPlaceForm(){
+    renderAddPlaceForm = () => {
         return(
             <div className="add_place">
                 <div className="add_place_header">Add a location!</div>
@@ -84,7 +89,13 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispath) => {
+    return{
+        removePlace: (key) => dispath(removePlace(key)),
+    }
+}
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps,
 )(ManagePlaces);
