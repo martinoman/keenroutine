@@ -23,13 +23,13 @@ class ManagePlaces extends Component {
     }
 
     removePlace = (key) => {
+        console.log(key);
         this.db.child(this.props.user.userID).child(key).remove();
         this.props.removePlace(key);
     }
 
 
     renderPlacesList = () => {
-        console.log(this.props.places);
         return(
             <div className="manage_places_list">
                 {(this.props.user.userID == null)

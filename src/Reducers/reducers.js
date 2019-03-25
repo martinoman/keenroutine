@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
 
 const initialState = {
     user: {
@@ -6,17 +6,24 @@ const initialState = {
         userID: null
     },
     places: [],
+    currentLocation: "",
+    focusedTrip: "",
 }
 
 const reduxMother = (state=initialState, action) => {
     switch (action.type) {
         case 'LOAD_PLACE':
             let newPlaces = [...state.places];
-            let newPlace = Object.entries(action.place);
-            newPlaces.push({
-                alias: newPlace[0][0],
-                adress: newPlace[0][1],
-                key: action.key
+            Object.entries(action.place).forEach((place)=>{
+                newPlaces.push({
+                    alias: place[0],
+                    location: {
+                        id: place[1].ID,
+                        x: place[1].X,
+                        y: place[1].Y,
+                    },
+                    key: action.key,
+                })
             })
             return Object.assign({}, state,
                 {
@@ -39,6 +46,14 @@ const reduxMother = (state=initialState, action) => {
                     userName: action.user.email,
                     userID: action.user.uid
                     }
+                })
+        case 'CHANGE_LOCATION':
+            return Object.assign({}, state,{
+                currentLocation: action.location
+                })
+        case 'FOCUS_TRIP':
+            return Object.assign({}, state,{
+                focusedTrip: action.trip
                 })
         default:
             return state

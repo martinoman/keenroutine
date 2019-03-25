@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { Switch, Router, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import firebase from "firebase/app";
 import "firebase/database";
@@ -14,6 +14,10 @@ import './App.css';
 import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
+import SelectOrigin from "./Pages/SelectOrigin";
+import SelectDestination from "./Pages/SelectDestination";
+import TravelGuide from "./Pages/TravelGuide";
+
 
 class App extends Component {
     constructor(){
@@ -33,12 +37,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        	<Switch>
-                <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
-                <Route exact path="/login" render={(props) => <Login {...props}/>}/>
-                <Route exact path="/" render={(props) => <Login {...props}/>}/>
-                <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
-        	</Switch>
+          <Switch>
+            <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
+            <Route exact path="/login" render={(props) => <Login {...props}/>}/>
+            <Route exact path="/" render={(props) => <Login {...props}/>}/>
+            <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
+            <Route exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
+            <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
+            <Route exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
+        </Switch>
       </div>
     );
   }
