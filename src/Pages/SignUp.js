@@ -59,11 +59,11 @@ class SignUp extends Component {
 
                         <form onSubmit={this.handleSignUp}>
                             <p>E-mail</p>
-                            <input type="text" defaultValue="Hyberg.martin@gmail.com"/>
+                            <input type="text" defaultValue="a@a.com"/>
                             <p>Password</p>
-                            <input type="password" defaultValue="AfraidOfBees"/>
+                            <input type="password" defaultValue="asdasd"/>
                             <p>Confirm password</p>
-                            <input type="password" defaultValue="AfraidOfBees"/>
+                            <input type="password" defaultValue="asdasd"/>
                             <br/>
                             <button type="submit">Sign the f*** up</button>
                         </form>
