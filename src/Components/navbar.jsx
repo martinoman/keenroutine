@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
-import {Link} from "react-router-dom";
-import { removePlace } from "../Actions/index";
+import {Link, withRouter} from "react-router-dom";
+import { removePlace, clearState } from "../Actions/index";
 
 class Navbar extends Component {
 
@@ -12,20 +12,57 @@ class Navbar extends Component {
         super(props);
 
         this.state = {
-            expanded: false,
+            expanded: true,
         }
+    }
+
+    toggleNavbar = () => {
+        const newStateOfNavbar = !this.state.expanded
+        console.log(newStateOfNavbar);
+        this.setState({
+            expanded:newStateOfNavbar,
+        })
+    }
+
+    logout = () => {
+        firebase.auth().signOut()
+        .then(() => {
+            console.log("signout sucess");
+            this.props.clearState();
+            localStorage.clear();
+            this.props.history.push('/login');
+        })
+        .catch((err) => {
+            console.log(err);
+            console.log("signOut falied");
+        })
     }
 
     render() {
         return (
-            {this.state.extended ?
             <div className="">
-                Not extended
+            {this.state.expanded ?
+                <div className="">
+                    <button onClick={this.toggleNavbar}>
+                        V
+                    </button>
+                </div>
+                :
+                <div className="" onClick={this.toggleNavbar}>
+                    <Link to="/login">Login </Link>
+                    <br/>
+                    <Link to="/manage_places">Manage your places </Link>
+                    <br/>
+                    <Link to="/select_origin">New trip </Link>
+                    <br/>
+                    <div onClick={this.logout}>
+                        logout
+                    </div>
+                    <button onClick={this.toggleNavbar}>
+                        Λ
+                    </button>
+                </div>}
             </div>
-            :
-            <div className="">
-                Extended
-            </div>}
         );
     }
 }
@@ -36,12 +73,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispath) => {
+const mapDispatchToProps = (dispatch) => {
     return{
+        clearState: () => dispatch(clearState()),
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Navbar);
+)(Navbar));

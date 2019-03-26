@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, addPlace} from "./Actions/index";
+import {loadUser, loadPlace, clearState} from "./Actions/index";
 
 import './App.css';
 
@@ -27,24 +27,26 @@ class App extends Component {
     }
 
     authChange(user){
-        this.props.loadUser(user);
-        let db = firebase.database().ref().child('users').child(this.props.user.userID);
-        db.on('child_added', snap => {
-            this.props.addPlace(snap.val(), snap.key);
-        })
+        if (user) {
+            this.props.loadUser(user);
+            let db = firebase.database().ref().child('users').child(this.props.user.userID);
+            db.on('child_added', snap => {
+                this.props.loadPlace(snap.val(), snap.key);
+            })
+        }
     }
 
   render() {
-    return (
+      return (
       <div className="App">
           <Switch>
             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
             <Route exact path="/login" render={(props) => <Login {...props}/>}/>
-            <Route exact path="/" render={(props) => <Login {...props}/>}/>
             <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
             <Route exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
             <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
             <Route exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
+            <Route exact path="/" render={(props) => <Login {...props}/>}/>
         </Switch>
       </div>
     );
@@ -61,11 +63,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         loadUser: (user) => dispatch(loadUser(user)),
-        addPlace: (place, key) => dispatch(addPlace(place, key)),
+        loadPlace: (place, key) => dispatch(loadPlace(place, key)),
+        clearState: () => dispatch(clearState()),
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps,
-)(App);
+)(App));

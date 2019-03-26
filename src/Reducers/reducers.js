@@ -56,6 +56,8 @@ const reduxMother = (state=initialState, action) => {
             return Object.assign({}, state,{
                 focusedTrip: action.trip
                 })
+        case 'CLEAR_STATE':
+            return initialState
         default:
             return state
     }
