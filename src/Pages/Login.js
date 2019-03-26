@@ -35,7 +35,6 @@ class Login extends Component {
     render() {
         return(
             <div className="login_page">
-                <Navbar/>
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
                     <input type="text" defaultValue="hyberg.martin@gmail.com"></input>
@@ -45,9 +44,6 @@ class Login extends Component {
                 <div className="login_status_message">
                     {this.state.message}
                 </div>
-                <Link to="/manage_places">
-                    Skip login
-                </Link>
             </div>
         );
     }
