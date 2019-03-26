@@ -12,20 +12,40 @@ class Navbar extends Component {
         super(props);
 
         this.state = {
-            expanded: false,
+            expanded: true,
         }
+    }
+
+    toggleNavbar = () => {
+        const newStateOfNavbar = !this.state.expanded
+        console.log(newStateOfNavbar);
+        this.setState({
+            expanded:newStateOfNavbar,
+        })
     }
 
     render() {
         return (
-            {this.state.extended ?
             <div className="">
-                Not extended
+            {this.state.expanded ?
+                <div className="">
+                    <button onClick={this.toggleNavbar}>
+                        V
+                    </button>
+                </div>
+                :
+                <div className="" onClick={this.toggleNavbar}>
+                    <Link to="/login">Login </Link>
+                    <br/>
+                    <Link to="/manage_places">Manage your places </Link>
+                    <br/>
+                    <Link to="/select_origin">New trip </Link>
+                    <br/>
+                    <button onClick={this.toggleNavbar}>
+                        Λ
+                    </button>
+                </div>}
             </div>
-            :
-            <div className="">
-                Extended
-            </div>}
         );
     }
 }

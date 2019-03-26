@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
+import Navbar from "../Components/Navbar"
 
 
 class Login extends Component {
@@ -34,6 +35,7 @@ class Login extends Component {
     render() {
         return(
             <div className="login_page">
+                <Navbar/>
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
                     <input type="text" defaultValue="hyberg.martin@gmail.com"></input>

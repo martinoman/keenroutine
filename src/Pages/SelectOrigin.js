@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {changeLocation} from "../Actions/index"
+import Navbar from "../Components/Navbar"
 
 import {Link} from "react-router-dom";
 
@@ -8,6 +9,7 @@ class SelectOrigin extends Component {
     render(){
         return(
             <div className="origin-selection-page">
+                <Navbar/>
                 <div className="origin-selection-header">
                     Where are you?
                 </div>

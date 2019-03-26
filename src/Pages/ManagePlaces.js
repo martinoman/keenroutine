@@ -5,6 +5,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
 import { removePlace } from "../Actions/index";
+import Navbar from "../Components/Navbar"
 
 class ManagePlaces extends Component {
 
@@ -74,6 +75,7 @@ class ManagePlaces extends Component {
     render() {
         return (
             <div className="manage_places_page">
+                <Navbar/>
                 {this.renderPlacesList()}
                 {this.renderAddPlaceForm()}
             </div>
