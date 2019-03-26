@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, loadPlace, clearState} from "./Actions/index";
+import {loadUser, addPlace, clearState} from "./Actions/index";
 
 import './App.css';
 
@@ -31,7 +31,7 @@ class App extends Component {
             this.props.loadUser(user);
             let db = firebase.database().ref().child('users').child(this.props.user.userID);
             db.on('child_added', snap => {
-                this.props.loadPlace(snap.val(), snap.key);
+                this.props.addPlace(snap.val(), snap.key);
             })
         }
     }
@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         loadUser: (user) => dispatch(loadUser(user)),
-        loadPlace: (place, key) => dispatch(loadPlace(place, key)),
+        addPlace: (place, key) => dispatch(addPlace(place, key)),
         clearState: () => dispatch(clearState()),
     }
 }
