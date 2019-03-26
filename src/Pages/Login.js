@@ -3,7 +3,6 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
-import Navbar from "../Components/Navbar"
 
 
 class Login extends Component {

@@ -17,6 +17,7 @@ import ManagePlaces from "./Pages/ManagePlaces";
 import SelectOrigin from "./Pages/SelectOrigin";
 import SelectDestination from "./Pages/SelectDestination";
 import TravelGuide from "./Pages/TravelGuide";
+import Navbar from "./Components/Navbar"
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
   render() {
       return (
       <div className="App">
+          <Navbar />
           <Switch>
             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
             <Route exact path="/login" render={(props) => <Login {...props}/>}/>
