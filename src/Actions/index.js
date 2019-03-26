@@ -23,3 +23,7 @@ export const removePlace = key => ({
     type: 'REMOVE_PLACE',
     key: key,
 })
+
+export const clearState = () => ({
+    type: "CLEAR_STATE",
+})
