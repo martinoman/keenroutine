@@ -8,8 +8,8 @@ export const focusTrip = trip => ({
   trip: trip
 })
 
-export const loadPlace = (place, key) => ({
-  type: 'LOAD_PLACE',
+export const addPlace = (place, key) => ({
+  type: 'ADD_PLACE',
   place: place,
   key: key,
 })

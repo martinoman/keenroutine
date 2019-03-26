@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import PlacesSearch from '../Components/PlacesSearch'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -75,7 +76,7 @@ class ManagePlaces extends Component {
         return (
             <div className="manage_places_page">
                 {this.renderPlacesList()}
-                {this.renderAddPlaceForm()}
+                <PlacesSearch />
             </div>
         );
     }
@@ -89,9 +90,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispath) => {
+const mapDispatchToProps = (dispatch) => {
     return{
-        removePlace: (key) => dispath(removePlace(key)),
+        removePlace: (key) => dispatch(removePlace(key)),
     }
 }
 

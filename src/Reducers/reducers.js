@@ -12,9 +12,10 @@ const initialState = {
 
 const reduxMother = (state=initialState, action) => {
     switch (action.type) {
-        case 'LOAD_PLACE':
+        case 'ADD_PLACE':
             let newPlaces = [...state.places];
             Object.entries(action.place).forEach((place)=>{
+                console.log(place);
                 newPlaces.push({
                     alias: place[0],
                     location: {

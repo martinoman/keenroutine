@@ -37,7 +37,7 @@ class Login extends Component {
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
                     <input type="text" defaultValue="hyberg.martin@gmail.com"></input>
-                    <input type="password" defaultValue="asdasd"></input> //Harcoded password to a actual dud profile. This profile should absolutely not have anything crucial in it.
+                    <input type="password" defaultValue="asdasd"></input>{/*Hardcoded password please fix me TODO*/}
                     <button type="submit">Login</button>
                 </form>
                 <div className="login_status_message">
