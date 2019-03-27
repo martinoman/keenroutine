@@ -27,3 +27,11 @@ export const removePlace = key => ({
 export const clearState = () => ({
     type: "CLEAR_STATE",
 })
+
+export const loggedIn = () => ({
+    type: "LOGGED_IN",
+})
+
+export const loggedOut = () => ({
+    type: "LOGGED_OUT",
+})

@@ -18,7 +18,6 @@ class Navbar extends Component {
 
     toggleNavbar = () => {
         const newStateOfNavbar = !this.state.expanded
-        console.log(newStateOfNavbar);
         this.setState({
             expanded:newStateOfNavbar,
         })

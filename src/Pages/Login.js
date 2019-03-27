@@ -36,7 +36,7 @@ class Login extends Component {
             <div className="login_page">
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
-                    <input type="text" defaultValue="hyberg.martin@gmail.com"></input>
+                    <input type="text" defaultValue="a@a.com"></input>
                     <input type="password" defaultValue="asdasd"></input>{/*Hardcoded password please fix me TODO*/}
                     <button type="submit">Login</button>
                 </form>

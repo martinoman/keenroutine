@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, addPlace, clearState} from "./Actions/index";
+import {loadUser, addPlace, clearState, loggedIn, loggedOut} from "./Actions/index";
 
 import './App.css';
 
@@ -17,7 +17,8 @@ import ManagePlaces from "./Pages/ManagePlaces";
 import SelectOrigin from "./Pages/SelectOrigin";
 import SelectDestination from "./Pages/SelectDestination";
 import TravelGuide from "./Pages/TravelGuide";
-import Navbar from "./Components/Navbar"
+import Navbar from "./Components/Navbar";
+import PrivateRoute from "./Helpers/PrivateRoute";
 
 
 class App extends Component {
@@ -29,11 +30,14 @@ class App extends Component {
 
     authChange(user){
         if (user) {
+            this.props.loggedIn()
             this.props.loadUser(user);
             let db = firebase.database().ref().child('users').child(this.props.user.userID);
             db.on('child_added', snap => {
                 this.props.addPlace(snap.val(), snap.key);
             })
+        }else{
+            this.props.loggedOut()
         }
     }
 
@@ -43,12 +47,12 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
-            <Route exact path="/login" render={(props) => <Login {...props}/>}/>
-            <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
-            <Route exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
-            <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
-            <Route exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
-            <Route exact path="/" render={(props) => <Login {...props}/>}/>
+            <Route exact path={"/login"} render={(props) => <Login {...props}/>}/>
+            <PrivateRoute exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
+            <PrivateRoute exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
+            <PrivateRoute exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
+            <PrivateRoute exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
+            <PrivateRoute exact path="/" render={(props) => <Login {...props}/>}/>
         </Switch>
       </div>
     );
@@ -67,6 +71,8 @@ const mapDispatchToProps = (dispatch) => {
         loadUser: (user) => dispatch(loadUser(user)),
         addPlace: (place, key) => dispatch(addPlace(place, key)),
         clearState: () => dispatch(clearState()),
+        loggedIn: () => dispatch(loggedIn()),
+        loggedOut: () => dispatch(loggedOut()),
     }
 }
 
