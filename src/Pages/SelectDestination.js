@@ -1,58 +1,14 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
-
 import {Link} from "react-router-dom";
-
-
 import key from "../reseplanerareAPIKey.js"
+import {print, formatData} from "../Helpers/Formatter.js"
 class SelectDestination extends Component {
     constructor(props){
         super(props);
         this.state = {
             trips: []
-        }
-    }
-
-    /**
-    I want to move this to a new class/file but exports are a mess.
-    */
-    slim(data){
-        let legs = data.Trip[0].LegList.Leg;
-        let trip = [];
-        for (var i = 0; i < legs.length; i++) {
-            let leg = this.slimLocationData(legs[i],i)
-            leg.travelMode = this.slimTravelData(legs[i]);
-            trip.push(leg);
-        }
-        return trip;
-    }
-
-    slimLocationData(leg, i){
-        let origin = leg.Origin;
-        let destination = leg.Destination;
-        return{
-            leg: i,
-            origin: {
-                name: origin.name,
-                type: origin.type
-            },
-            destination: {
-                name: destination.name,
-                type: destination.type
-            },
-            conveyance: null
-        }
-    }
-
-    slimTravelData(leg){
-        return{
-            type: leg.type,
-            distance: leg.dist,
-            departure: leg.Origin.time,
-            arrival: leg.Destination.time,
-            name: leg.name,
-            direction: leg.direction
         }
     }
 
@@ -69,8 +25,6 @@ class SelectDestination extends Component {
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
-            console.log("State:");
-            console.log(this.state);
             this.setState(this.state);
         }
         );
@@ -110,7 +64,7 @@ class SelectDestination extends Component {
     }
 
     addTripToState(data, alias){
-        data = this.slim(data);
+        data = formatData(data);
         let departureTime = this.parseTimeString(data[0].travelMode.departure);
         let arrivalTime = this.parseTimeString(data[data.length-1].travelMode.arrival);
         let travelTime = (arrivalTime - departureTime)/60000; //Divided by millis in a minute
