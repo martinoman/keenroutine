@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
+import key from "../reseplanerareAPIKey.js"
 
 
 class Login extends Component {

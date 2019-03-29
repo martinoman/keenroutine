@@ -65,8 +65,8 @@ class SelectDestination extends Component {
             let destination = destinations[i];
             if(destination === origin)
                 continue;
-            let url = "https://api.sl.se/api2/TravelplannerV3_1/trip.json?" + this.getParameters(key,destinations[i],origin);
-            tripPromises.push(this.apiCall(url, headers, destination.alias));
+            let params = this.getParameters(key,destinations[i],origin);
+            tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
             console.log("State:");
@@ -136,8 +136,8 @@ class SelectDestination extends Component {
         return time;
     }
 
-    apiCall(url, headers, alias){
-        return fetch(url,headers)
+    apiCall(params, headers, alias){
+        return fetch("/selectDestinationTime?" + params, headers)
             .then(response => this.checkValid(response))
             .then(data => {
                 this.addTripToState(data, alias);

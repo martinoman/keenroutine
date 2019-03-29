@@ -10,10 +10,26 @@ import { removePlace } from "../Actions/index";
 class PlacesSearch extends Component {
     constructor(props){
         super(props);
+
+
         this.state = {
             searchResult: [],
         }
     }
+
+    search = _.debounce((searchWord) => {
+        fetch("/searchStation?searchWord=" + searchWord, {})
+            .then(response => {
+                if(response.ok)
+                    return response.json()
+                return null
+            }).then(data => {
+                console.log(data);
+                this.setState({
+                    searchResult: data.ResponseData
+                });
+            })
+    }, 1000);
 
     render() {
         return (
@@ -21,20 +37,7 @@ class PlacesSearch extends Component {
                 <div className="search-bar">
                     <input type="text" placeholder="Search for stations" onChange={(event)=>{
                             let searchWord = event.target.value;
-                            _.debounce(() => { //Doesn't work at all. Piece of shit.
-                                let requestURL = "https://api.sl.se/api2/typeahead.json?key=8376d23038b74e9a98544c1795a6613c&searchstring=" + searchWord
-                                fetch(requestURL, {})
-                                .then(response => {
-                                    if(response.ok)
-                                        return response.json()
-                                    return null
-                                }).then(data => {
-                                    console.log(data);
-                                    this.setState({
-                                        searchResult: data.ResponseData
-                                    });
-                                })
-                            }, 300)();
+                            this.search(searchWord);
                         }}/>
                 </div>
                 <PlacesSearchResult results={this.state.searchResult}/>

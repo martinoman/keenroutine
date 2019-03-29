@@ -2,9 +2,11 @@
   "name": "keenroutine",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "firebase": "^5.8.5",
     "lodash": "^4.17.11",
+    "node-fetch": "^2.3.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
