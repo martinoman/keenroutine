@@ -1,3 +1,4 @@
+const key = require("../platsuppslagAPIKey.js");
 const express = require('express')
 const fetch = require("node-fetch")
 const app = express()
@@ -23,7 +24,7 @@ app.get('/selectDestinationTime', (req, res) => {
 
 app.get('/searchStation', (req, res) => {
     console.log(req.query);
-    let requestURL = "https://api.sl.se/api2/typeahead.json?key=8376d23038b74e9a98544c1795a6613c&searchstring=" + req.query.searchWord;
+    let requestURL = "https://api.sl.se/api2/typeahead.json?key=" + key.key + "&searchstring=" + req.query.searchWord;
     fetch(requestURL)
         .then(res => res.json())
         .then(json => {
