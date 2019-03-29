@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, addPlace, clearState, loggedIn, loggedOut} from "./Actions/index";
+import {loadUser, addPlace, clearState} from "./Actions/index";
 
 import './App.css';
 
@@ -30,14 +30,11 @@ class App extends Component {
 
     authChange(user){
         if (user) {
-            this.props.loggedIn()
             this.props.loadUser(user);
             let db = firebase.database().ref().child('users').child(this.props.user.userID);
             db.on('child_added', snap => {
                 this.props.addPlace(snap.val(), snap.key);
             })
-        }else{
-            this.props.loggedOut()
         }
     }
 
@@ -71,8 +68,6 @@ const mapDispatchToProps = (dispatch) => {
         loadUser: (user) => dispatch(loadUser(user)),
         addPlace: (place, key) => dispatch(addPlace(place, key)),
         clearState: () => dispatch(clearState()),
-        loggedIn: () => dispatch(loggedIn()),
-        loggedOut: () => dispatch(loggedOut()),
     }
 }
 

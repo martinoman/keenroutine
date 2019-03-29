@@ -59,16 +59,6 @@ const reduxMother = (state=initialState, action) => {
                 })
         case 'CLEAR_STATE':
             return initialState
-        case 'LOGGED_IN':
-        console.log("someone logged in");
-            return Object.assign({}, state,{
-                loggedIn: true,
-                })
-        case 'LOGGED_OUT':
-        console.log("someone logged out");
-            return Object.assign({}, state,{
-                loggedIn: false,
-                })
         default:
             return state
     }

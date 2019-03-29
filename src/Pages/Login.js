@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
 import key from "../reseplanerareAPIKey.js"
+import { Redirect } from 'react-router-dom'
 
 
 class Login extends Component {
@@ -11,7 +12,7 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-            message: ""
+            message: "",
         }
         this.handleLogin = this.handleLogin.bind(this);
     }
@@ -21,9 +22,7 @@ class Login extends Component {
         firebase.auth().signInWithEmailAndPassword(
             event.target[0].value,
             event.target[1].value
-        ).then(()=>{
-            window.location.assign("/manage_places")
-        }).catch((e)=>{
+        ).catch((e)=>{
             console.log(e);
             this.setState({
                 message: "Wrong password or email"
@@ -44,10 +43,11 @@ class Login extends Component {
                 <div className="login_status_message">
                     {this.state.message}
                 </div>
+                {firebase.auth().currentUser ? <Redirect to={{pathname: '/manage_places'}} /> : ""}
             </div>
         );
     }
 
 }
 
-export default Login;
+export default Login ;
