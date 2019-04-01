@@ -4,13 +4,12 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link, withRouter} from "react-router-dom";
-import { removePlace, clearState } from "../Actions/index";
+import { logout } from "../Actions/index";
 
 class Navbar extends Component {
 
     constructor(props){
         super(props);
-
         this.state = {
             expanded: true,
         }
@@ -20,19 +19,6 @@ class Navbar extends Component {
         const newStateOfNavbar = !this.state.expanded
         this.setState({
             expanded:newStateOfNavbar,
-        })
-    }
-
-    logout = () => {
-        firebase.auth().signOut()
-        .then(() => {
-            this.props.clearState();
-            localStorage.clear();
-            this.props.history.push('/login');
-        })
-        .catch((err) => {
-            console.log("signOut falied:");
-            console.log(err);
         })
     }
 
@@ -53,7 +39,7 @@ class Navbar extends Component {
                     <br/>
                     <Link to="/select_origin">New trip </Link>
                     <br/>
-                    <div onClick={this.logout}>
+                    <div onClick={this.props.logout}>
                         logout
                     </div>
                     <button onClick={this.toggleNavbar}>
@@ -71,13 +57,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        clearState: () => dispatch(clearState()),
-    }
-}
-
 export default withRouter(connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {logout},
 )(Navbar));

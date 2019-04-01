@@ -4,8 +4,6 @@ import PlacesSearchResult from "./PlacesSearchResult";
 import _ from "lodash"
 import { connect } from 'react-redux'
 import {Link} from "react-router-dom";
-import { removePlace } from "../Actions/index";
-
 
 class PlacesSearch extends Component {
     constructor(props){

@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
-import { removePlace} from "../Actions/index";
+import { removePlace } from "../Actions/index";
 
 class ManagePlaces extends Component {
     removePlace = (key) => {

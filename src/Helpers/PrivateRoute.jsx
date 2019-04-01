@@ -17,9 +17,7 @@ class PrivateRoute extends Component {
                 }
             </div>
         );
-
     }
-
 }
 
 export default PrivateRoute;

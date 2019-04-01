@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, subscribeToDB} from "./Actions/index";
+import {loadUser, subscribeToDB, clearState} from "./Actions/index";
 
 import './App.css';
 
@@ -32,6 +32,10 @@ class App extends Component {
         if (user) {
             this.props.loadUser(user);
             this.props.subscribeToDB(this.props.user.userID);
+        }
+        if (user === null) {
+            this.props.clearState();
+            localStorage.clear();
         }
     }
 
@@ -62,5 +66,5 @@ const mapStateToProps = (state) => {
 
 export default withRouter(connect(
     mapStateToProps,
-    {loadUser, subscribeToDB},
+    {loadUser, subscribeToDB, clearState},
 )(App));
