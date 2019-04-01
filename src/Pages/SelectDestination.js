@@ -132,12 +132,6 @@ class SelectDestination extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        focusTrip: (trip) => dispatch(focusTrip(trip)),
-    }
-}
-
 const mapStateToProps = (state) => {
     return{
         places: state.places,
@@ -148,5 +142,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {focusTrip},
 )(SelectDestination);

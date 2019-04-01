@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
-import { removePlace } from "../Actions/index";
+import { removePlace} from "../Actions/index";
 
 class ManagePlaces extends Component {
 
@@ -24,7 +24,6 @@ class ManagePlaces extends Component {
     }
 
     removePlace = (key) => {
-        console.log(key);
         this.db.child(this.props.user.userID).child(key).remove();
         this.props.removePlace(key);
     }
@@ -57,21 +56,6 @@ class ManagePlaces extends Component {
         );
     }
 
-    renderAddPlaceForm = () => {
-        return(
-            <div className="add_place">
-                <div className="add_place_header">Add a location!</div>
-                <form onSubmit={this.addPlace} className="add_place_form">
-                    <div className="add_place_alias_header">What is the location called?</div>
-                    <input type="text" id="add_place_alias" placeholder="Home/Work/School etc"></input>
-                    <div className="add_place_adress_header">What is the adress?</div>
-                    <input type="text" id="add_place_adress" placeholder="Dinglestreet 420"></input>
-                    <button type="submit" id="add_place_submit">Add</button>
-                </form>
-            </div>
-        );
-    }
-
     render() {
         return (
             <div className="manage_places_page">
@@ -90,13 +74,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        removePlace: (key) => dispatch(removePlace(key)),
-    }
-}
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {removePlace},
 )(ManagePlaces);
