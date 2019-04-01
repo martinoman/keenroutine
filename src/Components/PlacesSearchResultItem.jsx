@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
+import { addPlace } from '../Actions/index.js'
 
 class PlacesSearchResultItem extends Component {
 
     constructor(props){
         super(props);
-        this.db = firebase.database().ref().child('users');
         this.state = {
             inputAlias: false,
         }
@@ -26,7 +26,7 @@ class PlacesSearchResultItem extends Component {
                 Index: this.props.places.length,
             }
         }
-        this.db.child(this.props.user.userID).push().set(placeDBFormat);
+        this.props.addPlace(placeDBFormat, this.props.user.userID);
     }
 
 
@@ -58,14 +58,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-const mapDispatchToProps = (dispatch) => {
-    return{
-    }
-}
-
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {addPlace},
 )(PlacesSearchResultItem);

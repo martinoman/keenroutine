@@ -15,10 +15,19 @@ export const loadUser = user => async dispatch => dispatch({
   user: user
 })
 
-export const removePlace = key => async dispatch => dispatch({
-    type: 'REMOVE_PLACE',
-    key: key,
-})
+export const removePlace = (key, userID) => async dispatch => {
+    let db = firebase.database().ref().child('users').child(userID);
+    db.child(key).remove();
+    dispatch({
+        type: 'REMOVE_PLACE',
+        key: key,
+    })
+}
+
+export const addPlace = (place, userID) => async () => {
+    let db = firebase.database().ref().child('users').child(userID);
+    db.push().set(place);
+}
 
 export const clearState = () => async dispatch => dispatch({
     type: "CLEAR_STATE",

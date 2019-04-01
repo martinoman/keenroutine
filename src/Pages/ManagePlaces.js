@@ -8,26 +8,9 @@ import {Link} from "react-router-dom";
 import { removePlace} from "../Actions/index";
 
 class ManagePlaces extends Component {
-
-    constructor(props){
-        super(props);
-        this.db = firebase.database().ref().child('users');
-    }
-
-    addPlace = (event) => {
-        event.preventDefault();
-        let alias = event.target[0].value;
-        let adress = event.target[1].value;
-        this.db.child(this.props.user.userID).push().set({
-            [alias]: adress,
-        });
-    }
-
     removePlace = (key) => {
-        this.db.child(this.props.user.userID).child(key).remove();
-        this.props.removePlace(key);
+        this.props.removePlace(key, this.props.user.userID);
     }
-
 
     renderPlacesList = () => {
         return(
