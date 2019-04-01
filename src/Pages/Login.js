@@ -43,7 +43,7 @@ class Login extends Component {
                 <div className="login_status_message">
                     {this.state.message}
                 </div>
-                {firebase.auth().currentUser ? <Redirect to={{pathname: '/manage_places'}} /> : ""}
+                {firebase.auth().currentUser ? <Redirect to={{pathname: '/select_origin'}} /> : ""}
             </div>
         );
     }
