@@ -27,7 +27,6 @@ export function formatTravelData(leg){
 }
 
 export function formatData(data){
-    console.log(data);
     let legs = data.Trip[0].LegList.Leg;
     let trip = [];
     for (var i = 0; i < legs.length; i++) {

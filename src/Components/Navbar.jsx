@@ -26,14 +26,13 @@ class Navbar extends Component {
     logout = () => {
         firebase.auth().signOut()
         .then(() => {
-            console.log("signout sucess");
             this.props.clearState();
             localStorage.clear();
             this.props.history.push('/login');
         })
         .catch((err) => {
+            console.log("signOut falied:");
             console.log(err);
-            console.log("signOut falied");
         })
     }
 
