@@ -23,6 +23,7 @@ const reduxMother = (state=initialState, action) => {
                         x: place[1].X,
                         y: place[1].Y,
                     },
+                    index: place.index,
                     key: action.key,
                 })
             })

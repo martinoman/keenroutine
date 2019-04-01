@@ -23,6 +23,7 @@ class PlacesSearchResultItem extends Component {
                 ID: this.props.place.SiteId,
                 X: this.props.place.X,
                 Y: this.props.place.Y,
+                Index: this.props.places.length,
             }
         }
         this.db.child(this.props.user.userID).push().set(placeDBFormat);
@@ -53,6 +54,7 @@ class PlacesSearchResultItem extends Component {
 const mapStateToProps = (state) => {
     return{
         user: state.user,
+        places: state.places,
     }
 }
 
