@@ -3,7 +3,6 @@ import PlacesSearchResult from "./PlacesSearchResult";
 
 import _ from "lodash"
 import { connect } from 'react-redux'
-import {Link} from "react-router-dom";
 
 class PlacesSearch extends Component {
     constructor(props){
