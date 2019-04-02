@@ -8,11 +8,12 @@ const initialState = {
     places: [],
     currentLocation: "",
     focusedTrip: "",
+    loggedIn: false,
 }
 
 const reduxMother = (state=initialState, action) => {
     switch (action.type) {
-        case 'LOAD_PLACE':
+        case 'ADD_PLACE':
             let newPlaces = [...state.places];
             Object.entries(action.place).forEach((place)=>{
                 newPlaces.push({
@@ -22,6 +23,7 @@ const reduxMother = (state=initialState, action) => {
                         x: place[1].X,
                         y: place[1].Y,
                     },
+                    index: place.index,
                     key: action.key,
                 })
             })
@@ -55,6 +57,8 @@ const reduxMother = (state=initialState, action) => {
             return Object.assign({}, state,{
                 focusedTrip: action.trip
                 })
+        case 'CLEAR_STATE':
+            return initialState
         default:
             return state
     }

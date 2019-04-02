@@ -27,12 +27,6 @@ class SelectOrigin extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        changeLocation: (location) => dispatch(changeLocation(location)),
-    }
-}
-
 const mapStateToProps = (state) => {
     return{
         places: state.places,
@@ -43,5 +37,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    {changeLocation},
 )(SelectOrigin);
