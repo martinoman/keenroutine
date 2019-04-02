@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
 import key from "../reseplanerareAPIKey.js"
-import { formatData} from "../Helpers/Formatter.js"
+import { findAndParseTrip, tripTimes} from "../Helpers/ReseplanerareParser.js"
+import { sortOnIndex } from "../Helpers/PlacesSorter.js"
 class SelectDestination extends Component {
     constructor(props){
         super(props);
@@ -13,7 +14,7 @@ class SelectDestination extends Component {
     }
 
     getTimes(){
-        let destinations = this.props.places;
+        let destinations = sortOnIndex(this.props.places);
         let origin = this.props.currentLocation;
         let tripPromises = [];
         let headers = {}
@@ -25,8 +26,8 @@ class SelectDestination extends Component {
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
-            this.setState(this.state);
-        }
+                this.setState(this.state);
+            }
         );
     }
 
@@ -39,8 +40,7 @@ class SelectDestination extends Component {
         let urlParams = "key=" + key;
         let parameters = {
             lang: "se",
-            maxChange: 3,
-            limit: 2,
+            maxChange: 5,
             destExtId: dest.id,
             destCoordLat: (dest.id === undefined) ? dest.y : undefined,
             destCoordLong: (dest.id === undefined) ? dest.x : undefined,
@@ -64,30 +64,15 @@ class SelectDestination extends Component {
     }
 
     addTripToState(data, alias){
-        data = formatData(data);
-        let departureTime = this.parseTimeString(data[0].travelMode.departure);
-        let arrivalTime = this.parseTimeString(data[data.length-1].travelMode.arrival);
-        let travelTime = (arrivalTime - departureTime)/60000; //Divided by millis in a minute
-        let timeUntilDeparture = ((departureTime - (Date.now()))/60000);
+        data = findAndParseTrip(data, 4); //Minimum of four minutes until departure
+        let times = tripTimes(data);
         let trip = {
             to: alias,
             from: this.props.currentLocation.alias,
-            departureTime: departureTime,
-            arrivalTime: arrivalTime,
-            travelTime: travelTime,
-            timeUntilDeparture: timeUntilDeparture,
+            times: times,
             trip: data,
         }
         this.state.trips.push(trip);
-    }
-
-    parseTimeString(string){
-        let time = new Date(Date.now());
-        let parts = string.split(":");
-        time.setHours(parts[0]);
-        time.setMinutes(parts[1]);
-        time.setSeconds(parts[2]);
-        return time;
     }
 
     apiCall(params, headers, alias){
@@ -118,10 +103,10 @@ class SelectDestination extends Component {
                                     To: {trip.to}
                                 </div>
                                 <div className="trip-summary-time-until-departure">
-                                    {trip.timeUntilDeparture}min until departure
+                                    {Math.ceil(trip.times.timeUntilDeparture)} min until departure
                                 </div>
                                 <div className="trip-summary-travel-time">
-                                    {trip.travelTime}min total travel time
+                                    {trip.times.travelTime} min total travel time
                                 </div>
                             </div>
                         </Link>
