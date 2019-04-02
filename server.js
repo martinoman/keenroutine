@@ -20,6 +20,17 @@ if(process.env.NODE_ENV === 'production') {
       console.log("Bajs från SERVER: production mode3");
       res.send({"test":"test"});
   })
+
+  app.get('/searchStation', (req, res) => {
+      console.log(req.query);
+      let requestURL = "https://api.sl.se/api2/typeahead.json?key=" + process.env.REACT_APP_PlatsuppslagAPI + "&searchstring=bergs";
+      fetch(requestURL)
+          .then(res => res.json())
+          .then(json => {
+              res.send(json)
+      });
+  })
+
   app.get('*', (req, res) => {
       console.log("Bajs från SERVER: production mode2");
     res.sendFile(path.join(__dirname = 'client/build/index.html'));
