@@ -8,7 +8,6 @@ const initialState = {
     places: [],
     currentLocation: "",
     focusedTrip: "",
-    loggedIn: false,
 }
 
 const reduxMother = (state=initialState, action) => {
@@ -16,7 +15,6 @@ const reduxMother = (state=initialState, action) => {
         case 'ADD_PLACE':
             let newPlaces = [...state.places];
             let location = action.location;
-            console.log(location);
             newPlaces.push({
                 alias: location.Alias,
                 location: {
@@ -24,7 +22,7 @@ const reduxMother = (state=initialState, action) => {
                     x: location.X,
                     y: location.Y,
                 },
-                index: location.index,
+                index: location.Index,
                 key: action.key,
             })
             return Object.assign({}, state,
@@ -48,6 +46,16 @@ const reduxMother = (state=initialState, action) => {
                     userName: action.user.email,
                     userID: action.user.uid
                     }
+                })
+        case 'SET_INDEX':
+            let places = [...state.places];
+            for (var i = 0; i < places.length; i++) {
+                if(places[i].key === action.key)
+                    places[i].index = action.index
+            }
+            return Object.assign({}, state,
+                {
+                    places: places,
                 })
         case 'CHANGE_LOCATION':
             return Object.assign({}, state,{

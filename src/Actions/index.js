@@ -8,6 +8,16 @@ export const logout = () => async () => {
     })
 }
 
+export const setIndex = (index, key, userID) => async dispatch => {
+    let db = firebase.database().ref().child('users').child(userID);
+    db.child(key).child("location").child("Index").set(index);
+    dispatch({
+        type: "SET_INDEX",
+        key: key,
+        index: index,
+    });
+}
+
 export const changeLocation = location => async dispatch => dispatch({
   type: 'CHANGE_LOCATION',
   location: location
