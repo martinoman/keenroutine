@@ -1,5 +1,13 @@
 import firebase from "firebase/app";
 
+export const logout = () => async () => {
+    firebase.auth().signOut()
+    .catch((err) => {
+        console.log("signOut falied:");
+        console.log(err);
+    })
+}
+
 export const changeLocation = location => async dispatch => dispatch({
   type: 'CHANGE_LOCATION',
   location: location

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
 import key from "../reseplanerareAPIKey.js"
-import {print, formatData} from "../Helpers/Formatter.js"
+import { formatData} from "../Helpers/Formatter.js"
 class SelectDestination extends Component {
     constructor(props){
         super(props);

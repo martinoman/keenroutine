@@ -1,8 +1,5 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import firebase from 'firebase/app'
-import 'firebase/auth';
-import 'firebase/firestore';
 import { addPlace } from '../Actions/index.js'
 
 class PlacesSearchResultItem extends Component {
