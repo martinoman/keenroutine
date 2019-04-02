@@ -8,6 +8,16 @@ export const logout = () => async () => {
     })
 }
 
+export const setIndex = (index, key, userID) => async dispatch => {
+    let db = firebase.database().ref().child('users').child(userID);
+    db.child(key).child("location").child("Index").set(index);
+    dispatch({
+        type: "SET_INDEX",
+        key: key,
+        index: index,
+    });
+}
+
 export const changeLocation = location => async dispatch => dispatch({
   type: 'CHANGE_LOCATION',
   location: location
@@ -44,11 +54,11 @@ export const clearState = () => async dispatch => dispatch({
 export const subscribeToDB = (userID) => async dispatch => {
     let db = firebase.database().ref().child('users').child(userID);
     db.on('child_added', snap => {
-        let place = snap.val();
+        let value = snap.val();
         let key = snap.key;
         dispatch({
             type: 'ADD_PLACE',
-            place: place,
+            location: value.location,
             key: key,
         });
     })
