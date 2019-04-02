@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
-import key from "../reseplanerareAPIKey.js"
 import { formatData} from "../Helpers/Formatter.js"
 class SelectDestination extends Component {
     constructor(props){
@@ -13,6 +12,7 @@ class SelectDestination extends Component {
     }
 
     getTimes(){
+        console.log(process.env.REACT_APP_ReseplanerareAPI);
         let destinations = this.props.places;
         let origin = this.props.currentLocation;
         let tripPromises = [];
@@ -21,7 +21,7 @@ class SelectDestination extends Component {
             let destination = destinations[i];
             if(destination === origin)
                 continue;
-            let params = this.getParameters(key,destinations[i],origin);
+            let params = this.getParameters(process.env.REACT_APP_ReseplanerareAPI,destinations[i],origin);
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{

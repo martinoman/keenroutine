@@ -40,6 +40,7 @@ class App extends Component {
     }
 
   render() {
+      console.log(process.env.REACT_APP_SL);
       return (
       <div className="App">
           <Navbar />

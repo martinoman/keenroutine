@@ -20,6 +20,7 @@
 reseplanerareAPIKey.js
 störningsinfoAPIKey.js
 platsuppslagAPIKey.js
+.env
 
 npm-debug.log*
 yarn-debug.log*
