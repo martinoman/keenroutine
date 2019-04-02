@@ -16,15 +16,15 @@ if(process.env.NODE_ENV === 'production') {
     console.log("Bajs från SERVER: production mode1");
   app.use(express.static(path.join(__dirname, 'client/build')));
   //
-  app.get('*', (req, res) => {
-      console.log("Bajs från SERVER: production mode2");
-    res.sendfile(path.join(__dirname = 'client/build/index.html'));
-  })
-
   app.get('/testBajs', (req, res) => {
       console.log("Bajs från SERVER: production mode3");
       res.send({"test":"test"});
   })
+  app.get('*', (req, res) => {
+      console.log("Bajs från SERVER: production mode2");
+    res.sendFile(path.join(__dirname = 'client/build/index.html'));
+  })
+
 }
 
 //build mode
