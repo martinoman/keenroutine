@@ -21,7 +21,6 @@ const initState = { //TODO this is wonky af
     places: [],
     currentLocation: "",
     focusedTrip: "",
-    loggedIn: false,
 }
 const store = createStore(reducers, initState, applyMiddleware(reduxThunk));
 firebase.initializeApp(config);
