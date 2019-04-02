@@ -17,7 +17,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-DB_CONFIG.js
 reseplanerareAPIKey.js
 störningsinfoAPIKey.js
 platsuppslagAPIKey.js
