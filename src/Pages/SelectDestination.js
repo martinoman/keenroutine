@@ -1,15 +1,14 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import TripList from "../Components/TripList"
-import PlacesSearch from '../Components/PlacesSearch'
+import RealtimeInfo from "../Components/RealtimeInfo"
 class SelectDestination extends Component {
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return(
-            <TripList />
+            <div className="select-destination-page">
+                <TripList />
+                <RealtimeInfo />
+            </div>
         );
     }
 }

@@ -40,7 +40,7 @@ class PlacesSearchResultItem extends Component {
     evaluateAddPlace = () => {
         let code = 1; //Ask for alias if everything is fine
         for (var i = 0; i < this.props.places.length; i++) {
-            if(this.props.place.SiteId == this.props.places[i].location.id){
+            if(this.props.place.SiteId === this.props.places[i].location.id){
                 code = 2; //Place already exists
                 this.resetErrorMessage();
             }

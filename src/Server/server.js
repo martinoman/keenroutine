@@ -22,6 +22,23 @@ app.get('/selectDestinationTime', (req, res) => {
     });
 })
 
+app.get('/getRealTimeInfo', (req, res) => {
+    console.log(req.query);
+    let urlParams = "";
+    for (let key in req.query) {
+        if (req.query.hasOwnProperty(key)) {
+            if(req.query[key] !== undefined)
+                urlParams += "&" + key + "=" + req.query[key]
+        }
+    }
+    urlParams = urlParams.substr(1); //This api can't handle a '&' at the beginning of the params
+    fetch("https://api.sl.se/api2/realtimedeparturesV4.json?" + urlParams)
+        .then(res => res.json())
+        .then(json => {
+            res.send(json)
+    });
+})
+
 app.get('/searchStation', (req, res) => {
     console.log(req.query);
     let requestURL = "https://api.sl.se/api2/typeahead.json?key=" + key.key + "&searchstring=" + req.query.searchWord;
