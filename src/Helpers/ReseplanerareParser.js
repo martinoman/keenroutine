@@ -1,4 +1,8 @@
 
+export function filterWeirdWalks(trip){
+    return trip.filter( leg => !leg.travelMode.hide);
+}
+
 export function formatLocationData(leg, i){
     let origin = leg.Origin;
     let destination = leg.Destination;
@@ -16,7 +20,6 @@ export function formatLocationData(leg, i){
 }
 
 export function formatTravelData(leg){
-    console.log(leg);
     let depTime = leg.Origin.rtTime;
     depTime = depTime === undefined  ? leg.Origin.time : depTime;
     let arrTime = leg.Destination.rtTime;
@@ -27,7 +30,8 @@ export function formatTravelData(leg){
         departure: depTime,
         arrival: arrTime,
         name: leg.name,
-        direction: leg.direction
+        direction: leg.direction,
+        hide: leg.hide, //Shitty walks .i.e. ropsten -> ropsten 2 minutes
     }
 }
 
@@ -40,7 +44,6 @@ export function findAndParseTrip(data, depLimit){
             leg.travelMode = formatTravelData(legs[j]);
             trip.push(leg);
         }
-        console.log(tripTimes(trip).timeUntilDeparture);
         if(tripTimes(trip).timeUntilDeparture > depLimit) //TODO This seems a bit too important to just throw in here(?)
             return trip;
     }

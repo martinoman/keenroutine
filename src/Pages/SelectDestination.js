@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
 import key from "../reseplanerareAPIKey.js"
-import { findAndParseTrip, tripTimes} from "../Helpers/ReseplanerareParser.js"
+import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesSorter.js"
 class SelectDestination extends Component {
     constructor(props){
@@ -64,7 +64,8 @@ class SelectDestination extends Component {
     }
 
     addTripToState(data, alias){
-        data = findAndParseTrip(data, 4); //Minimum of four minutes until departure
+        data = findAndParseTrip(data, 4); //Minimum of minutes until departure
+        data = filterWeirdWalks(data);
         let times = tripTimes(data);
         let trip = {
             to: alias,
