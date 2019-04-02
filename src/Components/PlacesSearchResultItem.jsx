@@ -16,7 +16,8 @@ class PlacesSearchResultItem extends Component {
         this.setState({inputAlias:false});
         let alias = event.target[0].value;
         let placeDBFormat = {
-            [alias]:{
+            location:{
+                Alias: alias,
                 ID: this.props.place.SiteId,
                 X: this.props.place.X,
                 Y: this.props.place.Y,

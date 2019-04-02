@@ -15,17 +15,17 @@ const reduxMother = (state=initialState, action) => {
     switch (action.type) {
         case 'ADD_PLACE':
             let newPlaces = [...state.places];
-            Object.entries(action.place).forEach((place)=>{
-                newPlaces.push({
-                    alias: place[0],
-                    location: {
-                        id: place[1].ID,
-                        x: place[1].X,
-                        y: place[1].Y,
-                    },
-                    index: place.index,
-                    key: action.key,
-                })
+            let location = action.location;
+            console.log(location);
+            newPlaces.push({
+                alias: location.Alias,
+                location: {
+                    id: location.ID,
+                    x: location.X,
+                    y: location.Y,
+                },
+                index: location.index,
+                key: action.key,
             })
             return Object.assign({}, state,
                 {

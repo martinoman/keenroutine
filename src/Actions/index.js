@@ -44,11 +44,11 @@ export const clearState = () => async dispatch => dispatch({
 export const subscribeToDB = (userID) => async dispatch => {
     let db = firebase.database().ref().child('users').child(userID);
     db.on('child_added', snap => {
-        let place = snap.val();
+        let value = snap.val();
         let key = snap.key;
         dispatch({
             type: 'ADD_PLACE',
-            place: place,
+            location: value.location,
             key: key,
         });
     })
