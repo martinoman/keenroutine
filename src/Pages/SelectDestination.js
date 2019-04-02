@@ -12,7 +12,6 @@ class SelectDestination extends Component {
     }
 
     getTimes(){
-        console.log(process.env.REACT_APP_ReseplanerareAPI);
         let destinations = this.props.places;
         let origin = this.props.currentLocation;
         let tripPromises = [];
