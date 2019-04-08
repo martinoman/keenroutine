@@ -20,7 +20,7 @@ class SelectDestination extends Component {
             let destination = destinations[i];
             if(destination === origin)
                 continue;
-            let params = this.getParameters(process.env.REACT_APP_ReseplanerareAPI,destinations[i],origin);
+            let params = this.getParameters(destinations[i],origin);
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
@@ -32,10 +32,10 @@ class SelectDestination extends Component {
     /**
     This shoudl probz return a list of parameter sets. One for each place
     */
-    getParameters(key, dest, org){
+    getParameters(dest, org){
         dest = dest.location;
         org = org.location;
-        let urlParams = "key=" + key;
+        let urlParams = "";
         let parameters = {
             lang: "se",
             maxChange: 3,
