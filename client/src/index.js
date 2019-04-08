@@ -13,6 +13,8 @@ import reducers from './Reducers/reducers'
 import config from './DB_CONFIG.js'
 import {BrowserRouter} from 'react-router-dom'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const initState = { //TODO this is wonky af
     user: {
         userName: null,

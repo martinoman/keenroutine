@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import firebase from "firebase/app";
 import "firebase/database";
@@ -42,6 +42,7 @@ class App extends Component {
   render() {
       return (
       <div className="App">
+
           <Navbar />
           <Switch>
             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
