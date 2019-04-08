@@ -1,3 +1,11 @@
+:root {
+  --color1: #1C4D4F;
+  --color2: #237176;
+  --color3: #17B4AD;
+  --color4: #FDE992;
+  --color5: #E95D48;
+}
+
 .App {
   text-align: center;
 }
@@ -24,4 +32,8 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.list-selection-item{
+    background-color: var(--color1);
 }
