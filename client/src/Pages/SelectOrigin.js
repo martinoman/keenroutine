@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 class SelectOrigin extends Component {
     render(){
         return(
-            <div className="origin-selection-page">
+            <div className="Origin-selection">
                 <div className="origin-selection-header">
                     Where are you?
                 </div>

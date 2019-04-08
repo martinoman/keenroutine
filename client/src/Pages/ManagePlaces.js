@@ -47,7 +47,7 @@ class ManagePlaces extends Component {
 
     render() {
         return (
-            <div className="manage_places_page">
+            <div className="Manage-places">
                 <DraggableList items={sortOnIndex(this.props.places)} format={this.formatPlaces.bind(this)} onChange={this.dragged.bind(this)}/>
                 <PlacesSearch />
             </div>

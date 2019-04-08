@@ -44,7 +44,7 @@ class SignUp extends Component {
     }
     render() {
         return (
-            <div className="sign_up_page">
+            <div className="Sign-up">
                 {this.state.signedUp ?
                     <div className="sign_up_success">
                         <div className="sign_up_success_message">
