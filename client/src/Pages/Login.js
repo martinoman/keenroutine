@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import { Redirect } from 'react-router-dom'
-
+import { Button } from 'reactstrap'
 
 class Login extends Component {
 
@@ -32,8 +32,7 @@ class Login extends Component {
     render() {
         return(
             <div className="Login">
-                <div className="login-title">Login</div>
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={this.handleLogin} className="login-credentials">
                     <div className="input-field-wrapper">
                         <h3>Email</h3>
                         <input type="text" className="input-field" defaultValue="a@a.com"></input> <br/>
@@ -42,7 +41,7 @@ class Login extends Component {
                         <h3>Password</h3>
                         <input type="password" className="input-field" defaultValue="asdasd"></input><br/>{/*Hardcoded password please fix me TODO*/}
                     </div>
-                    <button type="submit">Login</button>
+                    <Button type="submit" className="login-btn btn btn-default btn-lg">Login</Button>
                 </form>
                 <div className="login_status_message">
                     {this.state.message}

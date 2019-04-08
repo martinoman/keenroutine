@@ -21,7 +21,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="Navbar">
             {this.state.expanded ?
                 <div className="">
                     <button onClick={this.toggleNavbar}>
