@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {changeLocation} from "../Actions/index"
-// import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Button, Container, Row, Col } from 'reactstrap';
 
 import {Link} from "react-router-dom";
 

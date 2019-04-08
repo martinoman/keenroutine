@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 class TravelGuide extends Component {
     render() {
         return (
-            <div className="travel-guide-page">
+            <div className="Travel-guide">
                 Trip to {this.props.focusedTrip.to}
                 {this.props.focusedTrip.trip.map((leg, key)=>{
                     return(

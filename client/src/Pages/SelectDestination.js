@@ -5,7 +5,7 @@ import RealtimeInfo from "../Components/RealtimeInfo"
 class SelectDestination extends Component {
     render(){
         return(
-            <div className="select-destination-page">
+            <div className="Select-destination">
                 <TripList />
                 <RealtimeInfo />
             </div>

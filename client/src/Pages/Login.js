@@ -31,11 +31,17 @@ class Login extends Component {
 
     render() {
         return(
-            <div className="login_page">
+            <div className="Login">
                 <div className="login-title">Login</div>
                 <form onSubmit={this.handleLogin}>
-                    <input type="text" defaultValue="a@a.com"></input>
-                    <input type="password" defaultValue="asdasd"></input>{/*Hardcoded password please fix me TODO*/}
+                    <div className="input-field-wrapper">
+                        <h3>Email</h3>
+                        <input type="text" className="input-field" defaultValue="a@a.com"></input> <br/>
+                    </div>
+                    <div className="input-field-wrapper">
+                        <h3>Password</h3>
+                        <input type="password" className="input-field" defaultValue="asdasd"></input><br/>{/*Hardcoded password please fix me TODO*/}
+                    </div>
                     <button type="submit">Login</button>
                 </form>
                 <div className="login_status_message">

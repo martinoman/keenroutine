@@ -2,10 +2,26 @@
   text-align: center;
 }
 
-.testing1 {
-    background-color: red;
+.Login > button{
+    width: 10px;
 }
 
-.testing2 {
-    background-color: blue;
+.input-field-wrapper{
+    width: 80%;
+    min-width: 60px;
+    margin: auto;
+}
+
+.input-field-wrapper > h3{
+    text-align: left;
+}
+
+.input-field{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
