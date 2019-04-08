@@ -64,53 +64,52 @@ if(process.env.NODE_ENV === 'production') {
     res.send(path.join(__dirname = 'client/build/index.html'));
   })
 
-}
+}else {
+    //build modeAAAAAAAAAAAAAA_A_A_A_A_A_A_A_A_A_A_A__A_AA__A_A_A_A_A_A_A_A__A_A_A_A_AA_A__A__A
+    app.get('/searchStation', (req, res) => {
+        let requestURL = "https://api.sl.se/api2/typeahead.json?key=" + process.env.REACT_APP_PlatsuppslagAPI + "&searchstring=" + req.query.searchWord;
+        fetch(requestURL)
+        .then(res => res.json())
+        .then(json => {
+            res.send(json)
+        });
+    })
 
-//build modeAAAAAAAAAAAAAA_A_A_A_A_A_A_A_A_A_A_A__A_AA__A_A_A_A_A_A_A_A__A_A_A_A_AA_A__A__A
-app.get('/searchStation', (req, res) => {
-    let requestURL = "https://api.sl.se/api2/typeahead.json?key=" + process.env.REACT_APP_PlatsuppslagAPI + "&searchstring=" + req.query.searchWord;
-    fetch(requestURL)
-    .then(res => res.json())
-    .then(json => {
-        res.send(json)
-    });
-})
-
-app.get('/selectDestinationTime', (req, res) => {
-    let urlParams = "";
-    for (let key in req.query) {
-        if (req.query.hasOwnProperty(key)) {
-            if(req.query[key] !== undefined)
-            urlParams += "&" + key + "=" + req.query[key]
+    app.get('/selectDestinationTime', (req, res) => {
+        let urlParams = "";
+        for (let key in req.query) {
+            if (req.query.hasOwnProperty(key)) {
+                if(req.query[key] !== undefined)
+                urlParams += "&" + key + "=" + req.query[key]
+            }
         }
-    }
-    fetch("https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=" + process.env.REACT_APP_ReseplanerareAPI + "&" + urlParams)
-    .then(res => res.json())
-    .then(json => {
-        res.send(json)
-    });
-})
+        fetch("https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=" + process.env.REACT_APP_ReseplanerareAPI + "&" + urlParams)
+        .then(res => res.json())
+        .then(json => {
+            res.send(json)
+        });
+    })
 
-app.get('/getRealTimeInfo', (req, res) => {
-  let urlParams = "";
-  for (let key in req.query) {
-      if (req.query.hasOwnProperty(key)) {
-          if(req.query[key] !== undefined)
-              urlParams += "&" + key + "=" + req.query[key]
-      }
-  }
-  urlParams = urlParams.substr(1); //This api can't handle a '&' at the beginning of the params
-  fetch("https://api.sl.se/api2/realtimedeparturesV4.json?key=" + process.env.REACT_APP_realtidsinfoAPIKey + "&" + urlParams)
-      .then(res => res.json())
-      .then(json => {
-          res.send(json)
-  });
-})
+    app.get('/getRealTimeInfo', (req, res) => {
+        let urlParams = "";
+        for (let key in req.query) {
+            if (req.query.hasOwnProperty(key)) {
+                if(req.query[key] !== undefined)
+                urlParams += "&" + key + "=" + req.query[key]
+            }
+        }
+        urlParams = urlParams.substr(1); //This api can't handle a '&' at the beginning of the params
+        fetch("https://api.sl.se/api2/realtimedeparturesV4.json?key=" + process.env.REACT_APP_realtidsinfoAPIKey + "&" + urlParams)
+        .then(res => res.json())
+        .then(json => {
+            res.send(json)
+        });
+    })
 
-app.get('*', (req, res) => {
-    res.send(path.join(__dirname+'/client/public/index.html'));
-})
-
+    app.get('*', (req, res) => {
+        res.send(path.join(__dirname+'/client/public/index.html'));
+    })
+}
 
 //start server
 app.listen(port, (req, res) => {
