@@ -41,7 +41,7 @@ class Login extends Component {
                         <h3>Password</h3>
                         <input type="password" className="input-field" defaultValue="asdasd"></input><br/>{/*Hardcoded password please fix me TODO*/}
                     </div>
-                    <Button type="submit" className="login-btn btn btn-default btn-lg">Login</Button>
+                    <button type="submit" className="button login-button">Login</button>
                 </form>
                 <div className="login_status_message">
                     {this.state.message}

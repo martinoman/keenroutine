@@ -2,7 +2,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #FFCC00;
 }
 
 #root {
@@ -10,10 +9,62 @@ html, body {
 }
 
 .Navbar{
-    height:7%
+    height:7%;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+    background-color: var(--color5);
+}
+
+.Navbar-bar{
+    text-align: right;
+    height: 100%;
+}
+
+.Navbar-bar > button{
+    background: none;
+    border: none;
+    height: 100%;
+    font-size: xx-large;
+    outline: none;
+
+}
+
+.Navbar-list{
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+    overflow: hidden;
+}
+
+.Navbar-list.expanded{
+    max-height: 500px;
+    transition: max-height 0.25s ease-in;
+}
+
+
+.Navbar-list-item{
+    width: 100%;
+}
+
+.Navbar-list-item:link, .Navbar-list-item:visited {
+    background: var(--color5);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: inline-block;
+}
+.Navbar-list-item:hover, .Navbar-list-item:active {
+    background: var(--color5Light);
+}
+.Navbar-list-item: hover{
+    background: var(--color5Light);
 }
 
 .Content{
+    position: relative;
     height: 93%
 }
 
@@ -24,7 +75,7 @@ html, body {
 }
 
 .Login{
-    background-color: #FDE992;
+    background-color: var(--color4);
     width: 100%;
     height: 100%;
 }
@@ -40,6 +91,12 @@ html, body {
 }
 
 .input-field-wrapper > h3{
+    margin-top: 2%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.input-field-wrapper > h3{
     text-align: left;
 }
 
@@ -51,9 +108,57 @@ html, body {
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
+    /* background-color: var(--color5) */
 }
 
-.login-btn{
-    padding-top: 50px;
-    color: #16B4AD;
+.login-button{
+    margin-top: 50px;
+    width: 30vw !important;
 }
+
+.button{
+    background-color: var(--color3);
+    color: #FFFFFF;
+    width: 60px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.list-selection-item{
+    background-color: var(--color1);
+}
+
+.collapsed{
+    height: 0px;
+}
+
+.hidden{
+    display: none;
+}
+
+:root {
+  --color1: #1C4D4F;
+  --color1Light: #2C5D5F;
+  --color2: #237176;
+  --color2Light: #338186;
+  --color3: #17B4AD;
+  --color3Light: #27C4BD;
+  --color4: #FFFFFF;
+  --color4Light: #FFFFFF;
+  --color5: #17B4AD;
+  --color5Light: #27C4BD;
+}
+/* :root {
+  --color1: #1C4D4F;
+  --color1Light: #2C5D5F;
+  --color2: #237176;
+  --color2Light: #338186;
+  --color3: #17B4AD;
+  --color3Light: #27C4BD;
+  --color4: #FDE992;
+  --color4Light: #FFF9A2;
+  --color5: #E95D48;
+  --color5Light: #F96D58;
+} */
