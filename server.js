@@ -61,7 +61,7 @@ if(process.env.NODE_ENV === 'production') {
 
   app.get('*', (req, res) => {
       console.log("Bajs från SERVER: production mode2");
-    res.sendFile(path.join(__dirname = 'client/build/index.html'));
+    res.send(path.join(__dirname = 'client/build/index.html'));
   })
 
 }
@@ -108,7 +108,7 @@ app.get('/getRealTimeInfo', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/public/index.html'));
+    res.send(path.join(__dirname+'/client/public/index.html'));
 })
 
 
