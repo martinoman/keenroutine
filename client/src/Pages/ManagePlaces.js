@@ -10,22 +10,20 @@ class ManagePlaces extends Component {
         this.props.removePlace(key, this.props.user.userID);
     }
 
-    placesList = () => {
-        return sortOnIndex(this.props.places).map((place, index)=>{
-                        return(
-                            <div className="place-row" key={index} id={place.key}>
-                                <div className="place-row-alias">
-                                    {place.alias}
-                                </div>
-                                <div className="place-row-adress">
-                                    {place.adress}
-                                </div>
-                                <div className="place-row-remove-button button" onClick={()=>this.removePlace(place.key)}>
-                                    x
-                                </div>
-                            </div>
-                        )
-                    })
+    formatPlaces = (place, index) => {
+        return (
+            <div className="place-row" key={index} id={place.key}>
+                <div className="place-row-alias">
+                    {place.alias}
+                </div>
+                <div className="place-row-adress">
+                    {place.adress}
+                </div>
+                <div className="place-row-remove-button button" onClick={()=>this.removePlace(place.key)}>
+                    x
+                </div>
+            </div>
+        );
     }
 
     dragged(event){ //TODO can this be anywhere else?
@@ -50,7 +48,7 @@ class ManagePlaces extends Component {
     render() {
         return (
             <div className="manage_places_page">
-                <DraggableList items={this.placesList()} onChange={this.dragged.bind(this)}/>
+                <DraggableList items={sortOnIndex(this.props.places)} format={this.formatPlaces.bind(this)} onChange={this.dragged.bind(this)}/>
                 <PlacesSearch />
             </div>
         );

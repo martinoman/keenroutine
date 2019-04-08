@@ -31,18 +31,20 @@ class DraggableList extends Component {
   }
 	render() {
 		return (
-			<ul onDragOver={this.dragOver.bind(this)}>
-                {this.state.items.map((item, i) => {
-                  return (
-                    <li
-                      data-id={i}
-                      key={i}
-                      draggable='true'
-                      onDragEnd={this.dragEnd.bind(this)}
-                      onDragStart={this.dragStart.bind(this)}>{item}</li>
-                  )
-                 })}
-            </ul>
+            <div>
+    			<ul onDragOver={this.dragOver.bind(this)}>
+                    {this.props.items.map((item, i) => {
+                      return (
+                        <li
+                          data-id={i}
+                          key={i}
+                          draggable='true'
+                          onDragEnd={this.dragEnd.bind(this)}
+                          onDragStart={this.dragStart.bind(this)}>{this.props.format(item, i)}</li>
+                      )
+                     })}
+                </ul>
+            </div>
 		)
 	}
 }
