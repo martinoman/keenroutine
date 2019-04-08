@@ -31,7 +31,7 @@ const reduxMother = (state=initialState, action) => {
                 })
         case 'REMOVE_PLACE':
             let newPlaces2 = [...state.places]
-            for (var i = 0; i < newPlaces2.length; i++) {
+            for (let i = 0; i < newPlaces2.length; i++) {
                 if (newPlaces2[i].key === action.key) {
                     newPlaces2.splice(i, 1);
                 }
@@ -49,7 +49,7 @@ const reduxMother = (state=initialState, action) => {
                 })
         case 'SET_INDEX':
             let places = [...state.places];
-            for (var i = 0; i < places.length; i++) {
+            for (let i = 0; i < places.length; i++) {
                 if(places[i].key === action.key)
                     places[i].index = action.index
             }
