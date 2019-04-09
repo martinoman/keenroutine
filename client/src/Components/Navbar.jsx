@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import { logout } from "../Actions/index";
 
+import { IconContext } from "react-icons";
+import { FaBars } from "react-icons/fa";
+
 class Navbar extends Component {
 
     constructor(props){
@@ -25,7 +28,14 @@ class Navbar extends Component {
             <div className="Navbar">
                 <div className="Navbar-bar">
                     <button onClick={this.toggleNavbar}>
-                        {this.state.expanded ? "Λ" : "V"}
+                        {this.state.expanded ?
+                        <IconContext.Provider value={{ color: "white"}}>
+                            <FaBars/>
+                        </IconContext.Provider>
+                             :
+                        <IconContext.Provider value={{ color: "black"}}>
+                            <FaBars/>
+                        </IconContext.Provider>}
                     </button>
                 </div>
                 <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>

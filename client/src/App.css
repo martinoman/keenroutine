@@ -25,9 +25,10 @@ html, body {
     background: none;
     border: none;
     height: 100%;
-    font-size: xx-large;
+    font-size: x-large;
     outline: none;
-
+    margin-top: -3px;
+    margin-right: 5px;
 }
 
 .Navbar-list{
@@ -39,11 +40,13 @@ html, body {
 .Navbar-list.expanded{
     max-height: 500px;
     transition: max-height 0.25s ease-in;
+    font-weight: 400;
 }
 
 
 .Navbar-list-item{
     width: 100%;
+    font-weight: bolder;
 }
 
 .Navbar-list-item:link, .Navbar-list-item:visited {
