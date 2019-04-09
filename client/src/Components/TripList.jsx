@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
-import { sortOnIndex } from "../Helpers/PlacesSorter.js"
+import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 class TripList extends Component {
     constructor(props){
         super(props);
