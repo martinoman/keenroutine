@@ -8,7 +8,7 @@ class Navbar extends Component {
     constructor(props){
         super(props);
         this.state = {
-            expanded: true,
+            expanded: false,
         }
     }
 
@@ -20,29 +20,25 @@ class Navbar extends Component {
     }
 
     render() {
+        let expanded =this.state.expanded ? " expanded" : ""
         return (
-            <div className="">
-            {this.state.expanded ?
-                <div className="">
+            <div className="Navbar">
+                <div className="Navbar-bar">
                     <button onClick={this.toggleNavbar}>
-                        V
+                        {this.state.expanded ? "Λ" : "V"}
                     </button>
                 </div>
-                :
-                <div className="" onClick={this.toggleNavbar}>
-                    <Link to="/login">Login </Link>
+                <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>
+                    <Link to="/login" className="Navbar-list-item">Login </Link>
                     <br/>
-                    <Link to="/manage_places">Manage your places </Link>
+                    <Link to="/manage_places" className="Navbar-list-item">Manage your places </Link>
                     <br/>
-                    <Link to="/select_origin">New trip </Link>
+                    <Link to="/select_origin" className="Navbar-list-item">New trip </Link>
                     <br/>
-                    <div onClick={this.props.logout}>
-                        logout
-                    </div>
-                    <button onClick={this.toggleNavbar}>
-                        Λ
-                    </button>
-                </div>}
+                    <Link to="/login" className="Navbar-list-item" onClick={this.props.logout}>
+                        Logout
+                    </Link>
+                </div>
             </div>
         );
     }
