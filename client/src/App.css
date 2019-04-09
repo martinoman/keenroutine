@@ -6,8 +6,17 @@
   --color5: #E95D48;
 }
 
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .App {
   text-align: center;
+}
+
+.title{
+    font-size: 30px;
+    font-family: 'Oxygen', sans-serif;
 }
 
 .Login > button{
@@ -35,5 +44,18 @@
 }
 
 .list-selection-item{
+    margin: 10px auto;
+    text-align: center;
+    vertical-align: middle;
     background-color: var(--color1);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px #888888;
+    height: 42px;
+    display: inline-block;
+}
+
+/* Det är är ett jävla fulhack */
+.vertical-center{
+    margin-top: 8px
 }
