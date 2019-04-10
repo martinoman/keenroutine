@@ -59,11 +59,22 @@ html, body {
     padding-top: 10px;
     display: inline-block;
 }
+
 .Navbar-list-item:hover, .Navbar-list-item:active {
     background: var(--color5Light);
 }
+
 .Navbar-list-item: hover{
     background: var(--color5Light);
+}
+
+.draggable{
+    /* Nothing fucking works */
+}
+
+.draggable-list-item{
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .Content{
