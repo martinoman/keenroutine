@@ -162,6 +162,30 @@ html, body {
     display: inline-block;
 }
 
+.trip-leg{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: var(--color1);
+    color: white;
+}
+
+.trip-leg-info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.trip-leg-time{
+    font-weight: bold;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.trip-leg-place{
+    /* margin-left: 10px; */
+    text-align: left;
+}
+
 /* Det är är ett jävla fulhack */
 .vertical-center{
     margin-top: 8px
