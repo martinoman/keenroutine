@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import {render} from 'react-dom';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import { Container } from "reactstrap";
+import { Container, Col} from "reactstrap";
 
 const SortableItem = SortableElement(({value}) => <div className="draggable">{value}</div>);
 
@@ -23,7 +23,6 @@ class SortableComponent extends Component {
 
   onSortEnd = ({oldIndex, newIndex}) => {
     let places = [...this.props.places];
-    console.log(places);
     places = this.shiftArray(places, oldIndex, newIndex);
     let newOrder = places.map((place) => { return place.key});
     this.props.onChange(newOrder);
@@ -36,9 +35,7 @@ class SortableComponent extends Component {
 
     render() {
         return(
-            <Container>
-                <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y"/>
-            </Container>
+            <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y"/>
         )
     }
 }

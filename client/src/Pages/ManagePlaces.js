@@ -5,7 +5,7 @@ import { removePlace, setIndex } from '../Actions/index';
 import DraggableList from '../Components/DraggableList'
 import SortableComponent from '../Components/SortableComponent.jsx'
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
-import { Col, Row } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
 
 class ManagePlaces extends Component {
     removePlace = (key) => {
@@ -36,12 +36,23 @@ class ManagePlaces extends Component {
     }
 
     render() {
+        console.log(this.props.user);
         let places = sortOnIndex(this.props.places).map((place)=>{return this.formatPlace(place)});
         return (
-            <div className="Manage-places">
-                <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
-                <PlacesSearch />
-            </div>
+            <Container className="Manage-places">
+                <Row>
+                    <Col xs={{size:10, offset:1}}>
+                        <div className="title">
+                            Your places
+                        </div>
+                        <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
+                        <div className="">
+                            {"Search for new places to add"}
+                        </div>
+                        <PlacesSearch />
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 
