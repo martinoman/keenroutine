@@ -28,6 +28,20 @@ html, body {
     font-family: 'Oxygen', sans-serif;
 }
 
+.keen-card{
+    background-color: var(--color1);
+    border-radius: 5px;
+    height: 10%;
+    /* width: 100%; */
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: white;
+    vertical-align: middle;
+}
+
 
 .Navbar{
     height:7%;
@@ -94,42 +108,14 @@ html, body {
 }
 
 .draggable-list-item{
-    height: 10%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    background-color: var(--color1);
-    border-radius: 5px;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    color: white;
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
 }
 
-.manage-places-search-bar{
-    width: 100%;
-    background-color: var(--color1Light);
-}
-
 .search-places-field{
     width: 100%;
-}
-
-.search-result-item-card{
-    margin-top: 1%;
-    margin-bottom: 1%;
-
-}
-
-.search-result-item{
-    height: 10%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    background-color: var(--color1);
-    border-radius: 5px;
-    color: white;
 }
 
 .search-result-item-popup{
@@ -223,7 +209,6 @@ html, body {
     background-color: var(--color1);
     color: white;
     border-radius: 5px;
-    /* box-shadow: 2px 2px 8px #888888; */
     height: 42px;
     display: inline-block;
 }
