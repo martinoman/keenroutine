@@ -125,17 +125,6 @@ html, body {
     overflow: hidden;
 }
 
-.search-result-item-popup-content{
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    color: white;
-    text-align: center;
-    width: 90%;
-    margin-left: 5%;
-    background-color: var(--color1Light);
-    padding: 3%;
-}
-
 .search-result-item-popup.expanded{
     max-height: 500px;
     transition: 0.25s ease-in;
