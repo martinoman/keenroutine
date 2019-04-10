@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { Container, Col, Row} from "reactstrap";
-import VerticalLine from "./VerticalLine.jsx";
 
 class TripLeg extends Component {
     constructor(props){
