@@ -15,7 +15,6 @@ class TripSelectorTile extends Component {
     }
 
     render() {
-        console.log(this.props);
         return(
             <Link to="/travel_guide">
                 <Row className="list-selection-item" onClick={() => {

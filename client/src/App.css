@@ -166,11 +166,22 @@ html, body {
 }
 
 .trip-leg{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
     background-color: var(--color1);
     color: white;
+}
+
+.trip-leg.first{
+    margin-top: 5%;
+    padding-top: 3%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.trip-leg.last{
+    margin-bottom: 5%;
+    padding-bottom: 3%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .trip-leg-info{
@@ -187,7 +198,26 @@ html, body {
 .trip-leg-place{
     /* margin-left: 10px; */
     text-align: left;
+    font-size: small;
 }
+
+.trip-leg-mode-info{
+    text-align: left;
+}
+
+.leg-border-wrapper{
+    /* width: 100%; */
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: var(--color1);
+}
+
+.leg-border{
+    width: 50%;
+    margin: auto;
+    border-bottom: 1px solid var(--color1Light);
+}
+
 
 /* Det är är ett jävla fulhack */
 .vertical-center{

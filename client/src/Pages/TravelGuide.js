@@ -1,18 +1,24 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import TripLeg from "../Components/TripLeg.jsx"
+import {Container, Col} from "reactstrap"
 
 class TravelGuide extends Component {
     render() {
+        let trip = this.props.focusedTrip.trip;
         return (
-            <div className="Travel-guide">
-                Trip to {this.props.focusedTrip.to}
-                {this.props.focusedTrip.trip.map((leg, key)=>{
-                    return(
-                        <TripLeg leg={leg}/>
-                    );
-                })}
-            </div>
+            <Container className="Travel-guide">
+                <Col xs={{ size: 12, offset: 0}}>
+                    <div className="title">
+                        Trip to {this.props.focusedTrip.to}
+                    </div>
+                    {trip.map((leg, index)=>{
+                        return(
+                            <TripLeg leg={leg} key={index} first={index === 0} last={index === trip.length - 1}/>
+                        );
+                    })}
+                </Col>
+            </Container>
         );
     }
 

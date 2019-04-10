@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { Container, Col, Row} from "reactstrap";
+import VerticalLine from "./VerticalLine.jsx";
 
 class TripLeg extends Component {
     constructor(props){
@@ -10,38 +11,53 @@ class TripLeg extends Component {
         }
     }
 
+    getTrimmedTime(string){
+        return string.substring(0,string.length-3);
+    }
+
     render() {
-        console.log(this.state.leg);
+        let order = "middle";
+        if(this.props.first)
+            order = "first";
+        else if(this.props.last)
+            order = "last";
         return (
-            <Container className="trip-leg">
-                <Row>
-                    <Col xs={2} className="trip-leg-line">
-                    </Col>
-                    <Col xs={10} className="trip-leg-info">
+            <div>
+                <Row className={"trip-leg " + order}>
+                    <Col xs={12} className="trip-leg-info">
                         <Row className="trip-leg-from-info">
-                            <Col xs={4} className="trip-leg-time">
-                                {this.props.leg.travelMode.departure}
+                            <Col xs={2} className="trip-leg-time">
+                                {this.getTrimmedTime(this.props.leg.travelMode.departure)}
                             </Col>
-                            <Col xs={8} className="trip-leg-place">
+                            <Col xs={4} className="trip-leg-place">
                                 {this.props.leg.origin.name}
                             </Col>
                         </Row>
-                        <Row className="-trip-leg-mode-info">
-                            <Col xs={12}>
-                                {this.props.leg.travelMode.name + " mot " + this.props.leg.travelMode.direction}
-                            </Col>
-                        </Row>
+                            <Row className="trip-leg-mode-info">
+                                <Col xs={{size:10, offset:2}}>
+                                    {this.props.leg.travelMode.type === "WALK" ?
+                                        "Gå " + this.props.leg.travelMode.distance + " meter"
+                                        :
+                                        this.props.leg.travelMode.name + " mot " + this.props.leg.travelMode.direction
+                                    }
+                                </Col>
+                            </Row>
                         <Row className="trip-leg-to-info">
-                            <Col xs={4} className="trip-leg-time">
-                                {this.props.leg.travelMode.arrival}
+                            <Col xs={2} className="trip-leg-time">
+                                {this.getTrimmedTime(this.props.leg.travelMode.arrival)}
                             </Col>
-                            <Col xs={8} className="trip-leg-place">
+                            <Col xs={4} className="trip-leg-place">
                                 {this.props.leg.destination.name}
                             </Col>
                         </Row>
                     </Col>
                 </Row>
-            </Container>
+                {order === "first" || order === "middle" ?
+                    <Row className="leg-border-wrapper">
+                        <div className="leg-border"/>
+                    </Row>
+                    :""}
+            </div>
         );
     }
 }
