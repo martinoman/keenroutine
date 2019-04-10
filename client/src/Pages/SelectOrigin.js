@@ -8,26 +8,29 @@ import {Link} from "react-router-dom";
 class SelectOrigin extends Component {
     render(){
         return(
+        <div className="width-limiter">
             <Container className="origin-selection-page">
                 <Row className="origin-selection-header">
-                    <Col xs={12} className="title">
-                        Where are you?
-                    </Col>
+                <Col xs={12} className="title">
+                    Where are you?
+                </Col>
                 </Row>
                 {this.props.places.map((place, index) => {
                     return(
                         <Link to="/select_destination"  key={index}>
                             <Row>
-                                <Col xs={10} className="list-selection-item"  onClick={()=>{
+                                <Col xs={12} className="list-selection-item"  onClick={()=>{
                                     this.props.changeLocation(place);
                                 }}>
-                                        <p className="vertical-center">{place.alias}</p>
+                                    <p className="vertical-center">{place.alias}</p>
                                 </Col>
                             </Row>
                         </Link>
                     );
                 })}
             </Container>
+
+        </div>
         );
     }
 }

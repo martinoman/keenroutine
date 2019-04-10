@@ -4,6 +4,9 @@ import {focusTrip} from '../Actions/index.js'
 import {Link} from "react-router-dom";
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesSorter.js"
+import TripSelectorTile from './TripSelectorTile';
+import { Container } from 'reactstrap';
+
 class TripList extends Component {
     constructor(props){
         super(props);
@@ -92,27 +95,16 @@ class TripList extends Component {
 
     render(){
         return(
-            <div className="destination-selection-trip-list">
-                {this.state.trips.map((trip, key)=>{
+            <Container className="destination-selection-trip-list">
+                <div className="title">
+                    Where are you going?
+                </div>
+                {this.state.trips.map((trip, index)=>{
                     return (
-                        <Link to="/travel_guide" key={key} >
-                            <div className="trip-summary" onClick={() => {
-                                    this.props.focusTrip(trip);
-                                }}>
-                                <div className="trip-summary-alias">
-                                    To: {trip.to}
-                                </div>
-                                <div className="trip-summary-time-until-departure">
-                                    {Math.ceil(trip.times.timeUntilDeparture)} min until departure
-                                </div>
-                                <div className="trip-summary-travel-time">
-                                    {Math.ceil(trip.times.travelTime)} min total travel time
-                                </div>
-                            </div>
-                        </Link>
+                        <TripSelectorTile trip={trip} key={index} />
                     );
                 })}
-            </div>
+            </Container>
         );
     }
 }

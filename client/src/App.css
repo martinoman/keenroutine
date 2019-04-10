@@ -179,15 +179,8 @@ html, body {
   --color5: #17B4AD;
   --color5Light: #27C4BD;
 }
-/* :root {
-  --color1: #1C4D4F;
-  --color1Light: #2C5D5F;
-  --color2: #237176;
-  --color2Light: #338186;
-  --color3: #17B4AD;
-  --color3Light: #27C4BD;
-  --color4: #FDE992;
-  --color4Light: #FFF9A2;
-  --color5: #E95D48;
-  --color5Light: #F96D58;
-} */
+
+.width-limiter{
+    width: 85%;
+    margin: auto;
+}
