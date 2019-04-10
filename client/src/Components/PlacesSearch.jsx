@@ -33,6 +33,7 @@ class PlacesSearch extends Component {
         scroller.scrollTo('search', {
         duration: 800,
         delay: 0,
+        offset: -50,
         smooth: 'easeInOutQuart'
       });
     }
