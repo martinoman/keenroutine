@@ -5,6 +5,7 @@ import { removePlace, setIndex } from '../Actions/index';
 import DraggableList from '../Components/DraggableList'
 import SortableComponent from '../Components/SortableComponent.jsx'
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
+import { Col, Row } from "reactstrap";
 
 class ManagePlaces extends Component {
     removePlace = (key) => {
@@ -21,14 +22,16 @@ class ManagePlaces extends Component {
 
     formatPlace = (place) => {
         return(
-            <div className="draggable-list-item" key={place.key}>
-                <div className="draggable-list-item-alias">
+            <Row className="draggable-list-item" key={place.key}>
+                <Col xs={8} className="draggable-list-item-alias">
                     {place.alias}
-                </div>
-                <button className="button place-remove-button" onClick={()=>{
-                        this.removePlace(place.key);
-                    }}>x</button>
-            </div>
+                </Col>
+                <Col xs={4}>
+                    <button className="button place-remove-button" onClick={()=>{
+                            this.removePlace(place.key);
+                        }}>x</button>
+                </Col>
+            </Row>
         );
     }
 

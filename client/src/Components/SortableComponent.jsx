@@ -2,16 +2,17 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import {render} from 'react-dom';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import { Container } from "reactstrap";
 
-const SortableItem = SortableElement(({value}) => <li>{value}</li>);
+const SortableItem = SortableElement(({value}) => <div className="draggable">{value}</div>);
 
 const SortableList = SortableContainer(({places}) => {
   return (
-    <ul>
+    <div className="draggable-list">
       {places.map((value, index) => (
         <SortableItem key={`item-${index}`} index={index} value={value} />
       ))}
-    </ul>
+  </div>
   );
 });
 
@@ -35,7 +36,9 @@ class SortableComponent extends Component {
 
     render() {
         return(
-            <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y"/>
+            <Container>
+                <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y"/>
+            </Container>
         )
     }
 }
