@@ -13,7 +13,6 @@ class ManagePlaces extends Component {
     }
 
     changeOrder(newOrder){
-        console.log(newOrder);
         for (var i = 0; i < newOrder.length; i++) {
             let key = newOrder[i];
             this.props.setIndex(i, key, this.props.user.userID);
@@ -36,7 +35,6 @@ class ManagePlaces extends Component {
     }
 
     render() {
-        console.log(this.props.user);
         let places = sortOnIndex(this.props.places).map((place)=>{return this.formatPlace(place)});
         return (
             <Container className="Manage-places">
@@ -46,9 +44,6 @@ class ManagePlaces extends Component {
                             Your places
                         </div>
                         <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
-                        <div className="">
-                            {"Search for new places to add"}
-                        </div>
                         <PlacesSearch />
                     </Col>
                 </Row>

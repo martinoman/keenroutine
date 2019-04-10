@@ -13,13 +13,10 @@ class SelectDestination extends Component {
     renderTabs = () => {
         switch(this.state.currentTab) {
             case "trips":
-                console.log("i trips");
                 return <TripList />;
             case "realtime":
-                console.log("i realtime");
                 return <RealtimeInfo />;
             default:
-                console.log("i default");
                 return <TripList />;
         }
     }

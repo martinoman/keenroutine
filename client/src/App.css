@@ -108,6 +108,15 @@ html, body {
     user-select: none; /* Standard */
 }
 
+.manage-places-search-bar{
+    width: 100%;
+    background-color: var(--color1Light);
+}
+
+.search-places-field{
+    width: 100%;
+}
+
 .search-result-item-card{
     margin-top: 1%;
     margin-bottom: 1%;
@@ -144,6 +153,11 @@ html, body {
 .search-result-item-popup.expanded{
     max-height: 500px;
     transition: 0.25s ease-in;
+}
+
+.search-result-item-alias-field{
+    width: 90%;
+    margin: auto;
 }
 
 .Login{

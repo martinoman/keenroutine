@@ -31,8 +31,11 @@ class PlacesSearch extends Component {
     render() {
         return (
             <div className="places-search">
-                <div className="search-bar">
-                    <input type="text" placeholder="Search for stations" onChange={(event)=>{
+                <div className="search-bar manage-places-search-bar">
+                    <div className="">
+                        {"Search for new places to add"}
+                    </div>
+                    <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
                             let searchWord = event.target.value;
                             this.search(searchWord);
                         }}/>

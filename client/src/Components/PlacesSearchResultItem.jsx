@@ -77,7 +77,7 @@ class PlacesSearchResultItem extends Component {
                         {code === 1 ?
                             <form className="search-result-item-alias" onSubmit={this.addPlace}>
                                 <div className="">
-                                    Please enter a fitting alias for the location
+                                    Please enter an alias
                                 </div>
                                 <input className="search-result-item-alias-field" type="text" placeholder="Alias"/>
                             </form>
