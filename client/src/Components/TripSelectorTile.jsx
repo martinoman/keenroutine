@@ -22,7 +22,7 @@ class TripSelectorTile extends Component {
                         this.props.focusTrip(this.props.trip);
                     }}>
                     <Col xs={4} className="vertical-center">
-                        To: {this.props.trip.to}
+                        {this.props.trip.to}
                     </Col>
                     <Col xs={4} className="vertical-center">
                         Dep: {Math.ceil(this.props.trip.times.timeUntilDeparture)}
