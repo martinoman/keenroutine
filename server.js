@@ -58,11 +58,11 @@ if(process.env.NODE_ENV === 'production') {
             res.send(json)
     });
   })
-
-  app.get('*', (req, res) => {
-      console.log("Bajs från SERVER: production mode2");
-    res.send(path.join(__dirname = 'client/build/index.html'));
-  })
+  // 
+  // app.get('*', (req, res) => {
+  //     console.log("Bajs från SERVER: production mode2");
+  //   res.send(path.join(__dirname = 'client/build/index.html'));
+  // })
 
 }else {
     //build modeAAAAAAAAAAAAAA_A_A_A_A_A_A_A_A_A_A_A__A_AA__A_A_A_A_A_A_A_A__A_A_A_A_AA_A__A__A
