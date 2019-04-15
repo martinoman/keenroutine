@@ -26,14 +26,14 @@ class Navbar extends Component {
         let expanded =this.state.expanded ? " expanded" : ""
         return (
             <div className="Navbar">
-                <div className="Navbar-bar">
+                <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
                         {this.state.expanded ?
-                        <IconContext.Provider value={{ color: "white"}}>
+                        <IconContext.Provider value={{}}>
                             <FaBars/>
                         </IconContext.Provider>
                              :
-                        <IconContext.Provider value={{ color: "black"}}>
+                        <IconContext.Provider value={{}}>
                             <FaBars/>
                         </IconContext.Provider>}
                     </button>
