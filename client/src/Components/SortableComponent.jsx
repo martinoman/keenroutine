@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux'
-import {render} from 'react-dom';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import { Container, Col} from "reactstrap";
 
 const SortableItem = SortableElement(({value}) => <div className="draggable">{value}</div>);
 
@@ -17,10 +14,6 @@ const SortableList = SortableContainer(({places}) => {
 });
 
 class SortableComponent extends Component {
-  constructor(props){
-      super(props);
-  }
-
   onSortEnd = ({oldIndex, newIndex}) => {
     let places = [...this.props.places];
     places = this.shiftArray(places, oldIndex, newIndex);

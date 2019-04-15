@@ -1,9 +1,5 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
-import "firebase/firestore";
 import { Redirect, Route } from 'react-router-dom'
 
 class PrivateRoute extends Component {

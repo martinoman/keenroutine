@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import PlacesSearchResultItem from "./PlacesSearchResultItem"
-import { Container, Col, Row } from "reactstrap";
 
 class PlacesSearchResult extends Component {
 

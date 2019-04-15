@@ -23,31 +23,38 @@ class Navbar extends Component {
     }
 
     render() {
-        let expanded =this.state.expanded ? " expanded" : ""
+        let expanded =this.state.expanded ? " expanded" : "";
         return (
             <div className="Navbar">
-                <div className="Navbar-bar">
+                <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
                         {this.state.expanded ?
-                        <IconContext.Provider value={{ color: "white"}}>
+                        <IconContext.Provider value={{}}>
                             <FaBars/>
                         </IconContext.Provider>
                              :
-                        <IconContext.Provider value={{ color: "black"}}>
+                        <IconContext.Provider value={{}}>
                             <FaBars/>
                         </IconContext.Provider>}
                     </button>
                 </div>
                 <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>
-                    <Link to="/login" className="Navbar-list-item">Login </Link>
-                    <br/>
-                    <Link to="/manage_places" className="Navbar-list-item">Manage your places </Link>
-                    <br/>
-                    <Link to="/select_origin" className="Navbar-list-item">New trip </Link>
-                    <br/>
-                    <Link to="/login" className="Navbar-list-item" onClick={this.props.logout}>
-                        Logout
-                    </Link>
+                    {this.props.user.userID ?
+                        <>
+                            <Link to="/manage_places" className="Navbar-list-item">Manage your places </Link>
+                            <br/>
+                            <Link to="/select_origin" className="Navbar-list-item">New trip </Link>
+                            <br/>
+                            <Link to="/login" className="Navbar-list-item" onClick={this.props.logout}>
+                                Logout
+                            </Link>
+                        </>
+                    :
+                        <>
+                            <Link to="/login" className="Navbar-list-item">Login </Link>
+                            <br/>
+                        </>
+                    }
                 </div>
             </div>
         );
@@ -57,6 +64,7 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return{
+        user: state.user,
     }
 }
 

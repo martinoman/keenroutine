@@ -31,7 +31,7 @@ html, body {
 .keen-card{
     background-color: var(--color1);
     border-radius: 5px;
-    height: 10%;
+    height: 100%;
     /* width: 100%; */
     margin-top: 1%;
     margin-bottom: 1%;
@@ -64,6 +64,11 @@ html, body {
     outline: none;
     margin-top: -3px;
     margin-right: 5px;
+    color: var(--color1);
+}
+
+.Navbar-bar.expanded > button{
+    color: white;
 }
 
 .Navbar-list{
@@ -103,6 +108,10 @@ html, body {
     background: var(--color5Light);
 }
 
+.draggable{
+    height: 100%;
+}
+
 .draggable-list{
     margin-bottom: 15%;
 }
@@ -116,6 +125,14 @@ html, body {
 
 .search-places-field{
     width: 100%;
+}
+
+.places-search-results{
+    width: 100%;
+}
+
+.places-search-result-list{
+    width: inherit;
 }
 
 .search-result-item-popup{
@@ -135,18 +152,25 @@ html, body {
     margin: auto;
 }
 
-.Login{
+.Login-Signup{
     background-color: var(--color4);
     width: 100%;
     height: 100%;
 }
 
-.Login > button{
-    width: 10px;
-}
-
 .login-credentials{
     padding-top: 50px;
+}
+
+
+.sign-up-success-message-button{
+    margin-top: 50px;
+    width: 60vw !important;
+    height: 30vw !important;
+}
+
+.sign-up-success-message{
+    margin-top: 50px;
 }
 
 .input-field-wrapper{
@@ -155,15 +179,13 @@ html, body {
     margin: auto;
 }
 
-.input-field-wrapper > h3{
+.input-field-wrapper > h3,.input-field-wrapper > h4{
     margin-top: 2%;
     margin-bottom: 0;
     padding-bottom: 0;
-}
-
-.input-field-wrapper > h3{
     text-align: left;
 }
+
 
 .input-field{
     width: 100%;
@@ -176,9 +198,10 @@ html, body {
     /* background-color: var(--color5) */
 }
 
-.login-button{
+.login-signup-button{
     margin-top: 50px;
     width: 30vw !important;
+    max-width: 500px;
 }
 
 .button{
@@ -267,6 +290,16 @@ html, body {
 
 .hidden{
     display: none;
+}
+
+.no-horizontal-margin{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.no-horizontal-padding{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 :root {

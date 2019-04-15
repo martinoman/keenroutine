@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
-import { Container, Col, Row} from "reactstrap";
+import {Col, Row} from "reactstrap";
 
 class TripLeg extends Component {
     constructor(props){

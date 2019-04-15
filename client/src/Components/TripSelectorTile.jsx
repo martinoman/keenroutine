@@ -1,19 +1,10 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
-import { logout } from "../Actions/index";
 import { Row, Col } from 'reactstrap';
 import {focusTrip} from '../Actions/index.js'
 
-import { IconContext } from "react-icons";
-import { FaBars } from "react-icons/fa";
-
 class TripSelectorTile extends Component {
-
-    constructor(props){
-        super(props);
-    }
-
     render() {
         return(
             <Link to="/travel_guide">
@@ -32,11 +23,6 @@ class TripSelectorTile extends Component {
                 </Row>
             </Link>
         )
-    }
-}
-
-const mapStateToProps = (state) => {
-    return{
     }
 }
 

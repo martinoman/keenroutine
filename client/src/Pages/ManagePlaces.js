@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import PlacesSearch from '../Components/PlacesSearch'
 import { removePlace, setIndex } from '../Actions/index';
-import DraggableList from '../Components/DraggableList'
 import SortableComponent from '../Components/SortableComponent.jsx'
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import { Container, Col, Row } from "reactstrap";
