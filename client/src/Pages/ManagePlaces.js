@@ -22,7 +22,7 @@ class ManagePlaces extends Component {
 
     formatPlace = (place) => {
         return(
-            <Row className="draggable-list-item keen-card" key={place.key}>
+            <Row className="draggable-list-item keen-card align-center" key={place.key}>
                 <Col xs={8} className="draggable-list-item-alias">
                     {place.alias}
                 </Col>

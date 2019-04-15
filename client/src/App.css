@@ -124,7 +124,7 @@ html, body {
 }
 
 .search-places-field{
-    width: 100%;
+    width: 90%;
 }
 
 .places-search-results{
@@ -320,6 +320,12 @@ html, body {
 .no-horizontal-padding{
     padding-left: 0 !important;
     padding-right: 0 !important;
+}
+
+.align-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 :root {
