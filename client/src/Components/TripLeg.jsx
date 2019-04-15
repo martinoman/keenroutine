@@ -28,7 +28,7 @@ class TripLeg extends Component {
                             <Col xs={2} className="trip-leg-time">
                                 {this.getTrimmedTime(this.props.leg.travelMode.departure)}
                             </Col>
-                            <Col xs={4} className="trip-leg-place">
+                            <Col xs={10} className="trip-leg-place">
                                 {this.props.leg.origin.name}
                             </Col>
                         </Row>
@@ -45,7 +45,7 @@ class TripLeg extends Component {
                             <Col xs={2} className="trip-leg-time">
                                 {this.getTrimmedTime(this.props.leg.travelMode.arrival)}
                             </Col>
-                            <Col xs={4} className="trip-leg-place">
+                            <Col xs={10} className="trip-leg-place">
                                 {this.props.leg.destination.name}
                             </Col>
                         </Row>

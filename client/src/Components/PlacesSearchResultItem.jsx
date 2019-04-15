@@ -55,7 +55,7 @@ class PlacesSearchResultItem extends Component {
     render() {
         let code = this.state.messageCode;
         return (
-            <div className="search-result-item-card">
+            <div className="search-result-item-card keen-card">
                 <Row className="search-result-item">
                     <Col xs={8} className="search-result-item-name">
                         {this.props.place.Name}

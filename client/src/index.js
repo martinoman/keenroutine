@@ -24,7 +24,28 @@ const initState = { //TODO this is wonky af
     currentLocation: "",
     focusedTrip: "",
 }
-const store = createStore(reducers, initState, applyMiddleware(reduxThunk));
+
+const getLocalStorage = () => {
+    let state = localStorage.getItem("state");
+    state = JSON.parse(state);
+    if (state) {
+        console.log("FOUND THIS PERSISTED STATE-------");
+        console.log(state);
+        console.log("---------------------------------");
+        return state;
+    }
+    return initState;
+
+}
+
+const store = createStore(reducers, getLocalStorage(), applyMiddleware(reduxThunk));
+
+store.subscribe(() => {
+    let state = store.getState();
+    let stringState = JSON.stringify(state);
+    localStorage.setItem("state",stringState);
+})
+
 firebase.initializeApp(config);
 
 ReactDOM.render(
