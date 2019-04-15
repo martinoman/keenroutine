@@ -213,6 +213,26 @@ html, body {
     border: none;
     outline: none;
 }
+.draggable-list-item-remove-button{
+    text-align: right;
+    padding-right: 0;
+}
+
+.place-remove-button{
+    padding: 0;
+    width: 10vw !important;
+    height: 10vw !important;
+    max-width: 50px;
+    min-width: 30px;
+    max-height: 50px;
+    min-height: 30px;
+    background-color: transparent;
+}
+.remove-icon{
+    color: var(--color3);
+    width: 100% !important;
+    height: 100% !important;
+}
 
 .list-selection-item{
     margin: 10px auto;

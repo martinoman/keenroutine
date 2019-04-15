@@ -14,7 +14,7 @@ const SortableList = SortableContainer(({places}) => {
 });
 
 class SortableComponent extends Component {
-  onSortEnd = ({oldIndex, newIndex}) => {
+    onSortEnd = ({oldIndex, newIndex}) => {
     let places = [...this.props.places];
     places = this.shiftArray(places, oldIndex, newIndex);
     let newOrder = places.map((place) => { return place.key});
