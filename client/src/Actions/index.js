@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 export const logout = () => async () => {
     firebase.auth().signOut()
     .catch((err) => {
-        console.log("signOut falied:");
+        console.log("sign out falied:");
         console.log(err);
     })
 }
@@ -33,6 +33,11 @@ export const loadUser = user => async dispatch => dispatch({
   user: user
 })
 
+export const finishedLoading = done => async dispatch => dispatch({
+    type: 'FINISHED_LOADING',
+    finishedLoading: done
+});
+
 export const removePlace = (key, userID) => async dispatch => {
     let db = firebase.database().ref().child('users').child(userID);
     db.child(key).remove();
@@ -51,15 +56,23 @@ export const clearState = () => async dispatch => dispatch({
     type: "CLEAR_STATE",
 })
 
-export const subscribeToDB = (userID) => async dispatch => {
+export const loadAllPlaces = (userID) => async dispatch => {
     let db = firebase.database().ref().child('users').child(userID);
-    db.on('child_added', snap => {
-        let value = snap.val();
-        let key = snap.key;
+    db.on('value', snap => {
+        let places = snap.val();
+        for (var key in places) {
+            if (places.hasOwnProperty(key)) {
+                let value = places[key];
+                dispatch({
+                    type: 'ADD_PLACE',
+                    location: value.location,
+                    key: key,
+                });
+            }
+        }
         dispatch({
-            type: 'ADD_PLACE',
-            location: value.location,
-            key: key,
+            type: 'FINISHED_LOADING',
+            finishedLoading: true,
         });
     })
 }

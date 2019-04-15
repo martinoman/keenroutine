@@ -23,18 +23,20 @@ const initState = { //TODO this is wonky af
     places: [],
     currentLocation: "",
     focusedTrip: "",
+    finishedLoading: false,
 }
 
 const getLocalStorage = () => {
-    let state = localStorage.getItem("state");
-    state = JSON.parse(state);
-    if (state) {
-        console.log("FOUND THIS PERSISTED STATE-------");
-        console.log(state);
+    let state = {...initState}
+    let persistedLocation = localStorage.getItem("currentLocation");
+    persistedLocation = JSON.parse(persistedLocation);
+    if (persistedLocation) {
+         console.log("FOUND THIS PERSISTED LOCATION-------");
+        console.log(persistedLocation);
         console.log("---------------------------------");
-        return state;
+        state.currentLocation = persistedLocation;
     }
-    return initState;
+    return state;
 
 }
 
@@ -42,8 +44,8 @@ const store = createStore(reducers, getLocalStorage(), applyMiddleware(reduxThun
 
 store.subscribe(() => {
     let state = store.getState();
-    let stringState = JSON.stringify(state);
-    localStorage.setItem("state",stringState);
+    let currentLocation = state.currentLocation;
+    localStorage.setItem("currentLocation",JSON.stringify(currentLocation));
 })
 
 firebase.initializeApp(config);

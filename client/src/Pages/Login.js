@@ -18,16 +18,20 @@ class Login extends Component {
 
     handleLogin(event){
         event.preventDefault();
-        firebase.auth().signInWithEmailAndPassword(
-            event.target[0].value,
-            event.target[1].value
-        ).catch((e)=>{
-            console.log(e);
-            this.setState({
-                message: "Wrong password or email"
-            });
-            return;
-        })
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+          .then(() => {
+              return firebase.auth().signInWithEmailAndPassword(
+                  event.target[0].value,
+                  event.target[1].value
+              )
+          })
+          .catch(function(e) {
+              console.log(e);
+              this.setState({
+                  message: "Wrong password or email"
+              });
+              return;
+          });
     }
 
     render() {

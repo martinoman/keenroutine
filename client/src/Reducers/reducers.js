@@ -68,6 +68,10 @@ const reduxMother = (state=initialState, action) => {
             return Object.assign({}, state,{
                 focusedTrip: action.trip
                 })
+        case 'FINISHED_LOADING':
+            return Object.assign({}, state,{
+                finishedLoading: action.finishedLoading
+                })
         case 'CLEAR_STATE':
             return initialState
         default:
