@@ -26,6 +26,9 @@ class Navbar extends Component {
         let expanded =this.state.expanded ? " expanded" : "";
         return (
             <div className="Navbar">
+                <p className="navbar-title">
+                    Keenroutine
+                </p>
                 <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
                         {this.state.expanded ?
