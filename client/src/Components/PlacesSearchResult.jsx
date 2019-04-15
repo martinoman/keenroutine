@@ -12,7 +12,6 @@ class PlacesSearchResult extends Component {
         }
     }
     renderList(){
-        console.log("-------------------");
         return(
             <div className="places-search-result-list">
                 {this.props.results.map((place, key)=>{

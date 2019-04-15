@@ -31,7 +31,7 @@ html, body {
 .keen-card{
     background-color: var(--color1);
     border-radius: 5px;
-    height: 10%;
+    height: 100%;
     /* width: 100%; */
     margin-top: 1%;
     margin-bottom: 1%;
@@ -106,6 +106,10 @@ html, body {
 
 .Navbar-list-item: hover{
     background: var(--color5Light);
+}
+
+.draggable{
+    height: 100%;
 }
 
 .draggable-list{
