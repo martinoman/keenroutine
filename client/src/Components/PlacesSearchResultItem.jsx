@@ -8,8 +8,14 @@ class PlacesSearchResultItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            messageCode: 0, //0: nominal, 1: enter alais, 2: place already exists
+            messageCode: 0, //0: nominal, 1: enter alias, 2: place already exists
         }
+    }
+
+    componentWillReceiveProps(nextProps){ //Otherwise the divs in the list might behave odd ad persist states from the last search
+        this.setState({
+            messageCode: 0,
+        });
     }
 
     resetPopup = _.debounce(() => {
