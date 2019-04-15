@@ -8,16 +8,16 @@ class TripSelectorTile extends Component {
     render() {
         return(
             <Link to="/travel_guide">
-                <Row className="list-selection-item" onClick={() => {
+                <Row className="keen-card" onClick={() => {
                         this.props.focusTrip(this.props.trip);
                     }}>
-                    <Col xs={4} className="vertical-center">
+                    <Col xs={4}>
                         {this.props.trip.to}
                     </Col>
-                    <Col xs={4} className="vertical-center">
+                    <Col xs={4}>
                         Dep: {Math.ceil(this.props.trip.times.timeUntilDeparture)}
                     </Col>
-                    <Col xs={4} className="vertical-center">
+                    <Col xs={4}>
                         Time {Math.ceil(this.props.trip.times.travelTime)}
                     </Col>
                 </Row>

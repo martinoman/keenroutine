@@ -4,13 +4,16 @@ import {focusTrip} from '../Actions/index.js'
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import TripSelectorTile from './TripSelectorTile';
-import { Container } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
+import _ from 'lodash'
 
 class TripList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            trips: []
+            trips: [],
+            loading: true,
+            loadedTrips: 0,
         }
     }
 
@@ -27,7 +30,11 @@ class TripList extends Component {
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
-                this.setState(this.state);
+                this.state.loading = false;
+                setTimeout(() => {
+                    this.setState(this.state)
+                }, 750);
+
             }
         );
     }
@@ -82,6 +89,10 @@ class TripList extends Component {
             .then(response => this.checkValid(response))
             .then(data => {
                 this.addTripToState(data, alias);
+                let counter = this.state.loadedTrips + 1;
+                this.setState({
+                    loadedTrips: counter,
+                })
             }).catch(error => {
                 console.log("SOMETHING WENT WRONG:");
                 console.log(error);
@@ -92,17 +103,30 @@ class TripList extends Component {
         this.getTimes();
     }
 
+    tripList(){
+        return this.state.trips.map((trip, index)=>{
+            return (
+                <TripSelectorTile trip={trip} key={index} />
+            )})
+    }
+
     render(){
+        let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
             <Container className="destination-selection-trip-list">
-                <div className="title">
-                    Where are you going?
-                </div>
-                {this.state.trips.map((trip, index)=>{
-                    return (
-                        <TripSelectorTile trip={trip} key={index} />
-                    );
-                })}
+                {this.state.loading ?
+                    <div className="loading-bar-wrapper">
+                        <div style={{"width": width + "%"}} className="loading-bar">
+                        </div>
+                        <p>
+                            Loading...
+                        </p>
+                    </div>
+                    :
+                    <div>
+                        {this.tripList()}
+                    </div>
+            }
             </Container>
         );
     }
