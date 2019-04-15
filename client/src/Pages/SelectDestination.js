@@ -1,42 +1,32 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import TripList from "../Components/TripList"
-import RealtimeInfo from "../Components/RealtimeInfo"
+import TripList from "../Components/TripList";
+import RealtimeInfo from "../Components/RealtimeInfo";
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
+
 class SelectDestination extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            currentTab: "trips",
-        }
-    }
-
-    renderTabs = () => {
-        switch(this.state.currentTab) {
-            case "trips":
-                return <TripList />;
-            case "realtime":
-                return <RealtimeInfo />;
-            default:
-                return <TripList />;
-        }
-    }
-
-    changeTab = (newtab) => {
-        this.setState({
-            currentTab: newtab,
-        })
-    }
 
     render(){
         return(
             <div className="width-limiter">
-                {this.renderTabs()}
-                <button onClick={()=>this.changeTab("trips")}>
-                    Change to trips
-                </button>
-                <button onClick={()=>this.changeTab("realtime")}>
-                    Change to real time
-                </button>
+                <div className="title">
+                    Where are you going?
+                </div>
+                <Tabs>
+                    <TabList>
+                        <Tab>Trips</Tab>
+                        <Tab>Real time</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <TripList />
+                    </TabPanel>
+                    <TabPanel>
+                        <RealtimeInfo />
+                    </TabPanel>
+                </Tabs>
             </div>
         );
     }

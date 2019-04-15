@@ -16,8 +16,6 @@ const reduxMother = (state=initialState, action) => {
             let newPlaces = [...state.places];
             let location = action.location;
             let keys = newPlaces.map((place)=>{return place.key});
-            console.log(keys);
-            console.log(action.key);
             if(!keys.includes(action.key)){
                 newPlaces.push({
                     alias: location.Alias,
