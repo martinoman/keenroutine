@@ -4,7 +4,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { Redirect } from 'react-router-dom';
 import {Link} from "react-router-dom";
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 class Login extends Component {
 

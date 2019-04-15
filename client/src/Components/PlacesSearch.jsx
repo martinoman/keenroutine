@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PlacesSearchResult from "./PlacesSearchResult";
 import { Row } from "reactstrap"
-import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import {Element , scroller } from 'react-scroll'
 
 import _ from "lodash"
 import { connect } from 'react-redux'

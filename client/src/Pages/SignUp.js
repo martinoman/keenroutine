@@ -51,7 +51,13 @@ class SignUp extends Component {
                             {this.state.signedUp ?
                                 <div className="sign-up-success">
                                     <h3 className="sign-up-success-message">
-                                        🎉 Account created, welcome to Keenroutine! 🙌🏼
+                                        <span role="img" aria-label="Celebration">
+                                            🎉
+                                        </span>
+                                        Account created, welcome to Keenroutine!
+                                        <span role="img" aria-label="Celebration">
+                                            🙌
+                                        </span>
                                     </h3>
                                     <Link to={"/manage_places"}>
                                         <button className="button sign-up-success-message-button">
