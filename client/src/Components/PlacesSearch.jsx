@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PlacesSearchResult from "./PlacesSearchResult";
 import { Row } from "reactstrap"
-import {Element , scroller } from 'react-scroll'
+import {Element , scroller, animateScroll as scroll} from 'react-scroll'
 
 import _ from "lodash"
 import { connect } from 'react-redux'
@@ -38,19 +38,29 @@ class PlacesSearch extends Component {
       });
     }
 
+    scrollToTop = () => {
+        scroll.scrollToTop({
+            duration: 800,
+            delay: 0,
+            offset: -50,
+            smooth: 'easeInOutQuart'
+        });
+    }
+
     render() {
         return (
             <Row className="places-search">
+                <h4 className="align-center-horizontal">Add more places</h4>
                 <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
                     <Element name="search" className="">
-                        {"Search for new places to add"}
+                        {"Search for new stations to add"}
                     </Element>
                     <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
                             let searchWord = event.target.value;
                             this.search(searchWord);
                         }}/>
                 </div>
-                <PlacesSearchResult results={this.state.searchResult}/>
+                <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
             </Row>
         );
     }

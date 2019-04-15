@@ -32,13 +32,10 @@ class Navbar extends Component {
                 <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
                         {this.state.expanded ?
-                        <IconContext.Provider value={{}}>
                             <FaBars/>
-                        </IconContext.Provider>
                              :
-                        <IconContext.Provider value={{}}>
                             <FaBars/>
-                        </IconContext.Provider>}
+                        }
                     </button>
                 </div>
                 <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>

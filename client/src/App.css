@@ -136,7 +136,7 @@ html, body {
 }
 
 .search-places-field{
-    width: 100%;
+    width: 90%;
 }
 
 .places-search-results{
@@ -226,6 +226,29 @@ html, body {
     outline: none;
 }
 
+.draggable-list-item-option{
+    float: right;
+    padding: 0 !important;
+    text-align: right;
+    margin-right: 3%;
+}
+
+.place-remove-button{
+    padding: 0;
+    width: 10vw !important;
+    height: 10vw !important;
+    max-width: 50px;
+    min-width: 30px;
+    max-height: 50px;
+    min-height: 30px;
+    background-color: transparent;
+}
+.button-icon{
+    color: var(--color3);
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .list-selection-item{
     margin: 10px auto;
     text-align: center;
@@ -304,14 +327,14 @@ html, body {
     display: none;
 }
 
-.no-horizontal-margin{
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+.align-center-horizontal{
+    margin: auto;
 }
 
-.no-horizontal-padding{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+.align-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 :root {
