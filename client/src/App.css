@@ -118,6 +118,14 @@ html, body {
     width: 100%;
 }
 
+.places-search-results{
+    width: 100%;
+}
+
+.places-search-result-list{
+    width: inherit;
+}
+
 .search-result-item-popup{
     max-height: 0;
     transition: 0.25s ease-out;
