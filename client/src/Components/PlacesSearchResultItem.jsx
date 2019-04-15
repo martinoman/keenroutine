@@ -41,6 +41,7 @@ class PlacesSearchResultItem extends Component {
             }
         }
         this.props.addPlace(placeDBFormat, this.props.user.userID);
+        this.props.scrollToTop();
     }
 
     evaluateAddPlace = () => {
