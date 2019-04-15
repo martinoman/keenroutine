@@ -19,10 +19,10 @@ class SelectOrigin extends Component {
                     return(
                         <Link to="/select_destination"  key={index}>
                             <Row>
-                                <Col xs={12} className="list-selection-item"  onClick={()=>{
+                                <Col xs={12} className="keen-card align-center"  onClick={()=>{
                                     this.props.changeLocation(place);
                                 }}>
-                                    <p className="vertical-center">{place.alias}</p>
+                                    {place.alias}
                                 </Col>
                             </Row>
                         </Link>

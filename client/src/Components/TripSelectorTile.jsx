@@ -8,7 +8,7 @@ class TripSelectorTile extends Component {
     render() {
         return(
             <Link to="/travel_guide">
-                <Row className="keen-card" onClick={() => {
+                <Row className="keen-card align-center" onClick={() => {
                         this.props.focusTrip(this.props.trip);
                     }}>
                     <Col xs={4}>

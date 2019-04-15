@@ -49,19 +49,21 @@ class PlacesSearch extends Component {
 
     render() {
         return (
-            <Row className="places-search">
+            <div  className="places-search">
                 <h4 className="align-center-horizontal">Add more places</h4>
-                <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
-                    <Element name="search" className="">
-                        {"Search for new stations to add"}
-                    </Element>
-                    <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
-                            let searchWord = event.target.value;
-                            this.search(searchWord);
-                        }}/>
-                </div>
-                <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
-            </Row>
+                <Row>
+                    <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
+                        <Element name="search" className="">
+                            {"Search for new stations to add"}
+                        </Element>
+                        <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
+                                let searchWord = event.target.value;
+                                this.search(searchWord);
+                            }}/>
+                    </div>
+                    <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
+                </Row>
+            </div>
         );
     }
 }
