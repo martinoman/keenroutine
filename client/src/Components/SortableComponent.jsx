@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import {SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
 
 const SortableItem = SortableElement(({value}) => <div className="draggable">{value}</div>);
 
@@ -28,7 +28,7 @@ class SortableComponent extends Component {
 
     render() {
         return(
-            <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y"/>
+            <SortableList places={this.props.places} onSortEnd={this.onSortEnd} lockAxis="y" useDragHandle/>
         )
     }
 }

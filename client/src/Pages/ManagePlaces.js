@@ -6,7 +6,10 @@ import SortableComponent from '../Components/SortableComponent.jsx'
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import { Container, Col, Row } from "reactstrap";
 import { IconContext } from "react-icons";
-import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { IoIosRemoveCircleOutline, IoMdReorder } from "react-icons/io";
+import {sortableHandle} from 'react-sortable-hoc';
+
+const DragHandle = sortableHandle(() => <IoMdReorder className="button-icon"/>);
 
 class ManagePlaces extends Component {
     removePlace = (key) => {
@@ -23,14 +26,19 @@ class ManagePlaces extends Component {
     formatPlace = (place) => {
         return(
             <Row className="draggable-list-item keen-card align-center" key={place.key}>
-                <Col xs={8} className="draggable-list-item-alias">
+                <Col xs={7} className="draggable-list-item-alias">
                     {place.alias}
                 </Col>
-                <Col xs={4} className="draggable-list-item-remove-button">
+                <Col xs={{size:1, offset:2}} className="draggable-list-item-option">
                     <button className="button place-remove-button" onClick={()=>{
                             this.removePlace(place.key);
                         }}>
-                        <IoIosRemoveCircleOutline className="remove-icon"/>
+                        <IoIosRemoveCircleOutline className="button-icon"/>
+                    </button>
+                </Col>
+                <Col xs={1} className="draggable-list-item-option">
+                    <button className="button place-remove-button">
+                        <DragHandle/>
                     </button>
                 </Col>
             </Row>

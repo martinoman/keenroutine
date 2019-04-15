@@ -213,9 +213,12 @@ html, body {
     border: none;
     outline: none;
 }
-.draggable-list-item-remove-button{
+
+.draggable-list-item-option{
+    float: right;
+    padding: 0 !important;
     text-align: right;
-    padding-right: 0;
+    margin-right: 3%;
 }
 
 .place-remove-button{
@@ -228,7 +231,7 @@ html, body {
     min-height: 30px;
     background-color: transparent;
 }
-.remove-icon{
+.button-icon{
     color: var(--color3);
     width: 100% !important;
     height: 100% !important;
