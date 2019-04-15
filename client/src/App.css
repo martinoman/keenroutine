@@ -24,7 +24,7 @@ html, body {
 }
 
 .title{
-    font-size: 30px;
+    font-size: 27px;
     font-family: 'Oxygen', sans-serif;
 }
 
@@ -285,4 +285,32 @@ html, body {
 .width-limiter{
     width: 85%;
     margin: auto;
+}
+
+.loading-bar{
+    transition: width 1.5s;
+    display: flex;
+    background-color: var(--color2);
+    border-radius: 3px;
+    color: white;
+    height: 30px;
+}
+
+.loading-bar-wrapper{
+    display: flex;
+    background-color: var(--color2Light);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar-wrapper > p{
+    flex: 1 1 auto;
+    margin: auto;
+    position: absolute;
+    /* width: 76%; */
+    color: white;
 }
