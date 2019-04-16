@@ -10,7 +10,9 @@ html, body {
 
 .Content{
     position: relative;
-    height: 93%
+    height: 93%;
+    /* padding-bottom: 15vh; */
+    margin-bottom: 15vh;
 }
 
 *{
@@ -42,82 +44,6 @@ html, body {
     color: white;
     vertical-align: middle;
     font-weight: bold;
-}
-
-
-.Navbar{
-    height:7%;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    background-color: var(--color5);
-}
-
-.Navbar-bar{
-    text-align: right;
-    height: 100%;
-}
-
-.Navbar-bar > button{
-    z-index: 11;
-    background: none;
-    border: none;
-    height: 100%;
-    font-size: x-large;
-    outline: none;
-    margin-top: -3px;
-    margin-right: 5px;
-    color: var(--color1);
-}
-
-.Navbar-bar.expanded > button{
-    color: white;
-}
-
-.Navbar-list{
-    max-height: 0;
-    transition: max-height 0.15s ease-out;
-    overflow: hidden;
-}
-
-.Navbar-list.expanded{
-    max-height: 500px;
-    transition: max-height 0.25s ease-in;
-    font-weight: 400;
-}
-
-
-.Navbar-list-item{
-    width: 100%;
-    font-weight: bolder;
-}
-
-.Navbar-list-item:link, .Navbar-list-item:visited {
-    background: var(--color5);
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    display: inline-block;
-}
-
-.Navbar-list-item:hover, .Navbar-list-item:active {
-    background: var(--color5Light);
-}
-
-.Navbar-list-item: hover{
-    background: var(--color5Light);
-}
-
-.navbar-title{
-    position: absolute;
-    width: inherit;
-    padding-top: 4px;
-    font-size: 22px;
-    color: white;
-    z-index: -1;
 }
 
 .draggable{

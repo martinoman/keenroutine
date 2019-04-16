@@ -1,0 +1,36 @@
+.new-trip{
+    position: fixed;
+    top: 90%;
+    height: auto;
+    width: 100%;
+    animation: 0.5s ease-out 0s 1 popup;
+}
+
+.new-trip-button{
+    height: 10vh;
+    /* width: 10vh; */
+    width: 100%;
+    background-color: var(--color3  );
+    /* border-radius: 50%; */
+    color: white;
+}
+
+.new-trip-button.active{
+    background-color: white;
+    color: var(--color3);
+}
+
+
+.new-trip-button-symbol{
+    width: 70%;
+    height: 70%;
+}
+
+@keyframes popup {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

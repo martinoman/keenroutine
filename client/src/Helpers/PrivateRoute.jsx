@@ -9,10 +9,12 @@ class PrivateRoute extends Component {
     }
 
     render(){
+        console.log(this.props.test);
+        console.log(this.props.showLoading);
         let loaded = this.props.finishedLoading;
         let loggedIn = this.props.user.userID;
         let shouldWrap = this.props.wrap;
-        let showLoading = this.props.showLoading ? true : false;
+        let showLoading = this.props.showLoading;
         return (
             <div className="private-route">
                 {
@@ -22,11 +24,13 @@ class PrivateRoute extends Component {
                                 this.props.children
                             :
                                 <Route path={this.props.path} render={this.props.render}/>
-                        :
+                        : //Not logged in
                             <Redirect to={{pathname: '/login'}} />
-                    :
-
-                        <FadingTrippleDots center={true}/>
+                    : //Not completely loaded
+                        showLoading ?
+                            <FadingTrippleDots center={true}/>
+                        :
+                            ""
                 }
             </div>
         );

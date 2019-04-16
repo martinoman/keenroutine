@@ -33,9 +33,9 @@ export const loadUser = user => async dispatch => dispatch({
   user: user
 })
 
-export const finishedLoading = done => async dispatch => dispatch({
+export const finishedLoading = () => async dispatch => dispatch({
     type: 'FINISHED_LOADING',
-    finishedLoading: done
+    finishedLoading: true
 });
 
 export const removePlace = (key, userID) => async dispatch => {

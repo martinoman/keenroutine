@@ -8,6 +8,7 @@ const initialState = {
     places: [],
     currentLocation: "",
     focusedTrip: "",
+    finishedLoading: false,
 }
 
 const reduxMother = (state=initialState, action) => {
