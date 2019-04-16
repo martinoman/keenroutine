@@ -36,6 +36,8 @@ html, body {
     background-color: var(--color1);
     border-radius: 5px;
     height: 9vh;
+    min-height: 45px;
+    min-width: 300px;
     margin-top: 1%;
     margin-bottom: 1%;
     padding: 1%;
@@ -178,16 +180,16 @@ html, body {
     padding: 0 !important;
     text-align: right;
     margin-right: 3%;
+    max-width: 45px;
+    min-width: 20px;
+    max-height: 45px;
+    min-height: 20px;
 }
 
 .place-remove-button{
+    width: 6vh !important;
+    height: 6vh !important;
     padding: 0;
-    width: 10vw !important;
-    height: 10vw !important;
-    max-width: 50px;
-    min-width: 30px;
-    max-height: 50px;
-    min-height: 30px;
     background-color: transparent;
 }
 .button-icon{
