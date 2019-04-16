@@ -76,10 +76,10 @@ class RealtimeInfo extends Component {
                                                 let time = arrival.displayTime;
                                                 return(
                                                     <Row className="real-time-mode-list-item keen-card align-center" key={index}>
-                                                        <Col xs={4} className="realtime-mode-info">
+                                                        <Col xs={2} className="realtime-mode-info">
                                                             {lineNumber}
                                                         </Col>
-                                                        <Col xs={4} className="realtime-destination-info">
+                                                        <Col xs={6} className="realtime-destination-info">
                                                             {dest}
                                                         </Col>
                                                         <Col xs={4} className="realtime-time-info">

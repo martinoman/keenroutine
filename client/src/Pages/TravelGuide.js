@@ -14,7 +14,13 @@ class TravelGuide extends Component {
                     </div>
                     {trip.map((leg, index)=>{
                         return(
-                            <TripLeg leg={leg} key={index} first={index === 0} last={index === trip.length - 1}/>
+                            <TripLeg
+                                leg={leg}
+                                key={index}
+                                first={index === 0}
+                                middle={index !== 0 && index < trip.length - 1}
+                                last={index === trip.length - 1}
+                                includeBorder={index < trip.length - 1}/>
                         );
                     })}
                 </Col>

@@ -6,6 +6,11 @@ import {focusTrip} from '../Actions/index.js'
 
 class TripSelectorTile extends Component {
     render() {
+        // console.log(this.props.trip.times);
+        let depDate = this.props.trip.times.departureTime;
+        let arrDate = this.props.trip.times.arrivalTime;
+        let depString = depDate.getHours() + ":" + depDate.getMinutes();
+        let arrString = arrDate.getHours() + ":" + arrDate.getMinutes();
         return(
             <Link to="/travel_guide">
                 <Row className="keen-card align-center" onClick={() => {
@@ -14,11 +19,21 @@ class TripSelectorTile extends Component {
                     <Col xs={4}>
                         {this.props.trip.to}
                     </Col>
-                    <Col xs={4}>
-                        Dep: {Math.ceil(this.props.trip.times.timeUntilDeparture)}
+                    <Col className="departure-info" xs={4}>
+                        <div className="trip-info-text">
+                            Departure
+                        </div>
+                        <div className="trip-info-time">
+                            {depString}
+                        </div>
                     </Col>
-                    <Col xs={4}>
-                        Time {Math.ceil(this.props.trip.times.travelTime)}
+                    <Col className="arrival-info" xs={4}>
+                        <div className="trip-info-text">
+                            Arrival
+                        </div>
+                        <div className="trip-info-time">
+                            {arrString}
+                        </div>
                     </Col>
                 </Row>
             </Link>

@@ -9,8 +9,6 @@ class PrivateRoute extends Component {
     }
 
     render(){
-        console.log(this.props.test);
-        console.log(this.props.showLoading);
         let loaded = this.props.finishedLoading;
         let loggedIn = this.props.user.userID;
         let shouldWrap = this.props.wrap;
