@@ -26,12 +26,19 @@ class TripSelectorTile extends Component {
         this.props.focusTrip(this.props.trip);
     }
 
+    formatTime(date){
+        let hours =  "0" + date.getHours(); //Pad time so it's either 0xx or 0x
+        let minutes = "0" + date.getMinutes();
+        let time = hours.slice(-2) + ":" + minutes.slice(-2); //Take only last two letters
+        return time;
+    }
+
     render() {
         // console.log(this.props.trip.times);
         let depDate = this.props.trip.times.departureTime;
         let arrDate = this.props.trip.times.arrivalTime;
-        let depString = depDate.getHours() + ":" + depDate.getMinutes();
-        let arrString = arrDate.getHours() + ":" + arrDate.getMinutes();
+        let depString = this.formatTime(depDate);
+        let arrString = this.formatTime(arrDate);
         let addClass = this.state.pressed ? " active " : "";
         return(
             <Row className={"keen-card align-center pointer " + addClass} onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
