@@ -15,7 +15,6 @@ import Login from "./Pages/Login";
 import ManagePlaces from "./Pages/ManagePlaces";
 import SelectOrigin from "./Pages/SelectOrigin";
 import SelectDestination from "./Pages/SelectDestination";
-import TravelGuide from "./Pages/TravelGuide";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import PrivateRoute from "./Helpers/PrivateRoute";
 import NewTripButton from "./Components/NewTripButton/NewTripButton.jsx"
@@ -50,7 +49,6 @@ class App extends Component {
                             <PrivateRoute showLoading={true} exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
-                            <PrivateRoute showLoading={true} exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/" render={(props) => <Login {...props}/>}/>
                         </Switch>
                     </div>

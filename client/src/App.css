@@ -45,6 +45,10 @@ html, body {
     font-weight: bold;
 }
 
+.keen-card.active{
+    background-color: var(--color1Light);
+}
+
 .draggable{
     height: 100%;
 }
@@ -198,6 +202,10 @@ html, body {
     display: inline-block;
 }
 
+.travel-guide{
+    padding: 0 !important;
+}
+
 .trip-leg{
     background-color: var(--color1);
     color: white;
@@ -258,6 +266,10 @@ html, body {
 
 .collapsed{
     height: 0px;
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 .hidden{

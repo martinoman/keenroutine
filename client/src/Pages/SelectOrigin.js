@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import {changeLocation} from "../Actions/index";
+import {changeLocation, focusTrip} from "../Actions/index";
 import { Container, Row, Col } from 'reactstrap';
 import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
 
@@ -23,6 +23,7 @@ class SelectOrigin extends Component {
                                 <Row>
                                     <Col xs={12} className="keen-card align-center"  onClick={()=>{
                                         this.props.changeLocation(place);
+                                        this.props.focusTrip(null);
                                     }}>
                                         {place.alias}
                                     </Col>
@@ -48,5 +49,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    {changeLocation},
+    {changeLocation, focusTrip},
 )(SelectOrigin);
