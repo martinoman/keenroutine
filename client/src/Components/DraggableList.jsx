@@ -30,7 +30,7 @@ class DraggableList extends Component {
     console.log(e);
   }
   dragOver(e) {
-    this.over = e.target.parentNode.parentNode; //TODO this is bad, you should feel bad
+    this.over = e.target.parentNode.parentNode;
   }
 	render2() {
 		return (

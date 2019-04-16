@@ -10,7 +10,8 @@ html, body {
 
 .Content{
     position: relative;
-    height: 93%;
+    height: 91%;
+    margin-top: 2%;
     margin-bottom: 20vh;
 }
 
@@ -89,6 +90,10 @@ html, body {
     max-height: 0;
     transition: 0.25s ease-out;
     position: relative;
+    overflow: hidden;
+}
+
+.place-error-message{
     overflow: hidden;
 }
 

@@ -6,6 +6,7 @@
     width: 100%;
     z-index: 1;
     background-color: var(--color5);
+    animation: 0.5s ease-out 0s 1 popdown;
 }
 
 .Navbar-bar{
@@ -73,4 +74,12 @@
     font-size: 22px;
     color: white;
     z-index: -1;
+}
+@keyframes popdown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

@@ -21,7 +21,8 @@ class PlacesSearchResultItem extends Component {
     resetPopup = _.debounce(() => {
         this.setState({
             expanded:false,
-        });
+            messageCode: 0,
+        }); //TODO This is jerky and not pretty
     }, 3000);
 
     addPlace = event => {

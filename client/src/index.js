@@ -15,7 +15,7 @@ import {BrowserRouter} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const initState = { //TODO this is wonky af
+const initState = {
     user: {
         userName: null,
         userID: null

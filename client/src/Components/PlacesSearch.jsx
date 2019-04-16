@@ -28,7 +28,8 @@ class PlacesSearch extends Component {
                     searchResult: data.ResponseData
                 });
                 this.setState({loading: false});
-                this.pageScroll();
+                if(data.ResponseData.length > 0)
+                    this.pageScroll();
             })
     }, 1000);
 
