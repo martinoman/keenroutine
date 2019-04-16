@@ -4,16 +4,29 @@ import { Redirect, Route } from 'react-router-dom'
 import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 class PrivateRoute extends Component {
+    constructor(props){
+        super(props);
+    }
+
     render(){
-        return(
+        let loaded = this.props.finishedLoading;
+        let loggedIn = this.props.user.userID;
+        let shouldWrap = this.props.wrap;
+        let showLoading = this.props.showLoading ? true : false;
+        return (
             <div className="private-route">
-                {this.props.finishedLoading ?
-                    this.props.user.userID ?
-                        <Route path={this.props.path} render={this.props.render}/>
+                {
+                    loaded ?
+                        loggedIn ?
+                            shouldWrap ?
+                                this.props.children
+                            :
+                                <Route path={this.props.path} render={this.props.render}/>
+                        :
+                            <Redirect to={{pathname: '/login'}} />
                     :
-                        <Redirect to={{pathname: '/login'}} />
-                :
-                    <FadingTrippleDots center={true}/>
+
+                        <FadingTrippleDots center={true}/>
                 }
             </div>
         );

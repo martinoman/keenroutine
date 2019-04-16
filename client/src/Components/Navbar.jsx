@@ -31,11 +31,7 @@ class Navbar extends Component {
                 </p>
                 <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
-                        {this.state.expanded ?
-                            <FaBars/>
-                             :
-                            <FaBars/>
-                        }
+                        <FaBars/>
                     </button>
                 </div>
                 <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>

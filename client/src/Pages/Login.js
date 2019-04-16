@@ -14,22 +14,30 @@ class Login extends Component {
             message: "",
         }
         this.handleLogin = this.handleLogin.bind(this);
+        this.setMessage = this.setMessage.bind(this);
+    }
+
+    setMessage(msg){
+        this.setState({
+            message: "Wrong password or email"
+        });
     }
 
     handleLogin(event){
+        console.log(event);
         event.preventDefault();
+        let email = event.target[0].value;
+        let pw = event.target[1].value;
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
           .then(() => {
               return firebase.auth().signInWithEmailAndPassword(
-                  event.target[0].value,
-                  event.target[1].value
+                  email,
+                  pw
               )
           })
           .catch(function(e) {
               console.log(e);
-              this.setState({
-                  message: "Wrong password or email"
-              });
+              // this.setMessage("Wrong email or password");
               return;
           });
     }

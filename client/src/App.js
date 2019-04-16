@@ -19,7 +19,7 @@ import SelectDestination from "./Pages/SelectDestination";
 import TravelGuide from "./Pages/TravelGuide";
 import Navbar from "./Components/Navbar";
 import PrivateRoute from "./Helpers/PrivateRoute";
-
+import NewTripButton from "./Components/NewTripButton/NewTripButton.jsx"
 
 class App extends Component {
     constructor(){
@@ -43,17 +43,20 @@ class App extends Component {
         return (
             <div className="App">
                 <Navbar />
-                <div className="Content">
-                    <Switch>
-                        <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
-                        <Route exact path={"/login"} render={(props) => <Login {...props}/>}/>
-                        <PrivateRoute exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
-                        <PrivateRoute exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
-                        <PrivateRoute exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
-                        <PrivateRoute exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
-                        <PrivateRoute exact path="/" render={(props) => <Login {...props}/>}/>
-                    </Switch>
-                </div>
+                <PrivateRoute wrap={true} showLoading={true}>
+                    <div className="Content">
+                        <Switch>
+                            <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
+                            <Route exact path={"/login"} render={(props) => <Login {...props}/>}/>
+                            <Route exact path="/manage_places" render={(props) => <ManagePlaces {...props}/>}/>
+                            <Route exact path="/select_origin" render={(props) => <SelectOrigin {...props}/>}/>
+                            <Route exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
+                            <Route exact path="/travel_guide" render={(props) => <TravelGuide {...props}/>}/>
+                            <Route exact path="/" render={(props) => <Login {...props}/>}/>
+                        </Switch>
+                            <NewTripButton/>
+                    </div>
+                </PrivateRoute>
           </div>
         );
     }
