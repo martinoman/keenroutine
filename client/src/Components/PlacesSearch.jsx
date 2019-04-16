@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PlacesSearchResult from "./PlacesSearchResult";
 import { Row } from "reactstrap"
 import {Element , scroller, animateScroll as scroll} from 'react-scroll'
+import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 import _ from "lodash"
 import { connect } from 'react-redux'
@@ -12,6 +13,7 @@ class PlacesSearch extends Component {
         this.scrollRef = React.createRef()
         this.state = {
             searchResult: [],
+            loading: false,
         }
     }
 
@@ -25,6 +27,7 @@ class PlacesSearch extends Component {
                 this.setState({
                     searchResult: data.ResponseData
                 });
+                this.setState({loading: false});
                 this.pageScroll();
             })
     }, 1000);
@@ -58,10 +61,15 @@ class PlacesSearch extends Component {
                         </Element>
                         <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
                                 let searchWord = event.target.value;
+                                this.setState({loading:true});
                                 this.search(searchWord);
                             }}/>
                     </div>
-                    <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
+                    {this.state.loading?
+                        <FadingTrippleDots/>
+                    :
+                        <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
+                    }
                 </Row>
             </div>
         );

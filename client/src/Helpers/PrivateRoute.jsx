@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
+import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 class PrivateRoute extends Component {
     render(){
@@ -12,7 +13,7 @@ class PrivateRoute extends Component {
                     :
                         <Redirect to={{pathname: '/login'}} />
                 :
-                    ""
+                    <FadingTrippleDots center={true}/>
                 }
             </div>
         );

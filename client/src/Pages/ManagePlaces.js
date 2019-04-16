@@ -9,7 +9,6 @@ import { IconContext } from "react-icons";
 import { IoIosRemoveCircleOutline, IoMdReorder } from "react-icons/io";
 import {sortableHandle} from 'react-sortable-hoc';
 import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
-
 const DragHandle = sortableHandle(() => <IoMdReorder className="button-icon"/>);
 
 class ManagePlaces extends Component {
