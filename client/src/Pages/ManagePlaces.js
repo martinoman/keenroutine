@@ -8,6 +8,7 @@ import { Container, Col, Row } from "reactstrap";
 import { IconContext } from "react-icons";
 import { IoIosRemoveCircleOutline, IoMdReorder } from "react-icons/io";
 import {sortableHandle} from 'react-sortable-hoc';
+import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
 
 const DragHandle = sortableHandle(() => <IoMdReorder className="button-icon"/>);
 
@@ -51,10 +52,12 @@ class ManagePlaces extends Component {
             <Container className="Manage-places">
                 <Row>
                     <Col xs={{size:10, offset:1}}>
-                        <div className="title">
-                            Your places
-                        </div>
-                        <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
+                        <PlacesListWrapper link={false} empty={true}>
+                            <div className="title">
+                                Your places
+                            </div>
+                            <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
+                        </PlacesListWrapper>
                         <PlacesSearch />
                     </Col>
                 </Row>

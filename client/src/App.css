@@ -235,6 +235,10 @@ html, body {
     outline: none;
 }
 
+.add-more-places-button{
+    height: auto;
+}
+
 .draggable-list-item-option{
     float: right;
     padding: 0 !important;
