@@ -10,6 +10,7 @@ class PlacesSearchResultItem extends Component {
         this.state = {
             messageCode: 0, //0: nominal, 1: enter alias, 2: place already exists
         }
+        this.popupInput = React.createRef();
     }
 
     componentWillReceiveProps(nextProps){ //Otherwise the divs in the list might behave odd ad persist states from the last search
@@ -24,6 +25,14 @@ class PlacesSearchResultItem extends Component {
             messageCode: 0,
         }); //TODO This is jerky and not pretty
     }, 3000);
+
+    focusPopup = _.debounce(() => {
+        try {
+            this.popupInput.current.focus();
+        } catch (e) {
+
+        }
+    }, 200);
 
     addPlace = event => {
         this.setState({
@@ -42,7 +51,7 @@ class PlacesSearchResultItem extends Component {
             }
         }
         this.props.addPlace(placeDBFormat, this.props.user.userID);
-        this.props.scrollToTop();
+        this.props.addedPlace();
     }
 
     evaluateAddPlace = () => {
@@ -54,10 +63,14 @@ class PlacesSearchResultItem extends Component {
                 this.resetPopup();
             }
         }
+        if(this.state.expanded){//Means there should be no message
+            code = 0;
+        }
         this.setState({
             messageCode: code,
             expanded: expanded,
         });
+        this.focusPopup();
     }
 
     render() {
@@ -87,7 +100,7 @@ class PlacesSearchResultItem extends Component {
                                 <div className="">
                                     Please enter an alias
                                 </div>
-                                <input className="search-result-item-alias-field" type="text" placeholder="Alias"/>
+                                <input ref={this.popupInput} className="search-result-item-alias-field" type="text" placeholder="Alias" required/>
                             </form>
                         :""
                         }

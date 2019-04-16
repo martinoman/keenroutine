@@ -15,6 +15,7 @@ class PlacesSearch extends Component {
             searchResult: [],
             loading: false,
         }
+        this.searchField = React.createRef();
     }
 
     search = _.debounce((searchWord) => {
@@ -42,7 +43,8 @@ class PlacesSearch extends Component {
       });
     }
 
-    scrollToTop = () => {
+    addedPlace = () => {
+        this.searchField.current.value = "";
         scroll.scrollToTop({
             duration: 800,
             delay: 0,
@@ -60,7 +62,7 @@ class PlacesSearch extends Component {
                         <Element name="search" className="">
                             {"Search for new stations to add"}
                         </Element>
-                        <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
+                        <input ref={this.searchField} type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
                                 let searchWord = event.target.value;
                                 this.setState({loading:true});
                                 this.search(searchWord);
@@ -69,7 +71,7 @@ class PlacesSearch extends Component {
                     {this.state.loading?
                         <FadingTrippleDots/>
                     :
-                        <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
+                        <PlacesSearchResult results={this.state.searchResult} addedPlace={this.addedPlace}/>
                     }
                 </Row>
             </div>
