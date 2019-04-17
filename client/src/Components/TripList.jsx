@@ -5,7 +5,7 @@ import {focusTrip} from '../Actions/index.js'
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import TripSelectorTile from './TripSelectorTile';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import _ from 'lodash'
 
 class TripList extends Component {
@@ -121,8 +121,8 @@ class TripList extends Component {
             "times":
                 {"arrivalTime": "TEST1",
                 "departureTime": "TEST2",
-                "timeUntilDeparture": "10.849983333333334",
-                "travelTime": "23.000016666666667"},
+                "timeUntilDeparture": "123",
+                "travelTime": "123"},
             "to": this.props.currentLocation.alias,
             "trip": [],
             "dummy" :true,
@@ -138,16 +138,27 @@ class TripList extends Component {
                 {this.state.isStateHealthy ?
                     <div className="">
                         {this.state.loading ?
-                            <div className="loading-bar-wrapper">
-                            <div style={{"width": width + "%"}} className="loading-bar">
-                            </div>
-                            <p>
-                            Loading...
-                            </p>
-                            </div>
-                            :
-                            <div>
-                            {this.tripList()}
+                            <Row className="keen-card align-center loading-bar-wrapper">
+                                <div className="loading-bar" style={{"width": width + "%"}}>
+                                    <p className="loading-bar-text">
+                                        Loading...
+                                    </p>
+                                </div>
+                            </Row>
+                                :
+                            <div className="fade-in">
+                                <Row className="keen-card greyed-out trip-list-header">
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Destination
+                                    </Col>
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Departure
+                                    </Col>
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Arrival
+                                    </Col>
+                                </Row>
+                                {this.tripList()}
                             </div>
                         }
                     </div>

@@ -36,7 +36,7 @@ class TripSelectorTile extends Component {
         return(
             <div>
                 {noTripFound || this.props.trip.to === this.props.currentLocation.alias ?
-                    <Row className={"keen-card greyed-out align-center"}>
+                    <Row className={"keen-card greyed-out align-center fade-in"}>
                         <Col xs={4}>
                             {this.props.trip.to}
                         </Col>
@@ -47,22 +47,16 @@ class TripSelectorTile extends Component {
                         </Col>
                     </Row>
                     :
-                    <Row className={"keen-card align-center pointer"} onTouchStart={this.touchStart}>
+                    <Row className={"keen-card align-center pointer fade-in"} onTouchStart={this.touchStart}>
                         <Col xs={4}>
                             {this.props.trip.to}
                         </Col>
                         <Col className="departure-info" xs={4}>
-                            <div className="trip-info-text">
-                                Departure
-                            </div>
                             <div className="trip-info-time">
                                 {depString}
                             </div>
                         </Col>
                         <Col className="arrival-info" xs={4}>
-                            <div className="trip-info-text">
-                                Arrival
-                            </div>
                             <div className="trip-info-time">
                                 {arrString}
                             </div>
