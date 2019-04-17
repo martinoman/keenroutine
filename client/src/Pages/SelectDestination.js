@@ -18,8 +18,8 @@ class SelectDestination extends Component {
                 </div>
                 <Tabs>
                     <TabList>
-                        <Tab>Trips</Tab>
-                        <Tab>Real time</Tab>
+                        <Tab className="react-tabs__tab text-tab"><span>Trips</span></Tab>
+                        <Tab className="react-tabs__tab text-tab"><span className="tab-text">Real time</span></Tab>
                     </TabList>
 
                     <TabPanel>
