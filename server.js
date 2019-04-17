@@ -10,7 +10,7 @@ dotenv.config(); // seys up the env variables
 
 //Static file declaration
 //Vet inte vrf man behöver denna, kan nog tas bort
-//app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //production mode
 if(process.env.NODE_ENV === 'production') {
@@ -60,8 +60,11 @@ if(process.env.NODE_ENV === 'production') {
   })
 
   app.get('*', (req, res) => {
-      console.log("Bajs från SERVER: production mode2");
-    res.send(path.join(__dirname = 'client/build/index.html'));
+      console.log("Från catchall prodmode");
+      console.log(__dirname);
+      console.log(path.join(__dirname + 'client/build/index.html'));
+      console.log(path.join(__dirname, 'client/build/index.html'));
+      res.sendFile(path.join(__dirname, 'client/build/index.html'));
   })
 
 }else {

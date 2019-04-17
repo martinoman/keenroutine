@@ -1,28 +1,36 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import {changeLocation} from "../Actions/index"
+import {changeLocation} from "../Actions/index";
+import { Container, Row, Col } from 'reactstrap';
 
 import {Link} from "react-router-dom";
 
 class SelectOrigin extends Component {
     render(){
         return(
-            <div className="origin-selection-page">
-                <div className="origin-selection-header">
+        <div className="width-limiter">
+            <Container className="origin-selection-page">
+                <Row className="origin-selection-header">
+                <Col xs={12} className="title">
                     Where are you?
-                </div>
+                </Col>
+                </Row>
                 {this.props.places.map((place, index) => {
                     return(
-                        <Link to="/select_destination" key={index}>
-                            <div className="select-origin-box" onClick={()=>{
-                                this.props.changeLocation(place);
-                            }}>
-                                {place.alias}
-                            </div>
+                        <Link to="/select_destination"  key={index}>
+                            <Row>
+                                <Col xs={12} className="list-selection-item"  onClick={()=>{
+                                    this.props.changeLocation(place);
+                                }}>
+                                    <p className="vertical-center">{place.alias}</p>
+                                </Col>
+                            </Row>
                         </Link>
                     );
                 })}
-            </div>
+            </Container>
+
+        </div>
         );
     }
 }

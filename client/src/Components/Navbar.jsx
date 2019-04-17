@@ -3,12 +3,15 @@ import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import { logout } from "../Actions/index";
 
+import { IconContext } from "react-icons";
+import { FaBars } from "react-icons/fa";
+
 class Navbar extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            expanded: true,
+            expanded: false,
         }
     }
 
@@ -20,29 +23,39 @@ class Navbar extends Component {
     }
 
     render() {
+        let expanded =this.state.expanded ? " expanded" : "";
         return (
-            <div className="">
-            {this.state.expanded ?
-                <div className="">
+            <div className="Navbar">
+                <p className="navbar-title">
+                    Keenroutine
+                </p>
+                <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
-                        V
+                        {this.state.expanded ?
+                            <FaBars/>
+                             :
+                            <FaBars/>
+                        }
                     </button>
                 </div>
-                :
-                <div className="" onClick={this.toggleNavbar}>
-                    <Link to="/login">Login </Link>
-                    <br/>
-                    <Link to="/manage_places">Manage your places </Link>
-                    <br/>
-                    <Link to="/select_origin">New trip </Link>
-                    <br/>
-                    <div onClick={this.props.logout}>
-                        logout
-                    </div>
-                    <button onClick={this.toggleNavbar}>
-                        Λ
-                    </button>
-                </div>}
+                <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>
+                    {this.props.user.userID ?
+                        <>
+                            <Link to="/manage_places" className="Navbar-list-item">Manage your places </Link>
+                            <br/>
+                            <Link to="/select_origin" className="Navbar-list-item">New trip </Link>
+                            <br/>
+                            <Link to="/login" className="Navbar-list-item" onClick={this.props.logout}>
+                                Logout
+                            </Link>
+                        </>
+                    :
+                        <>
+                            <Link to="/login" className="Navbar-list-item">Login </Link>
+                            <br/>
+                        </>
+                    }
+                </div>
             </div>
         );
     }
@@ -51,6 +64,7 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return{
+        user: state.user,
     }
 }
 

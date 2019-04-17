@@ -16,12 +16,10 @@ class RealtimeModeList extends Component {
     }
 
     render() {
+        console.log(this.props.data.length !== 0);
         return (
             <div className="real-time-mode-wrapper">
-                <div className="button" onClick={this.onClick.bind(this)}>
-                    {this.props.mode}
-                </div>
-                {this.state.show ?
+                {this.props.data !== undefined || this.props.data.length !== 0 ?
                     <div className="real-time-mode-list">
                         {
                             this.props.data.map((arrival, index) => {
@@ -40,7 +38,9 @@ class RealtimeModeList extends Component {
                         }
                     </div>
                     :
-                    ""
+                    <div>
+                        Sorry, No departures for the selected transportation mode available at the moment.
+                    </div>
                 }
             </div>
         );

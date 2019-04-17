@@ -1,14 +1,19 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {focusTrip} from '../Actions/index.js'
-import {Link} from "react-router-dom";
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
-import { sortOnIndex } from "../Helpers/PlacesSorter.js"
+import { sortOnIndex } from "../Helpers/PlacesHelper.js"
+import TripSelectorTile from './TripSelectorTile';
+import { Container, Row } from 'reactstrap';
+import _ from 'lodash'
+
 class TripList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            trips: []
+            trips: [],
+            loading: true,
+            loadedTrips: 0,
         }
     }
 
@@ -25,7 +30,11 @@ class TripList extends Component {
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
-                this.setState(this.state);
+                this.state.loading = false;
+                setTimeout(() => {
+                    this.setState(this.state)
+                }, 750);
+
             }
         );
     }
@@ -80,6 +89,10 @@ class TripList extends Component {
             .then(response => this.checkValid(response))
             .then(data => {
                 this.addTripToState(data, alias);
+                let counter = this.state.loadedTrips + 1;
+                this.setState({
+                    loadedTrips: counter,
+                })
             }).catch(error => {
                 console.log("SOMETHING WENT WRONG:");
                 console.log(error);
@@ -90,29 +103,31 @@ class TripList extends Component {
         this.getTimes();
     }
 
+    tripList(){
+        return this.state.trips.map((trip, index)=>{
+            return (
+                <TripSelectorTile trip={trip} key={index} />
+            )})
+    }
+
     render(){
+        let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
-            <div className="destination-selection-trip-list">
-                {this.state.trips.map((trip, key)=>{
-                    return (
-                        <Link to="/travel_guide" key={key} >
-                            <div className="trip-summary" onClick={() => {
-                                    this.props.focusTrip(trip);
-                                }}>
-                                <div className="trip-summary-alias">
-                                    To: {trip.to}
-                                </div>
-                                <div className="trip-summary-time-until-departure">
-                                    {Math.ceil(trip.times.timeUntilDeparture)} min until departure
-                                </div>
-                                <div className="trip-summary-travel-time">
-                                    {Math.ceil(trip.times.travelTime)} min total travel time
-                                </div>
-                            </div>
-                        </Link>
-                    );
-                })}
-            </div>
+            <Container className="destination-selection-trip-list">
+                {this.state.loading ?
+                    <div className="loading-bar-wrapper">
+                        <div style={{"width": width + "%"}} className="loading-bar">
+                        </div>
+                        <p>
+                            Loading...
+                        </p>
+                    </div>
+                    :
+                    <div>
+                        {this.tripList()}
+                    </div>
+            }
+            </Container>
         );
     }
 }

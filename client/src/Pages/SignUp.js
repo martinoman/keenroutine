@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import {Link} from "react-router-dom";
-
+import { Container, Row, Col} from "reactstrap"
 
 class SignUp extends Component {
 
@@ -44,35 +44,56 @@ class SignUp extends Component {
     }
     render() {
         return (
-            <div className="sign_up_page">
-                {this.state.signedUp ?
-                    <div className="sign_up_success">
-                        <div className="sign_up_success_message">
-                            Account successfully created!
+            <Container className="Login-Signup">
+                <Row>
+                    <Col xs={{size:10, offset:1}}>
+                        <div className="Login-Signup">
+                            {this.state.signedUp ?
+                                <div className="sign-up-success">
+                                    <h3 className="sign-up-success-message">
+                                        <span role="img" aria-label="Celebration">
+                                            🎉
+                                        </span>
+                                        Account created, welcome to Keenroutine!
+                                        <span role="img" aria-label="Celebration">
+                                            🙌
+                                        </span>
+                                    </h3>
+                                    <Link to={"/manage_places"}>
+                                        <button className="button sign-up-success-message-button">
+                                            <h3>
+                                                Get started!
+                                            </h3>
+                                        </button>
+                                    </Link>
+                                </div>
+                                :
+                                <div className="sign-up-content">
+                                    <form onSubmit={this.handleSignUp}>
+                                        <div className="input-field-wrapper">
+                                            <h4>E-mail</h4>
+                                            <input className="input-field" type="text" defaultValue="b@b.com"/>
+                                        </div>
+                                        <div className="input-field-wrapper">
+                                            <h4>Password</h4>
+                                            <input className="input-field" type="password" defaultValue="asdasd"/>
+                                        </div>
+                                        <div className="input-field-wrapper">
+                                            <h4>Confirm password</h4>
+                                            <input className="input-field" type="password" defaultValue="asdasd"/>
+                                        </div>
+                                        <br/>
+                                        <button type="submit" className="button login-signup-button">Register</button>
+                                    </form>
+                                    <div className="sign-up-error-message">
+                                        {this.state.message}
+                                    </div>
+                                </div>
+                            }
                         </div>
-                        <Link to={"/login"}>
-                            <button>Go to login</button>
-                        </Link>
-                    </div>
-                    :
-                    <div className="sign_up_content">
-
-                        <form onSubmit={this.handleSignUp}>
-                            <p>E-mail</p>
-                            <input type="text" defaultValue="a@a.com"/>
-                            <p>Password</p>
-                            <input type="password" defaultValue="asdasd"/>
-                            <p>Confirm password</p>
-                            <input type="password" defaultValue="asdasd"/>
-                            <br/>
-                            <button type="submit">Sign the f*** up</button>
-                        </form>
-                        <div className="sign_up_error_message">
-                            {this.state.message}
-                        </div>
-                    </div>
-                }
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 

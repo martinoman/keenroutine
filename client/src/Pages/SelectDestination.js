@@ -1,13 +1,32 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import TripList from "../Components/TripList"
-import RealtimeInfo from "../Components/RealtimeInfo"
+import TripList from "../Components/TripList";
+import RealtimeInfo from "../Components/RealtimeInfo";
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import "react-tabs/style/react-tabs.css";
+
 class SelectDestination extends Component {
+
     render(){
         return(
-            <div className="select-destination-page">
-                <TripList />
-                <RealtimeInfo />
+            <div className="width-limiter">
+                <div className="title">
+                    Where are you going?
+                </div>
+                <Tabs>
+                    <TabList>
+                        <Tab>Trips</Tab>
+                        <Tab>Real time</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <TripList />
+                    </TabPanel>
+                    <TabPanel>
+                        <RealtimeInfo />
+                    </TabPanel>
+                </Tabs>
             </div>
         );
     }
