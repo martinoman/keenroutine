@@ -49,7 +49,6 @@ class TripList extends Component {
     This shoudl probz return a list of parameter sets. One for each place
     */
     getParameters(dest, org){
-        console.log(org);
         dest = dest.location;
         org = org.location;
         let urlParams = "";
@@ -113,14 +112,26 @@ class TripList extends Component {
     }
 
     tripList(){
-        return this.state.trips.map((trip, index)=>{
+        let triplist = this.state.trips.map((trip, index)=>{
             return (
                 <TripSelectorTile trip={trip} key={index} />
             )})
+        let dummyTripObject = {
+            "from": "placeholder",
+            "times":
+                {"arrivalTime": "TEST1",
+                "departureTime": "TEST2",
+                "timeUntilDeparture": "10.849983333333334",
+                "travelTime": "23.000016666666667"},
+            "to": this.props.currentLocation.alias,
+            "trip": [],
+            "dummy" :true,
+        }
+        triplist.push(<TripSelectorTile trip={dummyTripObject} key={this.state.trips.length}/>)
+        return triplist;
     }
 
     render(){
-        console.log(this.props);
         let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
             <Container className="destination-selection-trip-list">
@@ -141,7 +152,7 @@ class TripList extends Component {
                         }
                     </div>
             :
-            <Redirect to={{pathname: '/select_origin'}} />}
+                <Redirect to={{pathname: '/select_origin'}} />}
             </Container>
         );
     }
