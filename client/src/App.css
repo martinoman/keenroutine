@@ -10,8 +10,9 @@ html, body {
 
 .Content{
     position: relative;
-    height: 91vh;
+    height: auto;
     margin-top: 2%;
+    margin-bottom: 15vh;
     /* margin-bottom: 20vh; */
     /* overflow: hidden; */
 }
@@ -51,23 +52,22 @@ html, body {
     -moz-box-shadow: 0px 9px 16px -10px rgba(0,0,0,0.78);
     box-shadow: 0px 9px 16px -10px rgba(0,0,0,0.78);
 }
-.keen-card-greyed-out{
+
+.fade-in{
+    animation: 0.2s ease-out 0s 1 fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.keen-card.greyed-out{
     background-color: var(--color2);
-    color: white;
-    border-radius: 5px;
-    height: 6vh;
-    min-height: 45px;
-    min-width: 300px;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    padding: 1%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    vertical-align: middle;
-    font-weight: bold;
-    -webkit-box-shadow: 0px 9px 16px -10px rgba(0,0,0,0.78);
-    -moz-box-shadow: 0px 9px 16px -10px rgba(0,0,0,0.78);
-    box-shadow: 0px 9px 16px -10px rgba(0,0,0,0.78);
 }
 
 .tab-icon{
@@ -263,6 +263,13 @@ html, body {
     border-radius: 5px;
     height: 42px;
     display: inline-block;
+}
+
+.realtime-destination-info{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
 }
 
 .travel-guide{

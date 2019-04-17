@@ -1,6 +1,8 @@
 
 export function filterWeirdWalks(trip){
-    return trip.filter( leg => !leg.travelMode.hide);
+    if(trip)
+        return trip.filter( leg => !leg.travelMode.hide);
+    return null;
 }
 
 export function formatLocationData(leg, i){
@@ -59,6 +61,8 @@ export function parseTimeString(string){
 }
 
 export function tripTimes(trip){
+    if(!trip)
+        return null;
     let departureTime = parseTimeString(trip[0].travelMode.departure);
     let arrivalTime = parseTimeString(trip[trip.length-1].travelMode.arrival);
     let travelTime = (arrivalTime - departureTime)/60000; //Divided by millis in a minute

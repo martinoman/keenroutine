@@ -23,7 +23,11 @@ class TripSelectorTile extends Component {
 
     render() {
         let depString, arrString;
-        if (!this.props.trip.dummy) {
+        let noTripFound = this.props.trip.trip === null;
+        let specialCardText = "You're here!";
+        if(noTripFound){
+            specialCardText = "No suitable trip"
+        }else if (!this.props.trip.dummy) {
             let depDate = this.props.trip.times.departureTime;
             let arrDate = this.props.trip.times.arrivalTime;
             depString = this.formatTime(depDate);
@@ -31,14 +35,14 @@ class TripSelectorTile extends Component {
         }
         return(
             <div>
-                {this.props.trip.to === this.props.currentLocation.alias ?
-                    <Row className={"keen-card-greyed-out align-center fade-in"}>
+                {noTripFound || this.props.trip.to === this.props.currentLocation.alias ?
+                    <Row className={"keen-card greyed-out align-center fade-in"}>
                         <Col xs={4}>
                             {this.props.trip.to}
                         </Col>
                         <Col className="departure-info" xs={8}>
                             <div className="trip-info-text">
-                                Your current location
+                                {specialCardText}
                             </div>
                         </Col>
                     </Row>

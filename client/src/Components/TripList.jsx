@@ -30,7 +30,7 @@ class TripList extends Component {
         let headers = {}
         for (var i = 0; i < destinations.length; i++) {
             let destination = destinations[i];
-            if(destination === origin)
+            if(destination.location.id === origin.location.id)
                 continue;
             let params = this.getParameters(destinations[i],origin);
             tripPromises.push(this.apiCall(params, headers, destination.alias));

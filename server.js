@@ -37,8 +37,6 @@ if(process.env.NODE_ENV === 'production') {
       fetch("https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=" + process.env.REACT_APP_ReseplanerareAPI + urlParams)
       .then(res => res.json())
       .then(json => {
-          console.log("select destination");
-          console.log(json);
           res.send(json)
       });
   })
@@ -89,6 +87,8 @@ if(process.env.NODE_ENV === 'production') {
         fetch("https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=" + process.env.REACT_APP_ReseplanerareAPI + "&" + urlParams)
         .then(res => res.json())
         .then(json => {
+            console.log(urlParams);
+            // console.log(json);
             res.send(json)
         });
     })
