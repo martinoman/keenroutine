@@ -10,8 +10,9 @@ html, body {
 
 .Content{
     position: relative;
-    height: 91vh;
+    height: auto;
     margin-top: 2%;
+    margin-bottom: 10vh;
     /* margin-bottom: 20vh; */
     /* overflow: hidden; */
 }

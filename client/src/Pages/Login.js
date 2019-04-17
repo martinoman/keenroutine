@@ -1,10 +1,12 @@
 import React, {Component} from "react";
+import { connect } from 'react-redux'
 import firebase from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/firestore';
 import { Redirect } from 'react-router-dom';
 import {Link} from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap'
+import { setFinishedLoading } from '../Actions/index.js'
 
 class Login extends Component {
 
@@ -24,7 +26,6 @@ class Login extends Component {
     }
 
     handleLogin(event){
-        console.log(event);
         event.preventDefault();
         let email = event.target[0].value;
         let pw = event.target[1].value;
@@ -40,6 +41,7 @@ class Login extends Component {
               // this.setMessage("Wrong email or password");
               return;
           });
+          this.props.setFinishedLoading(false);
     }
 
     render() {
@@ -81,4 +83,20 @@ class Login extends Component {
 
 }
 
-export default Login ;
+
+const mapStateToProps = (state) => {
+    return{
+    }
+}
+
+
+const mapDispatchToProps = (dispath) => {
+    return{
+    }
+}
+
+
+export default connect(
+    mapStateToProps,
+    {setFinishedLoading},
+)(Login);

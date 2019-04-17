@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, clearState, finishedLoading, loadAllPlaces} from "./Actions/index";
+import {loadUser, clearState, setFinishedLoading, loadAllPlaces} from "./Actions/index";
 import './App.css';
 
 import SignUp from "./Pages/SignUp";
@@ -37,7 +37,7 @@ class App extends Component {
         if (user === null) {
             this.props.clearState();
             localStorage.clear();
-            this.props.finishedLoading();
+            this.props.setFinishedLoading(true);
         }
     }
 
@@ -60,7 +60,7 @@ class App extends Component {
                             <PrivateRoute showLoading={true} exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/" render={(props) => <Login {...props}/>}/>
                         </Switch>
-                        <PrivateRoute wrap={true} showLoading={false} test="mcfly">
+                        <PrivateRoute wrap={true} showLoading={false}>
                             <NewTripButton/>
                         </PrivateRoute>
                     </div>
@@ -78,5 +78,5 @@ const mapStateToProps = (state) => {
 
 export default withRouter(connect(
     mapStateToProps,
-    {loadUser, clearState, finishedLoading, loadAllPlaces},
+    {loadUser, clearState, setFinishedLoading, loadAllPlaces},
 )(App));
