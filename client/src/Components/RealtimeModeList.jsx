@@ -16,7 +16,6 @@ class RealtimeModeList extends Component {
     }
 
     render() {
-        console.log(this.props.data.length !== 0);
         return (
             <div className="real-time-mode-wrapper">
                 {this.props.data !== undefined || this.props.data.length !== 0 ?

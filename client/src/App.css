@@ -10,13 +10,17 @@ html, body {
 
 .Content{
     position: relative;
-    height: auto;
+    height: 79vh;
+    margin-bottom: 10px;
     margin-top: 2%;
-    margin-bottom: 15vh;
-    /* margin-bottom: 20vh; */
-    /* overflow: hidden; */
+    overflow-y: scroll;
 }
 
+@media (min-width: 480px) {
+    .Content {
+        height: 130vh;
+    }
+}
 *{
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -114,7 +118,7 @@ html, body {
 }
 
 .draggable-list{
-    margin-bottom: 15%;
+    margin-bottom: 5%;
 }
 
 .draggable-list-item{
