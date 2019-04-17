@@ -84,7 +84,7 @@ class RealtimeInfo extends Component {
                                                         <Col xs={2} className="realtime-mode-info">
                                                             {lineNumber}
                                                         </Col>
-                                                        <Col xs={6} className="realtime-destination-info">
+                                                        <Col xs={6} className="realtime-destination-info align-center">
                                                             {dest}
                                                         </Col>
                                                         <Col xs={4} className="realtime-time-info">

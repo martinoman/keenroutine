@@ -12,7 +12,7 @@ html, body {
     position: relative;
     height: auto;
     margin-top: 2%;
-    margin-bottom: 10vh;
+    margin-bottom: 15vh;
     /* margin-bottom: 20vh; */
     /* overflow: hidden; */
 }
@@ -264,6 +264,13 @@ html, body {
     border-radius: 5px;
     height: 42px;
     display: inline-block;
+}
+
+.realtime-destination-info{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
 }
 
 .travel-guide{

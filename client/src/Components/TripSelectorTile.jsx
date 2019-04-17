@@ -24,7 +24,7 @@ class TripSelectorTile extends Component {
     render() {
         let depString, arrString;
         let noTripFound = this.props.trip.trip === null;
-        let specialCardText = "Your current location";
+        let specialCardText = "You're here!";
         if(noTripFound){
             specialCardText = "No suitable trip"
         }else if (!this.props.trip.dummy) {
