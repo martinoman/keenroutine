@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {focusTrip} from '../Actions/index.js'
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
@@ -14,7 +15,12 @@ class TripList extends Component {
             trips: [],
             loading: true,
             loadedTrips: 0,
+            isStateHealthy: this.isStateHealthy(),
         }
+    }
+
+    isStateHealthy = () => {
+        return !(this.props.currentLocation === undefined || this.props.currentLocation === "");
     }
 
     getTimes(){
@@ -100,33 +106,53 @@ class TripList extends Component {
     }
 
     componentDidMount(){
-        this.getTimes();
+        if (this.state.isStateHealthy) {
+            this.getTimes();
+        }
     }
 
     tripList(){
-        return this.state.trips.map((trip, index)=>{
+        let triplist = this.state.trips.map((trip, index)=>{
             return (
                 <TripSelectorTile trip={trip} key={index} />
             )})
+        let dummyTripObject = {
+            "from": "placeholder",
+            "times":
+                {"arrivalTime": "TEST1",
+                "departureTime": "TEST2",
+                "timeUntilDeparture": "10.849983333333334",
+                "travelTime": "23.000016666666667"},
+            "to": this.props.currentLocation.alias,
+            "trip": [],
+            "dummy" :true,
+        }
+        triplist.push(<TripSelectorTile trip={dummyTripObject} key={this.state.trips.length}/>)
+        return triplist;
     }
 
     render(){
         let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
             <Container className="destination-selection-trip-list">
-                {this.state.loading ?
-                    <div className="loading-bar-wrapper">
-                        <div style={{"width": width + "%"}} className="loading-bar">
-                        </div>
-                        <p>
+                {this.state.isStateHealthy ?
+                    <div className="">
+                        {this.state.loading ?
+                            <div className="loading-bar-wrapper">
+                            <div style={{"width": width + "%"}} className="loading-bar">
+                            </div>
+                            <p>
                             Loading...
-                        </p>
+                            </p>
+                            </div>
+                            :
+                            <div>
+                            {this.tripList()}
+                            </div>
+                        }
                     </div>
-                    :
-                    <div>
-                        {this.tripList()}
-                    </div>
-            }
+            :
+                <Redirect to={{pathname: '/select_origin'}} />}
             </Container>
         );
     }
