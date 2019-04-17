@@ -24,6 +24,9 @@ class App extends Component {
         super();
         this.authChange = this.authChange.bind(this);
         firebase.auth().onAuthStateChanged(this.authChange);
+        this.state={
+            focusContent: true,
+        }
     }
 
     authChange(user){
@@ -38,11 +41,17 @@ class App extends Component {
         }
     }
 
+    setFocusContent = (bool) =>{
+        this.setState({focusContent:bool});
+    }
+
     render() {
         return (
             <div className="App">
-                <Navbar />
-                    <div className="Content">
+                <Navbar focusContent={this.state.focusContent} setFocusContent={this.setFocusContent}/>
+                    <div className="Content" onClick={()=>{
+                            this.setFocusContent(true)
+                        }}>
                         <Switch>
                             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
                             <Route exact path={"/login"} render={(props) => <Login {...props}/>}/>
