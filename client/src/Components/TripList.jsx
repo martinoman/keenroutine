@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {focusTrip} from '../Actions/index.js'
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
@@ -14,7 +15,12 @@ class TripList extends Component {
             trips: [],
             loading: true,
             loadedTrips: 0,
+            isStateHealthy: this.isStateHealthy(),
         }
+    }
+
+    isStateHealthy = () => {
+        return !(this.props.currentLocation === undefined || this.props.currentLocation === "");
     }
 
     getTimes(){
@@ -43,6 +49,7 @@ class TripList extends Component {
     This shoudl probz return a list of parameter sets. One for each place
     */
     getParameters(dest, org){
+        console.log(org);
         dest = dest.location;
         org = org.location;
         let urlParams = "";
@@ -100,7 +107,9 @@ class TripList extends Component {
     }
 
     componentDidMount(){
-        this.getTimes();
+        if (this.state.isStateHealthy) {
+            this.getTimes();
+        }
     }
 
     tripList(){
@@ -111,22 +120,28 @@ class TripList extends Component {
     }
 
     render(){
+        console.log(this.props);
         let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
             <Container className="destination-selection-trip-list">
-                {this.state.loading ?
-                    <div className="loading-bar-wrapper">
-                        <div style={{"width": width + "%"}} className="loading-bar">
-                        </div>
-                        <p>
+                {this.state.isStateHealthy ?
+                    <div className="">
+                        {this.state.loading ?
+                            <div className="loading-bar-wrapper">
+                            <div style={{"width": width + "%"}} className="loading-bar">
+                            </div>
+                            <p>
                             Loading...
-                        </p>
+                            </p>
+                            </div>
+                            :
+                            <div>
+                            {this.tripList()}
+                            </div>
+                        }
                     </div>
-                    :
-                    <div>
-                        {this.tripList()}
-                    </div>
-            }
+            :
+            <Redirect to={{pathname: '/select_origin'}} />}
             </Container>
         );
     }
