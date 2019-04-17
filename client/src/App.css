@@ -49,6 +49,40 @@ html, body {
     font-weight: bold;
 }
 
+.tab-icon{
+    width: 100%;
+    height: 100%;
+}
+
+.text-tab > span{
+    color: black !important;
+}
+
+.text-tab{
+    width: 40% !important;
+    max-height: 30vh !important;
+    max-width: 30vw !important;
+}
+
+.react-tabs__tab-list{
+    width: 100%;
+}
+
+.react-tabs__tab{
+    width: 19%;
+    max-height: 13vh;
+    max-width: 13vh;
+    color: var(--color3);
+}
+
+.react-tabs__tab--selected{
+    color: var(--color1) !important;
+}
+
+.react-tabs__tab-list{
+    border: none
+}
+
 .keen-card.active{
     background-color: var(--color1Light);
 }

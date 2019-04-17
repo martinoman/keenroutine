@@ -60,10 +60,10 @@ class App extends Component {
                             <PrivateRoute showLoading={true} exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/" render={(props) => <Login {...props}/>}/>
                         </Switch>
+                        <PrivateRoute wrap={true} showLoading={false} test="mcfly">
+                            <NewTripButton/>
+                        </PrivateRoute>
                     </div>
-                    <PrivateRoute wrap={true} showLoading={false} test="mcfly">
-                        <NewTripButton/>
-                    </PrivateRoute>
           </div>
         );
     }
