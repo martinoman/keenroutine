@@ -53,7 +53,7 @@ class RealtimeInfo extends Component {
                     Loading
                 </div>
                 :
-                <Tabs>
+                <Tabs className="fade-in">
                     <TabList>
                         <Tab><Metro className="tab-icon"/></Tab>
                         <Tab><Bus className="tab-icon"/></Tab>
