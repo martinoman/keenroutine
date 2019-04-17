@@ -13,7 +13,9 @@ import reducers from './Reducers/reducers'
 import config from './DB_CONFIG.js'
 import {BrowserRouter} from 'react-router-dom'
 
-const initState = { //TODO this is wonky af
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const initState = {
     user: {
         userName: null,
         userID: null
@@ -21,8 +23,31 @@ const initState = { //TODO this is wonky af
     places: [],
     currentLocation: "",
     focusedTrip: "",
+    finishedLoading: false,
 }
-const store = createStore(reducers, initState, applyMiddleware(reduxThunk));
+
+const getLocalStorage = () => {
+    let state = {...initState}
+    let persistedLocation = localStorage.getItem("currentLocation");
+    persistedLocation = JSON.parse(persistedLocation);
+    if (persistedLocation) {
+         console.log("FOUND THIS PERSISTED LOCATION-------");
+        console.log(persistedLocation);
+        console.log("---------------------------------");
+        state.currentLocation = persistedLocation;
+    }
+    return state;
+
+}
+
+const store = createStore(reducers, getLocalStorage(), applyMiddleware(reduxThunk));
+
+store.subscribe(() => {
+    let state = store.getState();
+    let currentLocation = state.currentLocation;
+    localStorage.setItem("currentLocation",JSON.stringify(currentLocation));
+})
+
 firebase.initializeApp(config);
 
 ReactDOM.render(

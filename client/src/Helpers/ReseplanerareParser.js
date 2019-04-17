@@ -44,7 +44,7 @@ export function findAndParseTrip(data, depLimit){
             leg.travelMode = formatTravelData(legs[j]);
             trip.push(leg);
         }
-        if(tripTimes(trip).timeUntilDeparture > depLimit) //TODO This seems a bit too important to just throw in here(?)
+        if(tripTimes(trip).timeUntilDeparture > depLimit)
             return trip;
     }
 }

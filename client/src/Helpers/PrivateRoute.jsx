@@ -1,22 +1,48 @@
 import React, {Component} from "react";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
-import "firebase/firestore";
+import { connect } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
+import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 class PrivateRoute extends Component {
+    constructor(props){
+        super(props);
+    }
+
     render(){
-        return(
+        let loaded = this.props.finishedLoading;
+        let loggedIn = this.props.user.userID;
+        let shouldWrap = this.props.wrap;
+        let showLoading = this.props.showLoading;
+        return (
             <div className="private-route">
-                {firebase.auth().currentUser ?
-                    <Route path={this.props.path} render={this.props.render}/>
-                    :
-                    <Redirect to={{pathname: '/login'}} />
+                {
+                    loaded ?
+                        loggedIn ?
+                            shouldWrap ?
+                                this.props.children
+                            :
+                                <Route path={this.props.path} render={this.props.render}/>
+                        : //Not logged in
+                            <Redirect to={{pathname: '/login'}} />
+                    : //Not completely loaded
+                        showLoading ?
+                            <FadingTrippleDots center={true}/>
+                        :
+                            ""
                 }
             </div>
         );
     }
 }
 
-export default PrivateRoute;
+const mapStateToProps = (state) => {
+    return{
+        user: state.user,
+        finishedLoading: state.finishedLoading
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {},
+)(PrivateRoute);

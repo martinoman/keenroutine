@@ -15,7 +15,7 @@ class PlacesSearchResult extends Component {
             <div className="places-search-result-list">
                 {this.props.results.map((place, key)=>{
                     return(
-                        <PlacesSearchResultItem place={place} key={key}/>
+                        <PlacesSearchResultItem place={place} key={key} addedPlace={this.props.addedPlace}/>
                     );
                 })}
             </div>

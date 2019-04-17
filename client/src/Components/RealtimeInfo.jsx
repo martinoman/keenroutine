@@ -2,12 +2,15 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import { getTimes } from "../Helpers/RealtidsInfoParser.js"
 import RealtimeModeList from "./RealtimeModeList";
+import {Container, Row, Col} from "reactstrap"
 // const key = require("../realtidsinfoAPIKey.js");
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 class RealtimeInfo extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [],
+            loading: true,
         }
     }
 
@@ -17,12 +20,12 @@ class RealtimeInfo extends Component {
             .then(response => this.checkValid(response))
             .then(data => {
                 data = getTimes(data.ResponseData);
-                console.log(data);
                 let show = new Array(data.length);
                 show.fill(false);
                 this.setState({
                     data: data,
                     show: show,
+                    loading: false,
                 });
             }).catch(error => {
                 console.log("SOMETHING WENT WRONG:");
@@ -39,15 +42,60 @@ class RealtimeInfo extends Component {
     render() {
         return (
             <div className="real-time-information">
-                {
-                    Object.keys(this.state.data).map((key, index)=>{
-                        let mode = this.state.data[key];
-                        let shouldShow = mode.length > 0;
-                        return(
-                            shouldShow ? <RealtimeModeList mode={key} data={mode} key = {key}/> : ""
-                        );
-                    })
-                }
+            {
+                this.state.loading ?
+                <div>
+                    Loading
+                </div>
+                :
+                <Tabs>
+                    <TabList>
+                        <Tab>Metro</Tab>
+                        <Tab>Bus</Tab>
+                        <Tab>Train</Tab>
+                        <Tab>Tram</Tab>
+                        <Tab>Ships</Tab>
+                    </TabList>
+                    {
+                        Object.keys(this.state.data).map((key, index)=>{
+                            let data = this.state.data[key];
+                            if (data.length === 0) {
+                                return(
+                                    <TabPanel key={index}>
+                                        Sorry, no departures available for the selected transportation mode
+                                    </TabPanel>
+                                );
+                            }
+                            return(
+                                <TabPanel key={index}>
+                                    <Container>
+                                        {
+                                            data.map((arrival, index) => {
+                                                let lineNumber = arrival.lineNumber;
+                                                let dest = arrival.destination;
+                                                let time = arrival.displayTime;
+                                                return(
+                                                    <Row className="real-time-mode-list-item keen-card align-center" key={index}>
+                                                        <Col xs={2} className="realtime-mode-info">
+                                                            {lineNumber}
+                                                        </Col>
+                                                        <Col xs={6} className="realtime-destination-info">
+                                                            {dest}
+                                                        </Col>
+                                                        <Col xs={4} className="realtime-time-info">
+                                                            {time}
+                                                        </Col>
+                                                    </Row>
+                                                );
+                                            })
+                                        }
+                                    </Container>
+                                </TabPanel>
+                            );
+                        })
+                    }
+                </Tabs>
+            }
             </div>
         );
     }

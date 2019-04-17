@@ -1,37 +1,341 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height:100%;
+}
+
+.Content{
+    position: relative;
+    height: 91vh;
+    margin-top: 2%;
+    /* margin-bottom: 20vh; */
+    /* overflow: hidden; */
+}
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.title{
+    font-size: 20px;
+    font-family: 'Oxygen', sans-serif;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.keen-card{
+    background-color: var(--color1);
+    border-radius: 5px;
+    height: 9vh;
+    min-height: 45px;
+    min-width: 300px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: white;
+    vertical-align: middle;
+    font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.keen-card.active{
+    background-color: var(--color1Light);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.draggable{
+    height: 100%;
 }
 
-.note:hover{
-    background-color: #fc806b;
+.draggable-list{
+    margin-bottom: 15%;
+}
+
+.draggable-list-item{
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.search-bar{
+    height: auto;
+    width: 100%;
+}
+
+.search-places-field{
+    width: 90%;
+}
+
+.places-search-results{
+    width: 100%;
+}
+
+.places-search-result-list{
+    width: inherit;
+}
+
+.search-result-item-card.expanded{
+    height:auto;
+}
+
+.search-result-item-popup{
+    max-height: 0;
+    transition: 0.25s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.place-error-message{
+    overflow: hidden;
+}
+
+.search-result-item-popup.expanded{
+    max-height: 500px;
+    transition: 0.25s ease-in;
+}
+
+.search-result-item-alias-field{
+    width: 90%;
+    margin: auto;
+}
+
+.Login-Signup{
+    background-color: var(--color4);
+    width: 100%;
+    height: 100%;
+}
+
+.login-credentials{
+    padding-top: 50px;
+}
+
+
+.sign-up-success-message-button{
+    margin-top: 50px;
+    width: 60vw !important;
+    height: 30vw !important;
+}
+
+.sign-up-success-message{
+    margin-top: 50px;
+}
+
+.input-field-wrapper{
+    width: 80%;
+    min-width: 60px;
+    margin: auto;
+}
+
+.input-field-wrapper > h3,.input-field-wrapper > h4{
+    margin-top: 2%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-align: left;
+}
+
+
+.input-field{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    /* background-color: var(--color5); */
+}
+
+.login-signup-button{
+    margin-top: 50px;
+    width: 30vw !important;
+    max-width: 500px;
+}
+
+.button{
+    background-color: var(--color3);
+    color: #FFFFFF;
+    width: 60px;
+    height: 35px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.add-more-places-button{
+    height: auto;
+}
+
+.draggable-list-item-option{
+    float: right;
+    padding: 0 !important;
+    text-align: right;
+    margin-right: 3%;
+    max-width: 45px;
+    min-width: 20px;
+    max-height: 45px;
+    min-height: 20px;
+}
+
+.place-remove-button{
+    width: 6vh !important;
+    height: 6vh !important;
+    padding: 0;
+    background-color: transparent;
+}
+.button-icon{
+    color: var(--color3);
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.list-selection-item{
+    margin: 10px auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--color1);
+    color: white;
+    border-radius: 5px;
+    height: 42px;
+    display: inline-block;
+}
+
+.travel-guide{
+    padding: 0 !important;
+}
+
+.trip-leg{
+    background-color: var(--color1);
+    color: white;
+}
+
+.trip-leg.first{
+    margin-top: 5%;
+    padding-top: 3%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.trip-leg.last{
+    margin-bottom: 5%;
+    padding-bottom: 3%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.trip-leg-info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.trip-leg-time{
+    font-weight: bold;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.trip-leg-place{
+    /* margin-left: 10px; */
+    text-align: left;
+    font-size: small;
+}
+
+.trip-leg-mode-info{
+    text-align: left;
+}
+
+.leg-border-wrapper{
+    /* width: 100%; */
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: var(--color1);
+}
+
+.leg-border{
+    width: 50%;
+    margin: auto;
+    border-bottom: 1px solid var(--color1Light);
+}
+
+.realtime-destination-info{
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.collapsed{
+    height: 0px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+.align-center-horizontal{
+    margin: auto;
+}
+
+.align-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root {
+  --color1: #1C4D4F;
+  --color1Light: #2C5D5F;
+  --color2: #237176;
+  --color2Light: #338186;
+  --color3: #17B4AD;
+  --color3Light: #27C4BD;
+  --color4: #FFFFFF;
+  --color4Light: #FFFFFF;
+  --color5: #17B4AD;
+  --color5Light: #27C4BD;
+}
+
+.width-limiter{
+    width: 85%;
+    margin: auto;
+}
+
+.loading-bar{
+    transition: width 1.5s;
+    display: flex;
+    background-color: var(--color2);
+    border-radius: 3px;
+    color: white;
+    height: 30px;
+}
+
+.loading-bar-wrapper{
+    display: flex;
+    background-color: var(--color2Light);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar-wrapper > p{
+    flex: 1 1 auto;
+    margin: auto;
+    position: absolute;
+    /* width: 76%; */
+    color: white;
 }

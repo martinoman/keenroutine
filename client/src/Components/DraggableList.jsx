@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import SortableComponent from "./SortableComponent.jsx"
 class DraggableList extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +26,13 @@ class DraggableList extends Component {
         fromIndex: from,
     });
   }
-  dragOver(e) {
-    this.over = e.target.parentNode.parentNode; //TODO this is bad, you should feel bad
+  dragEnd2(e) {
+    console.log(e);
   }
-	render() {
+  dragOver(e) {
+    this.over = e.target.parentNode.parentNode;
+  }
+	render2() {
 		return (
             <div>
     			<ul onDragOver={this.dragOver.bind(this)}>
@@ -47,5 +50,11 @@ class DraggableList extends Component {
             </div>
 		)
 	}
+
+    render(){
+        return(
+            <SortableComponent />
+        );
+    }
 }
 export default DraggableList;
