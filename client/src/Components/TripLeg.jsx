@@ -15,16 +15,14 @@ class TripLeg extends Component {
     }
 
     render() {
-        let order = "middle";
-        if(this.props.first)
-            order = "first";
-        else if(this.props.last)
-            order = "last";
+            let first = this.props.first ? " first " : "";
+            let middle = this.props.middle ? " middle " : "";
+            let last = this.props.last ? " last " : "";
         return (
             <div>
-                <Row className={"trip-leg " + order}>
+                <Row className={"trip-leg " + first + middle + last}>
                     <Col xs={12} className="trip-leg-info">
-                        <Row className="trip-leg-from-info">
+                        <Row className="trip-leg-from-info align-center">
                             <Col xs={2} className="trip-leg-time">
                                 {this.getTrimmedTime(this.props.leg.travelMode.departure)}
                             </Col>
@@ -41,7 +39,7 @@ class TripLeg extends Component {
                                     }
                                 </Col>
                             </Row>
-                        <Row className="trip-leg-to-info">
+                        <Row className="trip-leg-to-info align-center">
                             <Col xs={2} className="trip-leg-time">
                                 {this.getTrimmedTime(this.props.leg.travelMode.arrival)}
                             </Col>
@@ -51,7 +49,7 @@ class TripLeg extends Component {
                         </Row>
                     </Col>
                 </Row>
-                {order === "first" || order === "middle" ?
+                {this.props.includeBorder ?
                     <Row className="leg-border-wrapper">
                         <div className="leg-border"/>
                     </Row>

@@ -3,25 +3,65 @@ import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import { Row, Col } from 'reactstrap';
 import {focusTrip} from '../Actions/index.js'
-
+import _ from "lodash"
 class TripSelectorTile extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            pressed:false,
+        }
+    }
+
+    touchEnd = _.debounce(() => {
+        this.setState({
+            pressed: false,
+        });
+    }, 400);
+
+    touchStart = () => {
+        this.setState({
+            pressed: true,
+        });
+        this.props.focusTrip(this.props.trip);
+    }
+
+    formatTime(date){
+        let hours =  "0" + date.getHours(); //Pad time so it's either 0xx or 0x
+        let minutes = "0" + date.getMinutes();
+        let time = hours.slice(-2) + ":" + minutes.slice(-2); //Take only last two letters
+        return time;
+    }
+
     render() {
+        // console.log(this.props.trip.times);
+        let depDate = this.props.trip.times.departureTime;
+        let arrDate = this.props.trip.times.arrivalTime;
+        let depString = this.formatTime(depDate);
+        let arrString = this.formatTime(arrDate);
+        let addClass = this.state.pressed ? " active " : "";
         return(
-            <Link to="/travel_guide">
-                <Row className="keen-card" onClick={() => {
-                        this.props.focusTrip(this.props.trip);
-                    }}>
-                    <Col xs={4}>
-                        {this.props.trip.to}
-                    </Col>
-                    <Col xs={4}>
-                        Dep: {Math.ceil(this.props.trip.times.timeUntilDeparture)}
-                    </Col>
-                    <Col xs={4}>
-                        Time {Math.ceil(this.props.trip.times.travelTime)}
-                    </Col>
-                </Row>
-            </Link>
+            <Row className={"keen-card align-center pointer " + addClass} onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
+                <Col xs={4}>
+                    {this.props.trip.to}
+                </Col>
+                <Col className="departure-info" xs={4}>
+                    <div className="trip-info-text">
+                        Departure
+                    </div>
+                    <div className="trip-info-time">
+                        {depString}
+                    </div>
+                </Col>
+                <Col className="arrival-info" xs={4}>
+                    <div className="trip-info-text">
+                        Arrival
+                    </div>
+                    <div className="trip-info-time">
+                        {arrString}
+                    </div>
+                </Col>
+            </Row>
         )
     }
 }

@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
-import { logout } from "../Actions/index";
+import { logout } from "../../Actions/index";
 
 import { IconContext } from "react-icons";
 import { FaBars } from "react-icons/fa";
 
+import "./Navbar.css"
 class Navbar extends Component {
 
     constructor(props){
@@ -31,11 +32,7 @@ class Navbar extends Component {
                 </p>
                 <div className={"Navbar-bar " + expanded}>
                     <button onClick={this.toggleNavbar}>
-                        {this.state.expanded ?
-                            <FaBars/>
-                             :
-                            <FaBars/>
-                        }
+                        <FaBars/>
                     </button>
                 </div>
                 <div className={"Navbar-list " + expanded} onClick={this.toggleNavbar}>

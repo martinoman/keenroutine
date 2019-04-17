@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import PlacesSearchResult from "./PlacesSearchResult";
 import { Row } from "reactstrap"
 import {Element , scroller, animateScroll as scroll} from 'react-scroll'
+import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 import _ from "lodash"
 import { connect } from 'react-redux'
@@ -12,7 +13,9 @@ class PlacesSearch extends Component {
         this.scrollRef = React.createRef()
         this.state = {
             searchResult: [],
+            loading: false,
         }
+        this.searchField = React.createRef();
     }
 
     search = _.debounce((searchWord) => {
@@ -25,7 +28,9 @@ class PlacesSearch extends Component {
                 this.setState({
                     searchResult: data.ResponseData
                 });
-                this.pageScroll();
+                this.setState({loading: false});
+                if(data.ResponseData.length > 0)
+                    this.pageScroll();
             })
     }, 1000);
 
@@ -38,7 +43,8 @@ class PlacesSearch extends Component {
       });
     }
 
-    scrollToTop = () => {
+    addedPlace = () => {
+        this.searchField.current.value = "";
         scroll.scrollToTop({
             duration: 800,
             delay: 0,
@@ -49,19 +55,26 @@ class PlacesSearch extends Component {
 
     render() {
         return (
-            <Row className="places-search">
+            <div  className="places-search">
                 <h4 className="align-center-horizontal">Add more places</h4>
-                <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
-                    <Element name="search" className="">
-                        {"Search for new stations to add"}
-                    </Element>
-                    <input type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
-                            let searchWord = event.target.value;
-                            this.search(searchWord);
-                        }}/>
-                </div>
-                <PlacesSearchResult results={this.state.searchResult} scrollToTop={this.scrollToTop}/>
-            </Row>
+                <Row>
+                    <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
+                        <Element name="search" className="">
+                            {"Search for new stations to add"}
+                        </Element>
+                        <input ref={this.searchField} type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
+                                let searchWord = event.target.value;
+                                this.setState({loading:true});
+                                this.search(searchWord);
+                            }}/>
+                    </div>
+                    {this.state.loading?
+                        <FadingTrippleDots/>
+                    :
+                        <PlacesSearchResult results={this.state.searchResult} addedPlace={this.addedPlace}/>
+                    }
+                </Row>
+            </div>
         );
     }
 }

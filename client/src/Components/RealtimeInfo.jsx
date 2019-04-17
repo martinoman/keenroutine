@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import { getTimes } from "../Helpers/RealtidsInfoParser.js"
 import RealtimeModeList from "./RealtimeModeList";
+import {Container, Row, Col} from "reactstrap"
 // const key = require("../realtidsinfoAPIKey.js");
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 class RealtimeInfo extends Component {
@@ -67,21 +68,28 @@ class RealtimeInfo extends Component {
                             }
                             return(
                                 <TabPanel key={index}>
-                                {
-                                    data.map((arrival, index) => {
-                                        let mode = arrival.transportMode.toLowerCase();
-                                        mode = mode.charAt(0).toUpperCase() + mode.slice(1);
-                                        let lineNumber = arrival.lineNumber;
-                                        let dest = arrival.destination;
-                                        let time = arrival.displayTime;
-                                        let displayString = mode + " " + lineNumber + " to: " + dest + "\t" + time
-                                        return(
-                                            <div className="real-time-mode-list-item" key={index}>
-                                                {displayString}
-                                            </div>
-                                        );
-                                    })
-                                }
+                                    <Container>
+                                        {
+                                            data.map((arrival, index) => {
+                                                let lineNumber = arrival.lineNumber;
+                                                let dest = arrival.destination;
+                                                let time = arrival.displayTime;
+                                                return(
+                                                    <Row className="real-time-mode-list-item keen-card align-center" key={index}>
+                                                        <Col xs={2} className="realtime-mode-info">
+                                                            {lineNumber}
+                                                        </Col>
+                                                        <Col xs={6} className="realtime-destination-info">
+                                                            {dest}
+                                                        </Col>
+                                                        <Col xs={4} className="realtime-time-info">
+                                                            {time}
+                                                        </Col>
+                                                    </Row>
+                                                );
+                                            })
+                                        }
+                                    </Container>
                                 </TabPanel>
                             );
                         })

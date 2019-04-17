@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import TripList from "../Components/TripList";
+import TravelGuide from "../Components/TravelGuide";
 import RealtimeInfo from "../Components/RealtimeInfo";
+import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
@@ -21,7 +23,7 @@ class SelectDestination extends Component {
                     </TabList>
 
                     <TabPanel>
-                        <TripList />
+                        {this.props.focusedTrip ? <TravelGuide/> : <TripList/> }
                     </TabPanel>
                     <TabPanel>
                         <RealtimeInfo />
@@ -34,6 +36,7 @@ class SelectDestination extends Component {
 
 const mapStateToProps = (state) => {
     return{
+        focusedTrip: state.focusedTrip,
     }
 }
 

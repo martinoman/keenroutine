@@ -8,6 +8,7 @@ const initialState = {
     places: [],
     currentLocation: "",
     focusedTrip: "",
+    finishedLoading: false,
 }
 
 const reduxMother = (state=initialState, action) => {
@@ -67,6 +68,10 @@ const reduxMother = (state=initialState, action) => {
         case 'FOCUS_TRIP':
             return Object.assign({}, state,{
                 focusedTrip: action.trip
+                })
+        case 'FINISHED_LOADING':
+            return Object.assign({}, state,{
+                finishedLoading: action.finishedLoading
                 })
         case 'CLEAR_STATE':
             return initialState
