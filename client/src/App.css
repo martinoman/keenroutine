@@ -55,7 +55,7 @@ html, body {
     background-color: var(--color2);
     color: white;
     border-radius: 5px;
-    height: 9vh;
+    height: 6vh;
     min-height: 45px;
     min-width: 300px;
     margin-top: 1%;
@@ -373,24 +373,30 @@ html, body {
     background-color: var(--color2);
     border-radius: 6px;
     color: white;
-    height: 30px;
+    height: 100%;
+    justify-content: center;
 }
 
 .loading-bar-wrapper{
-    display: flex;
-    background-color: var(--color2Light);
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 3px;
+    padding: 0px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    height: 6vh;
 }
 
-.loading-bar-wrapper > p{
+.loading-bar-text{
     flex: 1 1 auto;
     margin: auto;
-    position: absolute;
+    /* position: absolute; */
     /* width: 76%; */
     color: white;
+}
+
+.trip-list-header{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-item{
+    margin: auto;
 }
