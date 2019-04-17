@@ -36,7 +36,7 @@ class TripSelectorTile extends Component {
         return(
             <div>
                 {noTripFound || this.props.trip.to === this.props.currentLocation.alias ?
-                    <Row className={"keen-card-greyed-out align-center"}>
+                    <Row className={"keen-card greyed-out align-center"}>
                         <Col xs={4}>
                             {this.props.trip.to}
                         </Col>
