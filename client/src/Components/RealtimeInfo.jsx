@@ -3,6 +3,11 @@ import { connect } from 'react-redux'
 import { getTimes } from "../Helpers/RealtidsInfoParser.js"
 import RealtimeModeList from "./RealtimeModeList";
 import {Container, Row, Col} from "reactstrap"
+
+//icons
+import { MdDirectionsBus as Bus, MdDirectionsSubway as Metro, MdDirectionsBoat as Ships, MdTram as Tram, MdTrain as Train} from "react-icons/md"
+import 'react-tabs/style/react-tabs.css';
+
 // const key = require("../realtidsinfoAPIKey.js");
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 class RealtimeInfo extends Component {
@@ -50,11 +55,11 @@ class RealtimeInfo extends Component {
                 :
                 <Tabs>
                     <TabList>
-                        <Tab>Metro</Tab>
-                        <Tab>Bus</Tab>
-                        <Tab>Train</Tab>
-                        <Tab>Tram</Tab>
-                        <Tab>Ships</Tab>
+                        <Tab><Metro className="tab-icon"/></Tab>
+                        <Tab><Bus className="tab-icon"/></Tab>
+                        <Tab><Train className="tab-icon"/></Tab>
+                        <Tab><Tram className="tab-icon"/></Tab>
+                        <Tab><Ships className="tab-icon"/></Tab>
                     </TabList>
                     {
                         Object.keys(this.state.data).map((key, index)=>{
@@ -79,7 +84,7 @@ class RealtimeInfo extends Component {
                                                         <Col xs={2} className="realtime-mode-info">
                                                             {lineNumber}
                                                         </Col>
-                                                        <Col xs={6} className="realtime-destination-info">
+                                                        <Col xs={6} className="realtime-destination-info align-center">
                                                             {dest}
                                                         </Col>
                                                         <Col xs={4} className="realtime-time-info">

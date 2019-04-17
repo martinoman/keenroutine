@@ -14,12 +14,12 @@ class SelectDestination extends Component {
         return(
             <div className="width-limiter">
                 <div className="title">
-                    Where are you going?
+                    Where to?
                 </div>
                 <Tabs>
                     <TabList>
-                        <Tab>Trips</Tab>
-                        <Tab>Real time</Tab>
+                        <Tab className="react-tabs__tab text-tab"><span>Trips</span></Tab>
+                        <Tab className="react-tabs__tab text-tab"><span className="tab-text">Real time</span></Tab>
                     </TabList>
 
                     <TabPanel>
@@ -37,6 +37,7 @@ class SelectDestination extends Component {
 const mapStateToProps = (state) => {
     return{
         focusedTrip: state.focusedTrip,
+        currentLocation: state.currentLocation,
     }
 }
 

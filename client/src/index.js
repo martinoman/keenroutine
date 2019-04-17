@@ -31,9 +31,6 @@ const getLocalStorage = () => {
     let persistedLocation = localStorage.getItem("currentLocation");
     persistedLocation = JSON.parse(persistedLocation);
     if (persistedLocation) {
-         console.log("FOUND THIS PERSISTED LOCATION-------");
-        console.log(persistedLocation);
-        console.log("---------------------------------");
         state.currentLocation = persistedLocation;
     }
     return state;

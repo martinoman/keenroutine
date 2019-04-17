@@ -8,21 +8,9 @@ class TripSelectorTile extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            pressed:false,
-        }
     }
 
-    touchEnd = _.debounce(() => {
-        this.setState({
-            pressed: false,
-        });
-    }, 400);
-
     touchStart = () => {
-        this.setState({
-            pressed: true,
-        });
         this.props.focusTrip(this.props.trip);
     }
 
@@ -34,39 +22,60 @@ class TripSelectorTile extends Component {
     }
 
     render() {
-        // console.log(this.props.trip.times);
-        let depDate = this.props.trip.times.departureTime;
-        let arrDate = this.props.trip.times.arrivalTime;
-        let depString = this.formatTime(depDate);
-        let arrString = this.formatTime(arrDate);
-        let addClass = this.state.pressed ? " active " : "";
+        let depString, arrString;
+        let noTripFound = this.props.trip.trip === null;
+        let specialCardText = "You're here!";
+        if(noTripFound){
+            specialCardText = "No suitable trip"
+        }else if (!this.props.trip.dummy) {
+            let depDate = this.props.trip.times.departureTime;
+            let arrDate = this.props.trip.times.arrivalTime;
+            depString = this.formatTime(depDate);
+            arrString = this.formatTime(arrDate);
+        }
         return(
-            <Row className={"keen-card align-center pointer " + addClass} onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
-                <Col xs={4}>
-                    {this.props.trip.to}
-                </Col>
-                <Col className="departure-info" xs={4}>
-                    <div className="trip-info-text">
-                        Departure
-                    </div>
-                    <div className="trip-info-time">
-                        {depString}
-                    </div>
-                </Col>
-                <Col className="arrival-info" xs={4}>
-                    <div className="trip-info-text">
-                        Arrival
-                    </div>
-                    <div className="trip-info-time">
-                        {arrString}
-                    </div>
-                </Col>
-            </Row>
+            <div>
+                {noTripFound || this.props.trip.to === this.props.currentLocation.alias ?
+                    <Row className={"keen-card greyed-out align-center fade-in"}>
+                        <Col xs={4}>
+                            {this.props.trip.to}
+                        </Col>
+                        <Col className="departure-info" xs={8}>
+                            <div className="trip-info-text">
+                                {specialCardText}
+                            </div>
+                        </Col>
+                    </Row>
+                    :
+                    <Row className={"keen-card align-center pointer fade-in"} onTouchStart={this.touchStart}>
+                        <Col xs={4}>
+                            {this.props.trip.to}
+                        </Col>
+                        <Col className="departure-info" xs={4}>
+                            <div className="trip-info-time">
+                                {depString}
+                            </div>
+                        </Col>
+                        <Col className="arrival-info" xs={4}>
+                            <div className="trip-info-time">
+                                {arrString}
+                            </div>
+                        </Col>
+                    </Row>
+                }
+
+            </div>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return{
+        currentLocation: state.currentLocation,
+    }
+}
+
 export default withRouter(connect(
-    null,
+    mapStateToProps,
     {focusTrip},
 )(TripSelectorTile));

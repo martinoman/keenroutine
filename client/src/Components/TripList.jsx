@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {focusTrip} from '../Actions/index.js'
 import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/ReseplanerareParser.js"
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import TripSelectorTile from './TripSelectorTile';
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import _ from 'lodash'
 
 class TripList extends Component {
@@ -14,7 +15,12 @@ class TripList extends Component {
             trips: [],
             loading: true,
             loadedTrips: 0,
+            isStateHealthy: this.isStateHealthy(),
         }
+    }
+
+    isStateHealthy = () => {
+        return !(this.props.currentLocation === undefined || this.props.currentLocation === "");
     }
 
     getTimes(){
@@ -24,7 +30,7 @@ class TripList extends Component {
         let headers = {}
         for (var i = 0; i < destinations.length; i++) {
             let destination = destinations[i];
-            if(destination === origin)
+            if(destination.location.id === origin.location.id)
                 continue;
             let params = this.getParameters(destinations[i],origin);
             tripPromises.push(this.apiCall(params, headers, destination.alias));
@@ -100,33 +106,64 @@ class TripList extends Component {
     }
 
     componentDidMount(){
-        this.getTimes();
+        if (this.state.isStateHealthy) {
+            this.getTimes();
+        }
     }
 
     tripList(){
-        return this.state.trips.map((trip, index)=>{
+        let triplist = this.state.trips.map((trip, index)=>{
             return (
                 <TripSelectorTile trip={trip} key={index} />
             )})
+        let dummyTripObject = {
+            "from": "placeholder",
+            "times":
+                {"arrivalTime": "TEST1",
+                "departureTime": "TEST2",
+                "timeUntilDeparture": "123",
+                "travelTime": "123"},
+            "to": this.props.currentLocation.alias,
+            "trip": [],
+            "dummy" :true,
+        }
+        triplist.push(<TripSelectorTile trip={dummyTripObject} key={this.state.trips.length}/>)
+        return triplist;
     }
 
     render(){
         let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
             <Container className="destination-selection-trip-list">
-                {this.state.loading ?
-                    <div className="loading-bar-wrapper">
-                        <div style={{"width": width + "%"}} className="loading-bar">
-                        </div>
-                        <p>
-                            Loading...
-                        </p>
+                {this.state.isStateHealthy ?
+                    <div className="">
+                        {this.state.loading ?
+                            <Row className="keen-card align-center loading-bar-wrapper">
+                                <div className="loading-bar" style={{"width": width + "%"}}>
+                                    <p className="loading-bar-text">
+                                        Loading...
+                                    </p>
+                                </div>
+                            </Row>
+                                :
+                            <div className="fade-in">
+                                <Row className="keen-card greyed-out trip-list-header">
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Destination
+                                    </Col>
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Departure
+                                    </Col>
+                                    <Col xs={4} className="trip-list-header-item">
+                                        Arrival
+                                    </Col>
+                                </Row>
+                                {this.tripList()}
+                            </div>
+                        }
                     </div>
-                    :
-                    <div>
-                        {this.tripList()}
-                    </div>
-            }
+            :
+                <Redirect to={{pathname: '/select_origin'}} />}
             </Container>
         );
     }

@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
-import {loadUser, clearState, finishedLoading, loadAllPlaces} from "./Actions/index";
+import {loadUser, clearState, setFinishedLoading, loadAllPlaces} from "./Actions/index";
 import './App.css';
 
 import SignUp from "./Pages/SignUp";
@@ -24,6 +24,9 @@ class App extends Component {
         super();
         this.authChange = this.authChange.bind(this);
         firebase.auth().onAuthStateChanged(this.authChange);
+        this.state={
+            focusContent: true,
+        }
     }
 
     authChange(user){
@@ -34,15 +37,21 @@ class App extends Component {
         if (user === null) {
             this.props.clearState();
             localStorage.clear();
-            this.props.finishedLoading();
+            this.props.setFinishedLoading(true);
         }
+    }
+
+    setFocusContent = (bool) =>{
+        this.setState({focusContent:bool});
     }
 
     render() {
         return (
             <div className="App">
-                <Navbar />
-                    <div className="Content">
+                <Navbar focusContent={this.state.focusContent} setFocusContent={this.setFocusContent}/>
+                    <div className="Content" onClick={()=>{
+                            this.setFocusContent(true)
+                        }}>
                         <Switch>
                             <Route exact path="/signup" render={(props) => <SignUp {...props}/>}/>
                             <Route exact path={"/login"} render={(props) => <Login {...props}/>}/>
@@ -51,10 +60,10 @@ class App extends Component {
                             <PrivateRoute showLoading={true} exact path="/select_destination" render={(props) => <SelectDestination {...props}/>}/>
                             <PrivateRoute showLoading={true} exact path="/" render={(props) => <Login {...props}/>}/>
                         </Switch>
+                        <PrivateRoute wrap={true} showLoading={false}>
+                            <NewTripButton/>
+                        </PrivateRoute>
                     </div>
-                    <PrivateRoute wrap={true} showLoading={false} test="mcfly">
-                        <NewTripButton/>
-                    </PrivateRoute>
           </div>
         );
     }
@@ -69,5 +78,5 @@ const mapStateToProps = (state) => {
 
 export default withRouter(connect(
     mapStateToProps,
-    {loadUser, clearState, finishedLoading, loadAllPlaces},
+    {loadUser, clearState, setFinishedLoading, loadAllPlaces},
 )(App));

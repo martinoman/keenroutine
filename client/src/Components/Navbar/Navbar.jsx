@@ -11,20 +11,14 @@ class Navbar extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            expanded: false,
-        }
     }
 
     toggleNavbar = () => {
-        const newStateOfNavbar = !this.state.expanded
-        this.setState({
-            expanded:newStateOfNavbar,
-        })
+        this.props.setFocusContent(!this.props.focusContent);
     }
 
     render() {
-        let expanded =this.state.expanded ? " expanded" : "";
+        let expanded = !this.props.focusContent ? " expanded" : "";
         return (
             <div className="Navbar">
                 <p className="navbar-title">
