@@ -86,6 +86,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return{
+        finishedLoading: state.finishedLoading,
     }
 }
 
