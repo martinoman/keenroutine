@@ -2,7 +2,7 @@
 .Navbar{
     position: relative;
     top: 0;
-    height:7%;
+    height:10%;
     width: 100%;
     z-index: 1;
     background-color: var(--color5);
