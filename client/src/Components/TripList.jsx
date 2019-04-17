@@ -134,7 +134,7 @@ class TripList extends Component {
     render(){
         let width = this.state.loadedTrips/(this.props.places.length-2) * 100;
         return(
-            <Container className="destination-selection-trip-list fade-in">
+            <Container className="destination-selection-trip-list">
                 {this.state.isStateHealthy ?
                     <div className="">
                         {this.state.loading ?
@@ -146,16 +146,15 @@ class TripList extends Component {
                                 </div>
                             </Row>
                                 :
-                            <div>
-
-                                <Row className="keen-card-greyed-out trip-list-header">
-                                    <Col xs={4} className="flex-item">
+                            <div className="fade-in">
+                                <Row className="keen-card greyed-out trip-list-header">
+                                    <Col xs={4} className="trip-list-header-item">
                                         Destination
                                     </Col>
-                                    <Col xs={4} className="flex-item">
+                                    <Col xs={4} className="trip-list-header-item">
                                         Departure
                                     </Col>
-                                    <Col xs={4} className="flex-item">
+                                    <Col xs={4} className="trip-list-header-item">
                                         Arrival
                                     </Col>
                                 </Row>

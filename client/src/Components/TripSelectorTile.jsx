@@ -52,17 +52,11 @@ class TripSelectorTile extends Component {
                             {this.props.trip.to}
                         </Col>
                         <Col className="departure-info" xs={4}>
-                            <div className="trip-info-text">
-                                Departure
-                            </div>
                             <div className="trip-info-time">
                                 {depString}
                             </div>
                         </Col>
                         <Col className="arrival-info" xs={4}>
-                            <div className="trip-info-text">
-                                Arrival
-                            </div>
                             <div className="trip-info-time">
                                 {arrString}
                             </div>
