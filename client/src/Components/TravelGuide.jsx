@@ -9,7 +9,7 @@ class TravelGuide extends Component {
     render() {
         let trip = this.props.focusedTrip.trip;
         return (
-            <Container className="travel-guide">
+            <Container className="travel-guide fade-in">
                 <Col xs={{ size: 12, offset: 0}}>
                     <div className="trip-chart">
                         <div className="title">
