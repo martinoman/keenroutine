@@ -52,11 +52,11 @@ class Login extends Component {
                         <form onSubmit={this.handleLogin} className="login-credentials">
                             <div className="input-field-wrapper">
                                 <h3>Email</h3>
-                                <input type="text" className="input-field" defaultValue="a@a.com"></input> <br/>
+                                <input type="text" className="input-field" placeholder="keen@routine.sic"></input> <br/>
                             </div>
                             <div className="input-field-wrapper">
                                 <h3>Password</h3>
-                                <input type="password" className="input-field" defaultValue="asdasd"></input><br/>{/*Hardcoded password please fix me TODO*/}
+                                <input type="password" className="input-field" placeholder="********"></input><br/>{/*Hardcoded password please fix me TODO*/}
                                 </div>
                                 <Row>
                                     <Col xs={{size:6, offset:0}}>

@@ -146,7 +146,7 @@ class TripList extends Component {
                                 </div>
                             </Row>
                                 :
-                            <div className="fade-in">
+                            <div>
                                 <Row className="keen-card greyed-out trip-list-header">
                                     <Col xs={4} className="trip-list-header-item">
                                         Destination

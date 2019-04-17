@@ -72,15 +72,15 @@ class SignUp extends Component {
                                     <form onSubmit={this.handleSignUp}>
                                         <div className="input-field-wrapper">
                                             <h4>E-mail</h4>
-                                            <input className="input-field" type="text" defaultValue="b@b.com"/>
+                                            <input className="input-field" type="text" placeholder="keen@routine.sic"/>
                                         </div>
                                         <div className="input-field-wrapper">
                                             <h4>Password</h4>
-                                            <input className="input-field" type="password" defaultValue="asdasd"/>
+                                            <input className="input-field" type="password" placeholder="*******"/>
                                         </div>
                                         <div className="input-field-wrapper">
                                             <h4>Confirm password</h4>
-                                            <input className="input-field" type="password" defaultValue="asdasd"/>
+                                            <input className="input-field" type="password" placeholder="*******"/>
                                         </div>
                                         <br/>
                                         <button type="submit" className="button login-signup-button">Register</button>
