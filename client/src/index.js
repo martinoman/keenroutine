@@ -10,7 +10,6 @@ import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import reducers from './Reducers/reducers'
 
-import config from './DB_CONFIG.js'
 import {BrowserRouter} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -44,8 +43,7 @@ store.subscribe(() => {
     let currentLocation = state.currentLocation;
     localStorage.setItem("currentLocation",JSON.stringify(currentLocation));
 })
-
-firebase.initializeApp(config);
+firebase.initializeApp(JSON.parse(process.env.REACT_APP_dbconfig));
 
 ReactDOM.render(
         <Provider store={store}>
