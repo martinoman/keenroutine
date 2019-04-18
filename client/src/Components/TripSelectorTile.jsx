@@ -1,14 +1,9 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import {Link, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { Row, Col } from 'reactstrap';
 import {focusTrip} from '../Actions/index.js'
-import _ from "lodash"
 class TripSelectorTile extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     touchStart = () => {
         this.props.focusTrip(this.props.trip);
@@ -47,7 +42,7 @@ class TripSelectorTile extends Component {
                         </Col>
                     </Row>
                     :
-                    <Row className={"keen-card align-center pointer fade-in"} onTouchStart={this.touchStart}>
+                    <Row className={"keen-card align-center pointer fade-in"} onClick={this.touchStart}>
                         <Col xs={4}>
                             {this.props.trip.to}
                         </Col>

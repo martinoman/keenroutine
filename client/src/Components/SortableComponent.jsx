@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SortableContainer, SortableElement, sortableHandle} from 'react-sortable-hoc';
+import {SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const SortableItem = SortableElement(({value}) => <div className="draggable">{value}</div>);
 

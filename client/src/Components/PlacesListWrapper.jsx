@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 
-import { IconContext } from "react-icons";
-import { FaBars } from "react-icons/fa";
 
 /**
 This component wraps any list of places for some robustness
@@ -12,10 +10,6 @@ You can specify "link" and "empty" as attributes.
 Link provides a link to manage_places. Empty prompts this component to show no error message if there are no places
 */
 class PlacesListWrapper extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     renderErrorMessage(){
         return(

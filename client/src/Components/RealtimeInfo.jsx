@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
 import { getTimes } from "../Helpers/RealtidsInfoParser.js"
-import RealtimeModeList from "./RealtimeModeList";
 import {Container, Row, Col} from "reactstrap"
 
 //icons

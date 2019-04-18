@@ -3,15 +3,10 @@ import { connect } from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import { logout } from "../../Actions/index";
 
-import { IconContext } from "react-icons";
 import { FaBars } from "react-icons/fa";
 
 import "./Navbar.css"
 class Navbar extends Component {
-
-    constructor(props){
-        super(props);
-    }
 
     toggleNavbar = () => {
         this.props.setFocusContent(!this.props.focusContent);

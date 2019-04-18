@@ -4,9 +4,6 @@ import { Redirect, Route } from 'react-router-dom'
 import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
 
 class PrivateRoute extends Component {
-    constructor(props){
-        super(props);
-    }
 
     render(){
         let loaded = this.props.finishedLoading;

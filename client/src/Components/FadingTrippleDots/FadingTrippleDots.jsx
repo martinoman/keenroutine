@@ -4,10 +4,6 @@ import {Container, Row, Col} from "reactstrap";
 
 class FadingTrippleDots extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
 
     render() {
         return (

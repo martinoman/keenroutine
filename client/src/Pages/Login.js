@@ -91,12 +91,6 @@ const mapStateToProps = (state) => {
 }
 
 
-const mapDispatchToProps = (dispath) => {
-    return{
-    }
-}
-
-
 export default connect(
     mapStateToProps,
     {setFinishedLoading},

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import { connect } from 'react-redux'
 import TripLeg from "../Components/TripLeg.jsx"
 import {Container, Col} from "reactstrap"
-import TripList from "../Components/TripList";
 import {focusTrip} from '../Actions/index.js'
 
 class TravelGuide extends Component {

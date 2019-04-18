@@ -5,7 +5,6 @@ import { removePlace, setIndex } from '../Actions/index';
 import SortableComponent from '../Components/SortableComponent.jsx'
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import { Container, Col, Row } from "reactstrap";
-import { IconContext } from "react-icons";
 import { IoIosRemoveCircleOutline, IoMdReorder } from "react-icons/io";
 import {sortableHandle} from 'react-sortable-hoc';
 import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"

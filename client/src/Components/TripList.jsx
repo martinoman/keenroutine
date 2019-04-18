@@ -6,7 +6,6 @@ import { findAndParseTrip, tripTimes, filterWeirdWalks } from "../Helpers/Resepl
 import { sortOnIndex } from "../Helpers/PlacesHelper.js"
 import TripSelectorTile from './TripSelectorTile';
 import { Container, Row, Col } from 'reactstrap';
-import _ from 'lodash'
 
 class TripList extends Component {
     constructor(props){
@@ -17,6 +16,9 @@ class TripList extends Component {
             loadedTrips: 0,
             isStateHealthy: this.isStateHealthy(),
         }
+        this.tempState = {
+            "trips":[],
+            "loading": true};
     }
 
     isStateHealthy = () => {
@@ -36,9 +38,9 @@ class TripList extends Component {
             tripPromises.push(this.apiCall(params, headers, destination.alias));
         }
         Promise.all(tripPromises).then(()=>{
-                this.state.loading = false;
+                this.tempState.loading = false;
                 setTimeout(() => {
-                    this.setState(this.state)
+                    this.setState(this.tempState)
                 }, 750);
 
             }
@@ -87,7 +89,7 @@ class TripList extends Component {
             times: times,
             trip: data,
         }
-        this.state.trips.push(trip);
+        this.tempState.trips.push(trip);
     }
 
     apiCall(params, headers, alias){
@@ -146,7 +148,7 @@ class TripList extends Component {
                                 </div>
                             </Row>
                                 :
-                            <div className="fade-in">
+                            <div>
                                 <Row className="keen-card greyed-out trip-list-header">
                                     <Col xs={4} className="trip-list-header-item">
                                         Destination

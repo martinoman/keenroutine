@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import TripList from "../Components/TripList";
 import TravelGuide from "../Components/TravelGuide";
 import RealtimeInfo from "../Components/RealtimeInfo";
-import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";

@@ -35,12 +35,14 @@ class PlacesSearch extends Component {
     }, 1000);
 
     pageScroll = () => {
+        console.log("scrolling");
         scroller.scrollTo('search', {
-        duration: 800,
-        delay: 0,
-        offset: -50,
-        smooth: 'easeInOutQuart'
-      });
+            duration: 800,
+            delay: 0,
+            offset: -500,
+            smooth: 'easeInOutQuart',
+            containerId: 'scroll-element',
+          });
     }
 
     addedPlace = () => {
@@ -59,7 +61,7 @@ class PlacesSearch extends Component {
                 <h4 className="align-center-horizontal">Add more places</h4>
                 <Row>
                     <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
-                        <Element name="search" className="">
+                        <Element name='search' id="scroll-element">
                             {"Search for new stations to add"}
                         </Element>
                         <input ref={this.searchField} type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
