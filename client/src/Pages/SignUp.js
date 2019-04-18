@@ -55,6 +55,9 @@ class SignUp extends Component {
                                             🎉
                                         </span>
                                         Account created, welcome to Keenroutine!
+                                        <br/>
+                                        <br/>
+                                        Add some stations and find a trip by pressing the bottom or top bar!
                                         <span role="img" aria-label="Celebration">
                                             🙌
                                         </span>
