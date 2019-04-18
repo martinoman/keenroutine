@@ -43,6 +43,7 @@ store.subscribe(() => {
     let currentLocation = state.currentLocation;
     localStorage.setItem("currentLocation",JSON.stringify(currentLocation));
 })
+console.log(process.env.REACT_APP_dbconfig);
 firebase.initializeApp(JSON.parse(process.env.REACT_APP_dbconfig));
 
 ReactDOM.render(
