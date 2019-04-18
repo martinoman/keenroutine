@@ -26,9 +26,7 @@ class DraggableList extends Component {
         fromIndex: from,
     });
   }
-  dragEnd2(e) {
-    console.log(e);
-  }
+  
   dragOver(e) {
     this.over = e.target.parentNode.parentNode;
   }

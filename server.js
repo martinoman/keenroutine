@@ -9,12 +9,10 @@ const port = process.env.PORT || 5000;
 dotenv.config(); // seys up the env variables
 
 //Static file declaration
-//Vet inte vrf man behöver denna, kan nog tas bort
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 //production mode
 if(process.env.NODE_ENV === 'production') {
-    console.log("Bajs från SERVER: production mode1");
   app.use(express.static(path.join(__dirname, 'client/build')));
 
   app.get('/searchStation', (req, res) => {
@@ -58,10 +56,6 @@ if(process.env.NODE_ENV === 'production') {
   })
 
   app.get('*', (req, res) => {
-      console.log("Från catchall prodmode");
-      console.log(__dirname);
-      console.log(path.join(__dirname + 'client/build/index.html'));
-      console.log(path.join(__dirname, 'client/build/index.html'));
       res.sendFile(path.join(__dirname, 'client/build/index.html'));
   })
 
@@ -87,8 +81,6 @@ if(process.env.NODE_ENV === 'production') {
         fetch("https://api.sl.se/api2/TravelplannerV3_1/trip.json?key=" + process.env.REACT_APP_ReseplanerareAPI + "&" + urlParams)
         .then(res => res.json())
         .then(json => {
-            console.log(urlParams);
-            // console.log(json);
             res.send(json)
         });
     })

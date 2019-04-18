@@ -35,7 +35,6 @@ class PlacesSearch extends Component {
     }, 1000);
 
     pageScroll = () => {
-        console.log("scrolling");
         scroller.scrollTo('search', {
             duration: 800,
             delay: 0,
