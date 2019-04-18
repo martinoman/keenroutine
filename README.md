@@ -33,3 +33,5 @@ The app is deployed on heroku. [Click here](https://keenroutine.herokuapp.com) t
 ### Locally
 To run the app locally you will need to install the dependencies. This is done by running `npm install` in both root and in client. Then you will need to start both the app and server. To start the server you need to be in root and run `node server.js`. To start the app, navigate into `/client` and run `npm start`. The server will start on localhost:5000 and the app will automatically open a tab for localhost:3000. 
 
+You will need the corrent environment variables to run it locally. Talk to your closest admin!
+
