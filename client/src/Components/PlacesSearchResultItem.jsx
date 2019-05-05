@@ -78,12 +78,12 @@ class PlacesSearchResultItem extends Component {
         return (
             <div className={"search-result-item-card keen-card " + (this.state.expanded ? "expanded" : "")}>
                 <Row className="search-result-item">
-                    <Col xs={8} className="search-result-item-name">
+                    <Col xs={7} className="search-result-item-name">
                         {this.props.place.Name}
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={{size:4, offset: 1}}>
                         <button className="search-result-item-button button" onClick={this.evaluateAddPlace}>
-                            Add
+                            {this.state.expanded ? "Cancel" : "Add"}
                         </button>
                     </Col>
                 </Row>

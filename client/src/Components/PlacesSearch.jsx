@@ -1,16 +1,13 @@
 import React, {Component} from "react";
 import PlacesSearchResult from "./PlacesSearchResult";
 import { Row } from "reactstrap"
-import {Element , scroller, animateScroll as scroll} from 'react-scroll'
 import FadingTrippleDots from "../Components/FadingTrippleDots/FadingTrippleDots.jsx"
-
 import _ from "lodash"
 import { connect } from 'react-redux'
 
 class PlacesSearch extends Component {
     constructor(props){
         super(props);
-        this.scrollRef = React.createRef()
         this.state = {
             searchResult: [],
             loading: false,
@@ -30,28 +27,13 @@ class PlacesSearch extends Component {
                 });
                 this.setState({loading: false});
                 if(data.ResponseData.length > 0)
-                    this.pageScroll();
+                    this.props.scrollTo(this.resultsRef);
             })
     }, 1000);
 
-    pageScroll = () => {
-        scroller.scrollTo('search', {
-            duration: 800,
-            delay: 0,
-            offset: -500,
-            smooth: 'easeInOutQuart',
-            containerId: 'scroll-element',
-          });
-    }
-
     addedPlace = () => {
         this.searchField.current.value = "";
-        scroll.scrollToTop({
-            duration: 800,
-            delay: 0,
-            offset: -50,
-            smooth: 'easeInOutQuart'
-        });
+        this.props.scrollToTop();
     }
 
     render() {
@@ -59,10 +41,10 @@ class PlacesSearch extends Component {
             <div  className="places-search">
                 <h4 className="align-center-horizontal">Add more places</h4>
                 <Row>
-                    <div ref={this.scrollRef} className="search-bar manage-places-search-bar keen-card">
-                        <Element name='search' id="scroll-element">
+                    <div ref={(c) => { this.resultsRef = c; }} className="search-bar manage-places-search-bar keen-card">
+                        <div name='search' id="scroll-element">
                             {"Search for new stations to add"}
-                        </Element>
+                        </div>
                         <input ref={this.searchField} type="text" className="search-places-field" placeholder="Search for stations" onChange={(event)=>{
                                 let searchWord = event.target.value;
                                 this.setState({loading:true});

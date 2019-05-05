@@ -224,6 +224,7 @@ html, body {
     max-width: 500px;
 }
 
+
 .button{
     background-color: var(--color3);
     color: #FFFFFF;
@@ -232,6 +233,10 @@ html, body {
     border-radius: 10px;
     border: none;
     outline: none;
+}
+
+.search-result-item-button{
+  width: auto;
 }
 
 .add-more-places-button{

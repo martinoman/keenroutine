@@ -11,6 +11,10 @@ import PlacesListWrapper from "../Components/PlacesListWrapper.jsx"
 const DragHandle = sortableHandle(() => <IoMdReorder className="button-icon"/>);
 
 class ManagePlaces extends Component {
+    constructor(props){
+        super(props);
+    }
+
     removePlace = (key) => {
         this.props.removePlace(key, this.props.user.userID);
     }
@@ -44,6 +48,14 @@ class ManagePlaces extends Component {
         );
     }
 
+    scrollTo = (ref) => {
+      ref.scrollIntoView({behavior: "smooth"});
+    }
+
+    scrollToTop = () => {
+      this.topRef.scrollIntoView();
+    }
+
     render() {
         let places = sortOnIndex(this.props.places).map((place)=>{return this.formatPlace(place)});
         return (
@@ -51,12 +63,12 @@ class ManagePlaces extends Component {
                 <Row>
                     <Col xs={{size:10, offset:1}}>
                         <PlacesListWrapper link={false} empty={true}>
-                            <div className="title">
+                            <div className="title" ref={(c) => { this.topRef = c}}>
                                 Your places
                             </div>
                             <SortableComponent places={places} onChange={this.changeOrder.bind(this)}/>
                         </PlacesListWrapper>
-                        <PlacesSearch />
+                        <PlacesSearch scrollTo={this.scrollTo} scrollToTop={this.scrollToTop}/>
                     </Col>
                 </Row>
             </Container>
